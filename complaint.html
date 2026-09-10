@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>e-Seva Portal | Complaints</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <style>
+
+        /* =========================================
+           COMPLAINT PAGE
+        ========================================= */
+
+        .complaint-page {
+            background: #f5f8fb;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .complaint-hero {
+
+            background: linear-gradient(
+                135deg,
+                #f1f7f4,
+                #eef5ff
+            );
+
+            text-align: center;
+
+            padding: 45px 20px;
+
+            border-bottom: 1px solid #dfe6ed;
+        }
+
+
+        .complaint-hero h2 {
+
+            font-size: 36px;
+
+            margin: 0;
+
+            color: #123f73;
+        }
+
+
+        .complaint-hero h2 span {
+
+            color: #168047;
+        }
+
+
+        .complaint-hero p {
+
+            max-width: 700px;
+
+            margin: 12px auto;
+
+            color: #687887;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           MAIN CONTAINER
+        ========================================= */
+
+        .complaint-container {
+
+            width: 92%;
+
+            max-width: 1100px;
+
+            margin: 35px auto;
+
+            display: grid;
+
+            grid-template-columns: 1fr 330px;
+
+            gap: 25px;
+        }
+
+
+        /* =========================================
+           FORM CARD
+        ========================================= */
+
+        .complaint-form-card {
+
+            background: white;
+
+            border: 1px solid #e0e6ec;
+
+            border-radius: 10px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,0.05);
+        }
+
+
+        .form-title {
+
+            color: #123f73;
+
+            margin-top: 0;
+
+            margin-bottom: 5px;
+
+            font-size: 23px;
+        }
+
+
+        .form-subtitle {
+
+            color: #7a8794;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #304b63;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .required {
+
+            color: #c0392b;
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 12px 13px;
+
+            border: 1px solid #ccd6df;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            background: white;
+        }
+
+
+        .form-group textarea {
+
+            min-height: 130px;
+
+            resize: vertical;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #168047;
+
+            box-shadow:
+                0 0 0 2px rgba(22,128,71,0.08);
+        }
+
+
+        /* =========================================
+           TWO COLUMN FORM
+        ========================================= */
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        /* =========================================
+           AI SUGGESTION
+        ========================================= */
+
+        .ai-box {
+
+            background: #eef5ff;
+
+            border: 1px solid #d5e3f4;
+
+            border-left: 4px solid #123f73;
+
+            border-radius: 6px;
+
+            padding: 15px;
+
+            margin-top: 10px;
+
+            display: none;
+        }
+
+
+        .ai-box strong {
+
+            color: #123f73;
+        }
+
+
+        .ai-box p {
+
+            margin: 6px 0 0;
+
+            font-size: 13px;
+
+            color: #5e7080;
+        }
+
+
+        /* =========================================
+           UPLOAD
+        ========================================= */
+
+        .upload-box {
+
+            border: 2px dashed #ccd6df;
+
+            border-radius: 7px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            background: #fafcfd;
+        }
+
+
+        .upload-box input {
+
+            border: none;
+
+            padding: 0;
+
+            background: transparent;
+        }
+
+
+        .upload-note {
+
+            color: #8995a0;
+
+            font-size: 12px;
+
+            margin-top: 8px;
+        }
+
+
+        /* =========================================
+           SUBMIT
+        ========================================= */
+
+        .submit-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #168047;
+
+            color: white;
+
+            padding: 14px;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .submit-btn:hover {
+
+            background: #116b3b;
+        }
+
+
+        /* =========================================
+           SIDE INFORMATION
+        ========================================= */
+
+        .complaint-side {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+
+        .side-card {
+
+            background: white;
+
+            border: 1px solid #e0e6ec;
+
+            border-radius: 10px;
+
+            padding: 22px;
+        }
+
+
+        .side-card h3 {
+
+            margin-top: 0;
+
+            color: #123f73;
+
+            font-size: 18px;
+        }
+
+
+        .side-card p {
+
+            color: #687887;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           STEPS
+        ========================================= */
+
+        .complaint-step {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .complaint-step:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .step-circle {
+
+            width: 32px;
+
+            height: 32px;
+
+            min-width: 32px;
+
+            border-radius: 50%;
+
+            background: #e6f4ec;
+
+            color: #168047;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+
+        .complaint-step strong {
+
+            display: block;
+
+            color: #304b63;
+
+            font-size: 14px;
+        }
+
+
+        .complaint-step span {
+
+            color: #7b8792;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           SUCCESS MESSAGE
+        ========================================= */
+
+        .success-message {
+
+            display: none;
+
+            width: 92%;
+
+            max-width: 700px;
+
+            margin: 30px auto;
+
+            background: #edf8f1;
+
+            border: 1px solid #b9dec7;
+
+            border-radius: 10px;
+
+            padding: 25px;
+
+            text-align: center;
+        }
+
+
+        .success-icon {
+
+            width: 55px;
+
+            height: 55px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            background: #168047;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+
+        .success-message h3 {
+
+            color: #168047;
+
+            margin-bottom: 8px;
+        }
+
+
+        .success-message p {
+
+            color: #617271;
+
+            font-size: 14px;
+        }
+
+
+        .complaint-id {
+
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 10px 18px;
+
+            background: white;
+
+            border: 1px dashed #168047;
+
+            border-radius: 6px;
+
+            color: #123f73;
+
+            font-weight: bold;
+        }
+
+
+        .track-complaint-btn {
+
+            margin-top: 15px;
+
+            border: none;
+
+            background: #123f73;
+
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media(max-width: 800px) {
+
+            .complaint-container {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+            }
+
+            .complaint-hero h2 {
+
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     TOP GOVERNMENT BAR
+========================================= -->
+
+<div class="top-bar">
+
+    <div class="gov-brand">
+
+        <div class="emblem">
+            ☸
+        </div>
+
+        <div>
+
+            <div class="bharat"
+                 data-key="bharat">
+
+                भारत सरकार
+
+            </div>
+
+            <div class="gov-name"
+                 data-key="govIndia">
+
+                Government of India
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="top-info">
+
+        <span data-key="helpline">
+            ☎ Helpline No.: 1800-123-4567
+        </span>
+
+        <span data-key="supportEmail">
+            ✉ support@govservices.gov.in
+        </span>
+
+
+        <select id="languageSelect">
+
+            <option value="en">
+                English
+            </option>
+
+            <option value="mr">
+                मराठी
+            </option>
+
+            <option value="hi">
+                हिंदी
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<header class="navbar">
+
+
+    <div class="logo-section">
+
+        <div class="logo-icon">
+
+            <img src="./images/logo.png"
+                 alt="Government Logo">
+
+        </div>
+
+
+        <div class="logo-text">
+
+            <h1>
+
+                <span data-key="brandPrefix">
+                    e-
+                </span>
+
+                Seva Portal
+
+            </h1>
+
+            <p data-key="tagline">
+
+                One step towards Digital Government
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <nav>
+
+        <a href="index.html"
+           data-key="home">
+
+            🏠 Home
+
+        </a>
+
+
+        <a href="services.html"
+           data-key="services">
+
+            Services
+
+        </a>
+
+
+        <a href="track.html"
+           data-key="track">
+
+            Track Application
+
+        </a>
+
+
+        <a href="complaints.html"
+           class="active"
+           data-key="complaints">
+
+            Complaints
+
+        </a>
+
+
+        <a href="#"
+           data-key="about">
+
+            About Us
+
+        </a>
+
+
+        <a href="#"
+           data-key="contact">
+
+            Contact Us
+
+        </a>
+
+    </nav>
+
+
+
+    <div class="auth-buttons">
+
+        <button class="login-btn"
+                data-key="login">
+
+            👤 Login
+
+        </button>
+
+
+        <button class="register-btn"
+                data-key="register">
+
+            ♙ Register
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="complaint-page">
+
+
+    <!-- HERO -->
+
+    <section class="complaint-hero">
+
+        <h2>
+
+            <span data-key="complaintTitle">
+                Register
+            </span>
+
+            <span data-key="complaintTitle2">
+                Complaint
+            </span>
+
+        </h2>
+
+
+        <p data-key="complaintDescription">
+
+            Report an issue related to government
+            services and track your complaint easily.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SUCCESS MESSAGE
+    ========================================= -->
+
+    <div class="success-message"
+         id="successMessage">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h3 data-key="successTitle">
+
+            Complaint Registered Successfully
+
+        </h3>
+
+
+        <p data-key="successText">
+
+            Your complaint has been submitted successfully.
+            Please save your complaint ID for future tracking.
+
+        </p>
+
+
+        <div class="complaint-id">
+
+            <span data-key="complaintIdText">
+                Complaint ID:
+            </span>
+
+            <span id="generatedId">
+                CMP2026000001
+            </span>
+
+        </div>
+
+
+        <br>
+
+
+        <button class="track-complaint-btn"
+                onclick="goToTrackComplaint()"
+                data-key="trackComplaint">
+
+            Track Complaint
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         CONTENT
+    ========================================= -->
+
+    <div class="complaint-container"
+         id="complaintContainer">
+
+
+        <!-- =====================================
+             FORM
+        ===================================== -->
+
+        <div class="complaint-form-card">
+
+
+            <h2 class="form-title"
+                data-key="formTitle">
+
+                Complaint Registration
+
+            </h2>
+
+
+            <p class="form-subtitle"
+               data-key="formSubtitle">
+
+                Please provide accurate information
+                about your complaint.
+
+            </p>
+
+
+
+            <!-- NAME + MOBILE -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label data-key="nameLabel">
+
+                        Applicant Name
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <input type="text"
+                           id="applicantName"
+                           placeholder="Enter your full name"
+                           data-placeholder="namePlaceholder">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label data-key="mobileLabel">
+
+                        Mobile Number
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <input type="tel"
+                           id="mobile"
+                           maxlength="10"
+                           placeholder="Enter mobile number"
+                           data-placeholder="mobilePlaceholder">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CATEGORY + DEPARTMENT -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label data-key="categoryLabel">
+
+                        Complaint Category
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <select id="category"
+                            onchange="showAISuggestion()">
+
+                        <option value=""
+                                data-key="selectCategory">
+
+                            Select Category
+
+                        </option>
+
+                        <option value="certificate"
+                                data-key="certificate">
+
+                            Certificate / Document
+
+                        </option>
+
+                        <option value="delay"
+                                data-key="delay">
+
+                            Application Delay
+
+                        </option>
+
+                        <option value="website"
+                                data-key="website">
+
+                            Website / Technical Issue
+
+                        </option>
+
+                        <option value="staff"
+                                data-key="staff">
+
+                            Staff Related
+
+                        </option>
+
+                        <option value="payment"
+                                data-key="payment">
+
+                            Payment Related
+
+                        </option>
+
+                        <option value="other"
+                                data-key="other">
+
+                            Other
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label data-key="departmentLabel">
+
+                        Department
+                        <span class="required">*</span>
+
+                    </label>
+
+
+                    <select id="department">
+
+                        <option value=""
+                                data-key="selectDepartment">
+
+                            Select Department
+
+                        </option>
+
+                        <option>
+                            Revenue Department
+                        </option>
+
+                        <option>
+                            Municipal Corporation
+                        </option>
+
+                        <option>
+                            Education Department
+                        </option>
+
+                        <option>
+                            Health Department
+                        </option>
+
+                        <option>
+                            Transport Department
+                        </option>
+
+                        <option>
+                            Other Department
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AI BOX -->
+
+            <div class="ai-box"
+                 id="aiSuggestion">
+
+                <strong>
+                    🤖 AI Suggestion
+                </strong>
+
+                <p id="aiText">
+
+                    Our AI system will analyze
+                    your complaint.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div class="form-group">
+
+                <label data-key="locationLabel">
+
+                    Location / District
+
+                </label>
+
+
+                <input type="text"
+                       id="location"
+                       placeholder="Enter district / city"
+                       data-placeholder="locationPlaceholder">
+
+            </div>
+
+
+
+            <!-- APPLICATION ID -->
+
+            <div class="form-group">
+
+                <label data-key="applicationLabel">
+
+                    Related Application ID
+                    <span class="optional">
+                        (Optional)
+                    </span>
+
+                </label>
+
+
+                <input type="text"
+                       id="applicationRelated"
+                       placeholder="Example: APP2026001234"
+                       data-placeholder="applicationIdPlaceholder">
+
+            </div>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label data-key="descriptionLabel">
+
+                    Complaint Description
+                    <span class="required">*</span>
+
+                </label>
+
+
+                <textarea
+                    id="description"
+                    placeholder="Describe your complaint in detail..."
+                    data-placeholder="descriptionPlaceholder">
+                </textarea>
+
+            </div>
+
+
+
+            <!-- UPLOAD -->
+
+            <div class="form-group">
+
+                <label data-key="documentLabel">
+
+                    Upload Supporting Document
+
+                </label>
+
+
+                <div class="upload-box">
+
+                    <input type="file"
+                           id="document"
+                           accept=".jpg,.jpeg,.png,.pdf">
+
+                    <div class="upload-note"
+                         data-key="uploadNote">
+
+                        Accepted formats:
+                        JPG, PNG, PDF
+                        | Maximum size: 5 MB
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button class="submit-btn"
+                    onclick="submitComplaint()"
+                    data-key="submitComplaint">
+
+                Submit Complaint
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             SIDE PANEL
+        ===================================== -->
+
+        <div class="complaint-side">
+
+
+            <!-- WHY REGISTER -->
+
+            <div class="side-card">
+
+                <h3 data-key="whyTitle">
+
+                    Why Register a Complaint?
+
+                </h3>
+
+
+                <p data-key="whyText">
+
+                    Your complaint helps government
+                    departments identify problems,
+                    reduce delays and improve
+                    citizen services.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- PROCESS -->
+
+            <div class="side-card">
+
+                <h3 data-key="processTitle">
+
+                    Complaint Process
+
+                </h3>
+
+
+                <div class="complaint-step">
+
+                    <div class="step-circle">
+                        1
+                    </div>
+
+                    <div>
+
+                        <strong data-key="step1Title">
+                            Submit Complaint
+                        </strong>
+
+                        <span data-key="step1Text">
+                            Provide complaint details
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="complaint-step">
+
+                    <div class="step-circle">
+                        2
+                    </div>
+
+                    <div>
+
+                        <strong data-key="step2Title">
+                            AI Classification
+                        </strong>
+
+                        <span data-key="step2Text">
+                            Complaint is categorized automatically
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="complaint-step">
+
+                    <div class="step-circle">
+                        3
+                    </div>
+
+                    <div>
+
+                        <strong data-key="step3Title">
+                            Department Review
+                        </strong>
+
+                        <span data-key="step3Text">
+                            Sent to concerned department
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="complaint-step">
+
+                    <div class="step-circle">
+                        4
+                    </div>
+
+                    <div>
+
+                        <strong data-key="step4Title">
+                            Resolution
+                        </strong>
+
+                        <span data-key="step4Text">
+                            Complaint is resolved
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AI -->
+
+            <div class="side-card">
+
+                <h3>
+                    🤖 AI Based System
+                </h3>
+
+                <p data-key="aiDescription">
+
+                    The system can automatically
+                    classify complaints, detect
+                    priority, identify duplicate
+                    complaints and detect delays.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        <strong data-key="footerTitle">
+            e-Seva Portal
+        </strong>
+
+        <p data-key="footerTagline">
+            Serving Citizens, Simplifying Government
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="#"
+           data-key="privacy">
+            Privacy Policy
+        </a>
+
+        <a href="#"
+           data-key="terms">
+            Terms & Conditions
+        </a>
+
+        <a href="#"
+           data-key="help">
+            Help & Support
+        </a>
+
+    </div>
+
+
+    <p class="copyright"
+       data-key="copyright">
+
+        © 2026 e-Seva Portal.
+        All Rights Reserved.
+
+    </p>
+
+</footer>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+/* =========================================
+   AI SUGGESTION DEMO
+========================================= */
+
+function showAISuggestion() {
+
+    const category =
+        document.getElementById("category").value;
+
+    const aiBox =
+        document.getElementById("aiSuggestion");
+
+    const aiText =
+        document.getElementById("aiText");
+
+
+    if (!category) {
+
+        aiBox.style.display = "none";
+
+        return;
+    }
+
+
+    aiBox.style.display = "block";
+
+
+    if (category === "certificate") {
+
+        aiText.textContent =
+            "Suggested Department: Revenue Department | Priority: Medium";
+
+    }
+
+    else if (category === "delay") {
+
+        aiText.textContent =
+            "AI detected a possible service delay category | Priority: High";
+
+    }
+
+    else if (category === "website") {
+
+        aiText.textContent =
+            "Suggested Department: Technical Support | Priority: Medium";
+
+    }
+
+    else if (category === "staff") {
+
+        aiText.textContent =
+            "Suggested Category: Staff Related Complaint | Priority: High";
+
+    }
+
+    else if (category === "payment") {
+
+        aiText.textContent =
+            "Suggested Category: Payment Issue | Priority: High";
+
+    }
+
+    else {
+
+        aiText.textContent =
+            "AI will analyze the complaint description and assign the appropriate department.";
+
+    }
+
+}
+
+
+
+/* =========================================
+   SUBMIT COMPLAINT
+========================================= */
+
+function submitComplaint() {
+
+    const name =
+        document.getElementById("applicantName").value.trim();
+
+    const mobile =
+        document.getElementById("mobile").value.trim();
+
+    const category =
+        document.getElementById("category").value;
+
+    const department =
+        document.getElementById("department").value;
+
+    const description =
+        document.getElementById("description").value.trim();
+
+
+    /* VALIDATION */
+
+    if (!name ||
+        !mobile ||
+        !category ||
+        !department ||
+        !description) {
+
+        alert(
+            "Please fill all required fields."
+        );
+
+        return;
+    }
+
+
+    if (!/^[0-9]{10}$/.test(mobile)) {
+
+        alert(
+            "Please enter a valid 10-digit mobile number."
+        );
+
+        return;
+    }
+
+
+    /* GENERATE COMPLAINT ID */
+
+    const randomNumber =
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        );
+
+
+    const complaintId =
+        "CMP2026" + randomNumber;
+
+
+    document.getElementById(
+        "generatedId"
+    ).textContent =
+        complaintId;
+
+
+    /* SAVE DATA */
+
+    const complaintData = {
+
+        id: complaintId,
+
+        name: name,
+
+        mobile: mobile,
+
+        category: category,
+
+        department: department,
+
+        description: description,
+
+        status: "Submitted"
+
+    };
+
+
+    localStorage.setItem(
+        complaintId,
+        JSON.stringify(complaintData)
+    );
+
+
+    /* HIDE FORM */
+
+    document.getElementById(
+        "complaintContainer"
+    ).style.display = "none";
+
+
+    /* SHOW SUCCESS */
+
+    document.getElementById(
+        "successMessage"
+    ).style.display = "block";
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+
+/* =========================================
+   TRACK COMPLAINT
+========================================= */
+
+function goToTrackComplaint() {
+
+    window.location.href =
+        "track.html";
+
+}
+
+
+
+/* =========================================
+   TRANSLATIONS
+========================================= */
+
+const complaintTranslations = {
+
+
+    en: {
+
+        bharat:
+            "Government of India",
+
+        govIndia:
+            "Government of India",
+
+        helpline:
+            "☎ Helpline No.: 1800-123-4567",
+
+        supportEmail:
+            "✉ support@govservices.gov.in",
+
+        brandPrefix:
+            "e-",
+
+        tagline:
+            "One step towards Digital Government",
+
+        home:
+            "🏠 Home",
+
+        services:
+            "Services",
+
+        track:
+            "Track Application",
+
+        complaints:
+            "Complaints",
+
+        about:
+            "About Us",
+
+        contact:
+            "Contact Us",
+
+        login:
+            "👤 Login",
+
+        register:
+            "♙ Register",
+
+        complaintTitle:
+            "Register",
+
+        complaintTitle2:
+            " Complaint",
+
+        complaintDescription:
+            "Report an issue related to government services and track your complaint easily.",
+
+        formTitle:
+            "Complaint Registration",
+
+        formSubtitle:
+            "Please provide accurate information about your complaint.",
+
+        nameLabel:
+            "Applicant Name *",
+
+        mobileLabel:
+            "Mobile Number *",
+
+        categoryLabel:
+            "Complaint Category *",
+
+        departmentLabel:
+            "Department *",
+
+        selectCategory:
+            "Select Category",
+
+        certificate:
+            "Certificate / Document",
+
+        delay:
+            "Application Delay",
+
+        website:
+            "Website / Technical Issue",
+
+        staff:
+            "Staff Related",
+
+        payment:
+            "Payment Related",
+
+        other:
+            "Other",
+
+        selectDepartment:
+            "Select Department",
+
+        locationLabel:
+            "Location / District",
+
+        applicationLabel:
+            "Related Application ID (Optional)",
+
+        descriptionLabel:
+            "Complaint Description *",
+
+        documentLabel:
+            "Upload Supporting Document",
+
+        uploadNote:
+            "Accepted formats: JPG, PNG, PDF | Maximum size: 5 MB",
+
+        submitComplaint:
+            "Submit Complaint",
+
+        whyTitle:
+            "Why Register a Complaint?",
+
+        whyText:
+            "Your complaint helps government departments identify problems, reduce delays and improve citizen services.",
+
+        processTitle:
+            "Complaint Process",
+
+        step1Title:
+            "Submit Complaint",
+
+        step1Text:
+            "Provide complaint details",
+
+        step2Title:
+            "AI Classification",
+
+        step2Text:
+            "Complaint is categorized automatically",
+
+        step3Title:
+            "Department Review",
+
+        step3Text:
+            "Sent to concerned department",
+
+        step4Title:
+            "Resolution",
+
+        step4Text:
+            "Complaint is resolved",
+
+        aiDescription:
+            "The system can automatically classify complaints, detect priority, identify duplicate complaints and detect delays.",
+
+        successTitle:
+            "Complaint Registered Successfully",
+
+        successText:
+            "Your complaint has been submitted successfully. Please save your complaint ID for future tracking.",
+
+        complaintIdText:
+            "Complaint ID:",
+
+        trackComplaint:
+            "Track Complaint",
+
+        footerTitle:
+            "e-Seva Portal",
+
+        footerTagline:
+            "Serving Citizens, Simplifying Government",
+
+        privacy:
+            "Privacy Policy",
+
+        terms:
+            "Terms & Conditions",
+
+        help:
+            "Help & Support",
+
+        copyright:
+            "© 2026 e-Seva Portal. All Rights Reserved."
+
+    },
+
+
+    mr: {
+
+        bharat:
+            "भारत सरकार",
+
+        govIndia:
+            "भारत सरकार",
+
+        helpline:
+            "☎ हेल्पलाइन क्र.: 1800-123-4567",
+
+        supportEmail:
+            "✉ support@govservices.gov.in",
+
+        brandPrefix:
+            "ई-",
+
+        tagline:
+            "डिजिटल सरकारच्या दिशेने एक पाऊल",
+
+        home:
+            "🏠 मुख्यपृष्ठ",
+
+        services:
+            "शासकीय सेवा",
+
+        track:
+            "अर्जाचा मागोवा",
+
+        complaints:
+            "तक्रारी",
+
+        about:
+            "आमच्याबद्दल",
+
+        contact:
+            "संपर्क",
+
+        login:
+            "👤 लॉगिन",
+
+        register:
+            "♙ नोंदणी",
+
+        complaintTitle:
+            "तक्रार",
+
+        complaintTitle2:
+            " नोंदणी",
+
+        complaintDescription:
+            "शासकीय सेवांशी संबंधित समस्या नोंदवा आणि आपल्या तक्रारीचा मागोवा घ्या.",
+
+        formTitle:
+            "तक्रार नोंदणी",
+
+        formSubtitle:
+            "कृपया आपल्या तक्रारीची अचूक माहिती द्या.",
+
+        nameLabel:
+            "अर्जदाराचे नाव *",
+
+        mobileLabel:
+            "मोबाईल क्रमांक *",
+
+        categoryLabel:
+            "तक्रारीचा प्रकार *",
+
+        departmentLabel:
+            "विभाग *",
+
+        selectCategory:
+            "तक्रारीचा प्रकार निवडा",
+
+        certificate:
+            "प्रमाणपत्र / कागदपत्र",
+
+        delay:
+            "अर्जाला विलंब",
+
+        website:
+            "वेबसाइट / तांत्रिक समस्या",
+
+        staff:
+            "कर्मचाऱ्याशी संबंधित",
+
+        payment:
+            "पेमेंट संबंधित",
+
+        other:
+            "इतर",
+
+        selectDepartment:
+            "विभाग निवडा",
+
+        locationLabel:
+            "ठिकाण / जिल्हा",
+
+        applicationLabel:
+            "संबंधित अर्ज क्रमांक (ऐच्छिक)",
+
+        descriptionLabel:
+            "तक्रारीचे वर्णन *",
+
+        documentLabel:
+            "सहाय्यक कागदपत्र अपलोड करा",
+
+        uploadNote:
+            "स्वीकार्य फॉरमॅट: JPG, PNG, PDF | कमाल आकार: 5 MB",
+
+        submitComplaint:
+            "तक्रार नोंदवा",
+
+        whyTitle:
+            "तक्रार का नोंदवावी?",
+
+        whyText:
+            "तुमची तक्रार सरकारी विभागांना समस्या ओळखण्यास, विलंब कमी करण्यास आणि नागरिक सेवा सुधारण्यास मदत करते.",
+
+        processTitle:
+            "तक्रार प्रक्रिया",
+
+        step1Title:
+            "तक्रार नोंदवा",
+
+        step1Text:
+            "तक्रारीची माहिती द्या",
+
+        step2Title:
+            "AI वर्गीकरण",
+
+        step2Text:
+            "तक्रारीचे स्वयंचलित वर्गीकरण",
+
+        step3Title:
+            "विभागीय तपासणी",
+
+        step3Text:
+            "संबंधित विभागाकडे पाठवली जाते",
+
+        step4Title:
+            "निराकरण",
+
+        step4Text:
+            "तक्रारीचे निराकरण केले जाते",
+
+        aiDescription:
+            "प्रणाली तक्रारींचे स्वयंचलित वर्गीकरण, प्राधान्य निश्चिती, डुप्लिकेट तक्रार ओळख आणि विलंब ओळख करू शकते.",
+
+        successTitle:
+            "तक्रार यशस्वीरित्या नोंदवली",
+
+        successText:
+            "तुमची तक्रार यशस्वीरित्या नोंदवली आहे. भविष्यातील मागोव्यासाठी तक्रार क्रमांक जतन करा.",
+
+        complaintIdText:
+            "तक्रार क्रमांक:",
+
+        trackComplaint:
+            "तक्रारीचा मागोवा घ्या",
+
+        footerTitle:
+            "ई-सेवा पोर्टल",
+
+        footerTagline:
+            "नागरिकांची सेवा, शासकीय प्रक्रिया सुलभ",
+
+        privacy:
+            "गोपनीयता धोरण",
+
+        terms:
+            "अटी व शर्ती",
+
+        help:
+            "मदत व समर्थन",
+
+        copyright:
+            "© 2026 ई-सेवा पोर्टल. सर्व हक्क राखीव."
+
+    },
+
+
+    hi: {
+
+        bharat:
+            "भारत सरकार",
+
+        govIndia:
+            "भारत सरकार",
+
+        helpline:
+            "☎ हेल्पलाइन नं.: 1800-123-4567",
+
+        supportEmail:
+            "✉ support@govservices.gov.in",
+
+        brandPrefix:
+            "ई-",
+
+        tagline:
+            "डिजिटल सरकार की ओर एक कदम",
+
+        home:
+            "🏠 होम",
+
+        services:
+            "सरकारी सेवाएं",
+
+        track:
+            "आवेदन ट्रैक करें",
+
+        complaints:
+            "शिकायतें",
+
+        about:
+            "हमारे बारे में",
+
+        contact:
+            "संपर्क करें",
+
+        login:
+            "👤 लॉगिन",
+
+        register:
+            "♙ पंजीकरण",
+
+        complaintTitle:
+            "शिकायत",
+
+        complaintTitle2:
+            " दर्ज करें",
+
+        complaintDescription:
+            "सरकारी सेवाओं से संबंधित समस्या दर्ज करें और अपनी शिकायत को आसानी से ट्रैक करें।",
+
+        formTitle:
+            "शिकायत पंजीकरण",
+
+        formSubtitle:
+            "कृपया अपनी शिकायत की सही जानकारी दें।",
+
+        nameLabel:
+            "आवेदक का नाम *",
+
+        mobileLabel:
+            "मोबाइल नंबर *",
+
+        categoryLabel:
+            "शिकायत का प्रकार *",
+
+        departmentLabel:
+            "विभाग *",
+
+        selectCategory:
+            "श्रेणी चुनें",
+
+        certificate:
+            "प्रमाणपत्र / दस्तावेज",
+
+        delay:
+            "आवेदन में देरी",
+
+        website:
+            "वेबसाइट / तकनीकी समस्या",
+
+        staff:
+            "कर्मचारी संबंधित",
+
+        payment:
+            "भुगतान संबंधित",
+
+        other:
+            "अन्य",
+
+        selectDepartment:
+            "विभाग चुनें",
+
+        locationLabel:
+            "स्थान / जिला",
+
+        applicationLabel:
+            "संबंधित आवेदन आईडी (वैकल्पिक)",
+
+        descriptionLabel:
+            "शिकायत का विवरण *",
+
+        documentLabel:
+            "सहायक दस्तावेज अपलोड करें",
+
+        uploadNote:
+            "स्वीकृत फॉर्मेट: JPG, PNG, PDF | अधिकतम आकार: 5 MB",
+
+        submitComplaint:
+            "शिकायत दर्ज करें",
+
+        whyTitle:
+            "शिकायत क्यों दर्ज करें?",
+
+        whyText:
+            "आपकी शिकायत सरकारी विभागों को समस्याओं की पहचान करने, देरी कम करने और नागरिक सेवाओं को बेहतर बनाने में मदद करती है।",
+
+        processTitle:
+            "शिकायत प्रक्रिया",
+
+        step1Title:
+            "शिकायत दर्ज करें",
+
+        step1Text:
+            "शिकायत की जानकारी दें",
+
+        step2Title:
+            "AI वर्गीकरण",
+
+        step2Text:
+            "शिकायत का स्वचालित वर्गीकरण",
+
+        step3Title:
+            "विभागीय समीक्षा",
+
+        step3Text:
+            "संबंधित विभाग को भेजी जाती है",
+
+        step4Title:
+            "समाधान",
+
+        step4Text:
+            "शिकायत का समाधान किया जाता है",
+
+        aiDescription:
+            "सिस्टम शिकायतों को स्वचालित रूप से वर्गीकृत, प्राथमिकता निर्धारित, डुप्लिकेट शिकायत पहचान और देरी का पता लगा सकता है।",
+
+        successTitle:
+            "शिकायत सफलतापूर्वक दर्ज हुई",
+
+        successText:
+            "आपकी शिकायत सफलतापूर्वक दर्ज हो गई है। भविष्य में ट्रैक करने के लिए शिकायत आईडी सुरक्षित रखें।",
+
+        complaintIdText:
+            "शिकायत आईडी:",
+
+        trackComplaint:
+            "शिकायत ट्रैक करें",
+
+        footerTitle:
+            "ई-सेवा पोर्टल",
+
+        footerTagline:
+            "नागरिकों की सेवा, सरकारी प्रक्रिया सरल",
+
+        privacy:
+            "गोपनीयता नीति",
+
+        terms:
+            "नियम एवं शर्तें",
+
+        help:
+            "सहायता और समर्थन",
+
+        copyright:
+            "© 2026 ई-सेवा पोर्टल. सर्वाधिकार सुरक्षित."
+
+    }
+
+};
+
+
+
+/* =========================================
+   LANGUAGE FUNCTION
+========================================= */
+
+function changeLanguage(lang) {
+
+    const t =
+        complaintTranslations[lang];
+
+
+    document.documentElement.lang =
+        lang;
+
+
+    document
+        .querySelectorAll("[data-key]")
+        .forEach(element => {
+
+            const key =
+                element.dataset.key;
+
+
+            if (t[key] !== undefined) {
+
+                element.textContent =
+                    t[key];
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll("[data-placeholder]")
+        .forEach(element => {
+
+            const key =
+                element.dataset.placeholder;
+
+
+            if (t[key] !== undefined) {
+
+                element.placeholder =
+                    t[key];
+
+            }
+
+        });
+
+
+    localStorage.setItem(
+        "selectedLanguage",
+        lang
+    );
+
+}
+
+
+
+/* =========================================
+   LANGUAGE SELECT
+========================================= */
+
+const languageSelect =
+    document.getElementById(
+        "languageSelect"
+    );
+
+
+languageSelect.addEventListener(
+    "change",
+    function() {
+
+        changeLanguage(
+            this.value
+        );
+
+    }
+);
+
+
+const savedLanguage =
+    localStorage.getItem(
+        "selectedLanguage"
+    ) || "en";
+
+
+languageSelect.value =
+    savedLanguage;
+
+
+changeLanguage(
+    savedLanguage
+);
+
+
+</script>
+
+
+</body>
+
+</html>

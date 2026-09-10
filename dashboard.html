@@ -1,0 +1,749 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ 
+    <title>Citizen Dashboard | e-Seva Portal</title> 
+ 
+    <style> 
+ 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+ 
+        body { 
+            font-family: "Segoe UI", Arial, sans-serif; 
+            background: #f3f7fa; 
+            color: #263746; 
+        } 
+ 
+        /* ================= TOP BAR ================= */ 
+ 
+        .top-bar { 
+            height: 58px; 
+            background: #123f73; 
+            color: white; 
+            padding: 0 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 13px; 
+        } 
+ 
+        .gov-brand { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        } 
+ 
+        .emblem { 
+            width: 38px; 
+            height: 38px; 
+            border: 1px solid rgba(255,255,255,.6); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 20px; 
+        } 
+ 
+        .bharat { 
+            font-weight: 700; 
+        } 
+ 
+        .gov-name { 
+            font-size: 10px; 
+            opacity: .85; 
+        } 
+ 
+        .top-right { 
+            display: flex; 
+            gap: 20px; 
+        } 
+ 
+        /* ================= NAVBAR ================= */ 
+ 
+        .navbar { 
+            height: 78px; 
+            background: white; 
+            padding: 0 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,.06); 
+        } 
+ 
+        .logo-section { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        } 
+ 
+        .logo-icon img { 
+            width: 48px; 
+            height: 48px; 
+            object-fit: contain; 
+        } 
+ 
+        .logo-text h1 { 
+            font-size: 22px; 
+            color: #123f73; 
+        } 
+ 
+        .logo-text h1 span { 
+            color: #168047; 
+        } 
+ 
+        .logo-text p { 
+            font-size: 11px; 
+            color: #788692; 
+        } 
+ 
+        .logout-btn { 
+            border: 1px solid #d62828; 
+            color: #d62828; 
+            background: white; 
+            padding: 9px 18px; 
+            border-radius: 5px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            cursor: pointer; 
+        } 
+ 
+        .logout-btn:hover { 
+            background: #d62828; 
+            color: white; 
+        } 
+ 
+        /* ================= DASHBOARD ================= */ 
+ 
+        .dashboard { 
+            max-width: 1150px; 
+            margin: auto; 
+            padding: 40px 20px; 
+        } 
+         .dashboard-btn { 
+            border: 1px solid #d62828; 
+            color: #d62828; 
+            background: white; 
+            padding: 9px 18px; 
+            border-radius: 5px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            cursor: pointer; 
+        } 
+         .dashboard-btn:hover { 
+            background: #d62828; 
+            color: white; 
+        } 
+ 
+        /* ================= WELCOME ================= */ 
+ 
+        .welcome-card { 
+            background: linear-gradient(135deg, #123f73, #176b50); 
+            color: white; 
+            border-radius: 12px; 
+            padding: 30px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,.08); 
+        } 
+ 
+        .welcome-card h2 { 
+            font-size: 26px; 
+            margin-bottom: 8px; 
+        } 
+ 
+        .welcome-card p { 
+            font-size: 14px; 
+            opacity: .9; 
+        } 
+ 
+        /* ================= STATS ================= */ 
+ 
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 18px; 
+            margin-bottom: 35px; 
+        } 
+ 
+        .stat-card { 
+            background: white; 
+            border: 1px solid #e0e6ea; 
+            border-radius: 10px; 
+            padding: 22px; 
+            box-shadow: 0 5px 18px rgba(0,0,0,.05); 
+        } 
+ 
+        .stat-icon { 
+            font-size: 25px; 
+            margin-bottom: 10px; 
+        } 
+ 
+        .stat-card h3 { 
+            font-size: 25px; 
+            color: #123f73; 
+        } 
+ 
+        .stat-card p { 
+            font-size: 12px; 
+            color: #788692; 
+            margin-top: 4px; 
+        } 
+ 
+        /* ================= SECTION ================= */ 
+ 
+        .section-title { 
+            color: #123f73; 
+            font-size: 20px; 
+            margin-bottom: 18px; 
+        } 
+ 
+        /* ================= MENU GRID ================= */ 
+ 
+        .menu-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+        } 
+ 
+        .menu-card { 
+            background: white; 
+            border: 1px solid #dfe6eb; 
+            border-radius: 10px; 
+            padding: 25px; 
+            text-decoration: none; 
+            color: #263746; 
+            transition: .2s; 
+            box-shadow: 0 5px 18px rgba(0,0,0,.04); 
+        } 
+ 
+        .menu-card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,.09); 
+            border-color: #168047; 
+        } 
+ 
+        .menu-icon { 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 10px; 
+            background: #f1f7f3; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 27px; 
+            margin-bottom: 15px; 
+        } 
+ 
+        .menu-card h3 { 
+            font-size: 16px; 
+            color: #123f73; 
+            margin-bottom: 7px; 
+        } 
+ 
+        .menu-card p { 
+            font-size: 12px; 
+            color: #788692; 
+            line-height: 1.5; 
+        } 
+ 
+        /* ================= NOTICE ================= */ 
+ 
+        .notice { 
+            margin-top: 30px; 
+            background: #fffdf2; 
+            border: 1px solid #eee2a7; 
+            border-radius: 8px; 
+            padding: 18px; 
+        } 
+ 
+        .notice h3 { 
+            color: #8a6d00; 
+            font-size: 14px; 
+            margin-bottom: 7px; 
+        } 
+ 
+        .notice p { 
+            font-size: 12px; 
+            color: #756b3c; 
+        } 
+ 
+        /* ================= FOOTER ================= */ 
+ 
+        footer { 
+            background: #102f50; 
+            color: white; 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 11px; 
+            margin-top: 30px; 
+        } 
+ 
+        footer p { 
+            margin-top: 8px; 
+            opacity: .55; 
+        } 
+ 
+        /* ================= RESPONSIVE ================= */ 
+ 
+        @media(max-width:800px) { 
+ 
+            .stats { 
+                grid-template-columns: 1fr; 
+            } 
+ 
+            .menu-grid { 
+                grid-template-columns: 1fr 1fr; 
+            } 
+ 
+            .top-right { 
+                display: none; 
+            } 
+ 
+        } 
+ 
+        @media(max-width:550px) { 
+ 
+            .menu-grid { 
+                grid-template-columns: 1fr; 
+            } 
+ 
+            .navbar { 
+                padding: 0 4%; 
+            } 
+ 
+            .welcome-card h2 { 
+                font-size: 22px; 
+            } 
+ 
+        } 
+        /* BACK BUTTON - FINAL */
+
+.dashboard-back {
+    width: 100%;
+    margin-top: 35px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dashboard-back .back-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff !important;
+    color: #d62828 !important;
+
+    border: 1px solid #d62828 !important;
+    border-radius: 6px;
+
+    padding: 10px 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    box-shadow: 0 3px 8px rgba(214, 40, 40, 0.10);
+}
+
+.dashboard-back .back-btn:hover {
+    background: #d62828 !important;
+    color: #ffffff !important;
+
+    transform: translateX(-8px) !important;
+
+    box-shadow: 0 7px 18px rgba(214, 40, 40, 0.25);
+}
+
+.dashboard-back .back-btn:active {
+    transform: translateX(-3px) scale(0.96) !important;
+}
+ 
+    </style> 
+ 
+</head> 
+ 
+ 
+<body> 
+ 
+ 
+<!-- ================= TOP BAR ================= --> 
+ 
+<div class="top-bar"> 
+ 
+    <div class="gov-brand"> 
+ 
+        <div class="emblem"> 
+            ☸ 
+        </div> 
+ 
+        <div> 
+ 
+            <div class="bharat"> 
+                भारत सरकार 
+            </div> 
+ 
+            <div class="gov-name"> 
+                Government of India 
+            </div> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <div class="top-right"> 
+ 
+        <span> 
+            ☎ Helpline: 1800-123-4567 
+        </span> 
+ 
+        <span> 
+            ✉ support@govservices.gov.in 
+        </span> 
+ 
+    </div> 
+ 
+</div> 
+
+ 
+<!-- ================= NAVBAR ================= --> 
+ 
+<header class="navbar"> 
+ 
+    <div class="logo-section"> 
+ 
+        <div class="logo-icon"> 
+ 
+            <img 
+                src="images/logo.png" 
+                alt="e-Seva Logo"> 
+ 
+        </div> 
+ 
+        <div class="logo-text"> 
+ 
+            <h1> 
+                <span>e-</span>Seva Portal 
+            </h1> 
+ 
+            <p> 
+                Citizen Dashboard 
+            </p> 
+ 
+        </div> 
+ 
+    </div> 
+ 
+ 
+    <button 
+        class="logout-btn" 
+        onclick="logout()"> 
+ 
+        Logout 
+ 
+    </button> 
+ 
+</header> 
+ 
+ 
+<!-- ================= DASHBOARD ================= --> 
+ 
+<main class="dashboard"> 
+ 
+ 
+    <!-- WELCOME --> 
+ 
+    <div class="welcome-card"> 
+ 
+        <h2 id="welcomeText"> 
+            Welcome, Citizen 👋 
+        </h2> 
+ 
+        <p> 
+            Access government services and track your applications 
+            from one place. 
+        </p> 
+ 
+    </div> 
+ 
+ 
+    <!-- ================= STATISTICS ================= --> 
+ 
+    <div class="stats"> 
+ 
+ 
+        <div class="stat-card"> 
+ 
+            <div class="stat-icon"> 
+                📄 
+            </div> 
+ 
+            <h3 id="applicationCount"> 
+                0 
+            </h3> 
+ 
+            <p> 
+                Total Applications 
+            </p> 
+ 
+        </div> 
+ 
+ 
+        <div class="stat-card"> 
+ 
+            <div class="stat-icon"> 
+                ⏳ 
+            </div> 
+ 
+            <h3> 
+                0 
+            </h3> 
+ 
+            <p> 
+                Pending Applications 
+            </p> 
+ 
+        </div> 
+ 
+ 
+        <div class="stat-card"> 
+ 
+            <div class="stat-icon"> 
+                🔔 
+            </div> 
+ 
+            <h3> 
+                0 
+            </h3> 
+ 
+            <p> 
+                Notifications 
+            </p> 
+ 
+        </div> 
+ 
+ 
+    </div> 
+ 
+ 
+    <!-- ================= SERVICES ================= --> 
+ 
+    <h2 class="section-title"> 
+        Citizen Services 
+    </h2> 
+ 
+ 
+    <div class="menu-grid"> 
+ 
+ 
+        <a href="services.html" class="menu-card"> 
+ 
+            <div class="menu-icon"> 
+                📋 
+            </div> 
+ 
+            <h3> 
+                Apply for Service 
+            </h3> 
+ 
+            <p> 
+                Apply online for government certificates 
+                and citizen services. 
+            </p> 
+ 
+        </a> 
+ 
+ 
+        <a href="applications.html" class="menu-card"> 
+ 
+            <div class="menu-icon"> 
+                📄 
+            </div> 
+ 
+            <h3> 
+                My Applications 
+            </h3> 
+ 
+            <p> 
+                View all your submitted applications 
+                and their current status. 
+            </p> 
+ 
+        </a> 
+ 
+ 
+        <a href="track.html" class="menu-card"> 
+ 
+            <div class="menu-icon"> 
+                🔍 
+            </div> 
+ 
+            <h3> 
+                Track Application 
+            </h3> 
+ 
+            <p> 
+                Check the current stage of your 
+                government application. 
+            </p> 
+ 
+        </a> 
+ 
+ 
+        <a href="complaint.html" class="menu-card"> 
+ 
+            <div class="menu-icon"> 
+                📝 
+            </div> 
+ 
+            <h3> 
+                Submit Complaint 
+            </h3> 
+ 
+            <p> 
+                Register complaints regarding government 
+                services. 
+            </p> 
+ 
+        </a> 
+ 
+ 
+        <a href="notifications.html" class="menu-card"> 
+ 
+            <div class="menu-icon"> 
+                🔔 
+            </div> 
+ 
+            <h3> 
+                Notifications 
+            </h3> 
+ 
+            <p> 
+                View important updates about your 
+                applications and complaints. 
+            </p> 
+ 
+        </a> 
+ 
+ 
+        <a href="profile.html" class="menu-card"> 
+ 
+            <div class="menu-icon"> 
+                👤 
+            </div> 
+ 
+            <h3> 
+                My Profile 
+            </h3> 
+ 
+            <p> 
+                View and manage your personal 
+                information. 
+            </p> 
+ 
+        </a> 
+ 
+ 
+    </div> 
+ 
+ 
+    <!-- ================= NOTICE ================= --> 
+ 
+    <div class="notice"> 
+ 
+        <h3> 
+            💡 Important Notice 
+        </h3> 
+ 
+        <p> 
+            Please keep your application details and 
+            registered mobile number safe. You will 
+            receive updates regarding your applications 
+            through the e-Seva Portal. 
+        </p> 
+ 
+    </div> 
+        <!-- ================= BACK BUTTON ================= -->
+
+    <div class="dashboard-back">
+
+      <button type="button" class="home-btn" onclick="window.location.href='index.html'">
+     Go to Home
+</button>
+
+    </div>
+
+</main>
+ 
+ 
+</main> 
+ 
+ 
+<!-- ================= FOOTER ================= --> 
+ 
+<footer> 
+ 
+    <div> 
+        e-Seva Portal | Citizen Services 
+    </div> 
+ 
+    <p> 
+        © 2026 e-Seva Portal. All Rights Reserved. 
+    </p> 
+ 
+</footer> 
+ 
+ 
+<!-- ================= JAVASCRIPT ================= --> 
+ 
+<script> 
+ 
+    /* ================= USER NAME ================= */ 
+ 
+    const firstName = 
+        localStorage.getItem("first_name"); 
+ 
+    const lastName = 
+        localStorage.getItem("last_name"); 
+ 
+ 
+    if (firstName) { 
+ 
+        document.getElementById("welcomeText").textContent = 
+            "Welcome, " + 
+            firstName + 
+            " " + 
+            (lastName || "") + 
+            " 👋"; 
+ 
+    } 
+ 
+ 
+    /* ================= LOGOUT ================= */ 
+ 
+    function logout() { 
+ 
+        localStorage.removeItem("first_name"); 
+        localStorage.removeItem("last_name"); 
+        localStorage.removeItem("mobile"); 
+ 
+        window.location.href = "login.html"; 
+ 
+    } 
+ 
+</script> 
+ 
+ 
+</body> 
+ 
+</html>

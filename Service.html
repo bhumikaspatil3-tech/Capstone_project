@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>e-Seva Portal | Government Services</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================= SERVICES PAGE ================= */
+
+        .services-page {
+            background: #f6f8fb;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        .services-hero {
+            background: linear-gradient(135deg, #f4f8f5, #eef5ff);
+            text-align: center;
+            padding: 45px 20px 35px;
+            border-bottom: 1px solid #e1e6ec;
+        }
+
+        .services-hero h2 {
+            margin: 0;
+            font-size: 38px;
+            color: #123f73;
+        }
+
+        .services-hero h2 span {
+            color: #168047;
+        }
+
+        .services-hero p {
+            margin: 12px auto 25px;
+            color: #5d6875;
+            font-size: 16px;
+            max-width: 700px;
+        }
+
+        /* SEARCH */
+
+        .service-search {
+            width: 90%;
+            max-width: 650px;
+            margin: auto;
+            display: flex;
+            background: white;
+            border: 1px solid #d7dee7;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .service-search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 15px 18px;
+            font-size: 15px;
+        }
+
+        .service-search button {
+            border: none;
+            background: #168047;
+            color: white;
+            padding: 0 25px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* CONTENT */
+
+        .services-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 35px auto;
+        }
+
+        /* CATEGORIES */
+
+        .category-title {
+            color: #123f73;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .category-btn {
+            border: 1px solid #cbd5df;
+            background: white;
+            color: #34516e;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #168047;
+            color: white;
+            border-color: #168047;
+        }
+
+        /* SERVICE GRID */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .government-service-card {
+            background: white;
+            border: 1px solid #e0e5eb;
+            border-radius: 10px;
+            padding: 24px;
+            transition: 0.25s;
+            position: relative;
+        }
+
+        .government-service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.09);
+        }
+
+        .service-card-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            background: #eef6f1;
+            margin-bottom: 17px;
+        }
+
+        .government-service-card h3 {
+            color: #123f73;
+            margin: 0 0 8px;
+            font-size: 19px;
+        }
+
+        .government-service-card p {
+            color: #66727f;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 45px;
+        }
+
+        .service-info {
+            border-top: 1px solid #edf0f3;
+            margin-top: 15px;
+            padding-top: 13px;
+            font-size: 13px;
+            color: #687482;
+        }
+
+        .service-info div {
+            margin: 6px 0;
+        }
+
+        .apply-service-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px;
+            border: none;
+            border-radius: 6px;
+            background: #168047;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .apply-service-btn:hover {
+            background: #116b3b;
+        }
+
+        /* NO RESULT */
+
+        #noResults {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            color: #687482;
+            font-size: 16px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-hero h2 {
+                font-size: 28px;
+            }
+
+            .service-search button {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= TOP GOVERNMENT BAR ================= -->
+
+    <div class="top-bar">
+
+        <div class="gov-brand">
+
+            <div class="emblem">
+                ☸
+            </div>
+
+            <div>
+                <div class="bharat" data-key="bharat">
+                    भारत सरकार
+                </div>
+
+                <div class="gov-name" data-key="govIndia">
+                    Government of India
+                </div>
+            </div>
+
+        </div>
+
+        <div class="top-info">
+
+            <span data-key="helpline">
+                ☎ Helpline No.: 1800-123-4567
+            </span>
+
+            <span data-key="supportEmail">
+                ✉ support@govservices.gov.in
+            </span>
+
+            <span data-key="skip">
+                Skip to Main Content
+            </span>
+
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="mr">मराठी</option>
+                <option value="hi">हिंदी</option>
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <header class="navbar">
+
+        <div class="logo-section">
+
+            <div class="logo-icon">
+
+                <img src="./images/logo.png"
+                     alt="Government Logo">
+
+            </div>
+
+            <div class="logo-text">
+
+                <h1>
+                    <span data-key="brandPrefix">e-</span>Seva Portal
+                </h1>
+
+                <p data-key="tagline">
+                    One step towards Digital Government
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html" data-key="home">
+                🏠 Home
+            </a>
+
+            <a href="services.html"
+               class="active"
+               data-key="services">
+                Services
+            </a>
+
+            <a href="track.html" data-key="track">
+                Track Application
+            </a>
+
+            <a href="complaints.html" data-key="complaints">
+                Complaints
+            </a>
+
+            <a href="about.html" data-key="about">
+                About Us
+            </a>
+
+            <a href="contact.html" data-key="contact">
+                Contact Us
+            </a>
+
+        </nav>
+
+
+        <div class="auth-buttons">
+
+            <button class="login-btn" data-key="login">
+                👤 Login
+            </button>
+
+            <button class="register-btn" data-key="register">
+                ♙ Register
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= SERVICES PAGE ================= -->
+
+    <main class="services-page">
+
+
+        <!-- HERO -->
+
+        <section class="services-hero">
+
+            <h2>
+                <span data-key="governmentServices">
+                    Government
+                </span>
+                <span data-key="servicesText">
+                    Services
+                </span>
+            </h2>
+
+            <p data-key="servicesDescription">
+                Access government services easily from one
+                secure and trusted portal.
+            </p>
+
+
+            <!-- SEARCH -->
+
+            <div class="service-search">
+
+                <input
+                    type="text"
+                    id="serviceSearch"
+                    data-placeholder="searchServices"
+                    placeholder="Search for a service..."
+                >
+
+                <button onclick="searchServices()"
+                        data-key="search">
+                    Search
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTENT -->
+
+        <section class="services-container">
+
+
+            <!-- CATEGORIES -->
+
+            <h3 class="category-title"
+                data-key="browseCategory">
+                Browse by Category
+            </h3>
+
+            <div class="categories">
+
+                <button class="category-btn active"
+                        onclick="filterServices('all')"
+                        data-key="all">
+                    All Services
+                </button>
+
+                <button class="category-btn"
+                        onclick="filterServices('certificate')"
+                        data-key="certificates">
+                    Certificates
+                </button>
+
+                <button class="category-btn"
+                        onclick="filterServices('land')"
+                        data-key="landRecords">
+                    Land Records
+                </button>
+
+                <button class="category-btn"
+                        onclick="filterServices('education')"
+                        data-key="education">
+                    Education
+                </button>
+
+                <button class="category-btn"
+                        onclick="filterServices('health')"
+                        data-key="health">
+                    Health
+                </button>
+
+                <button class="category-btn"
+                        onclick="filterServices('welfare')"
+                        data-key="socialWelfare">
+                    Social Welfare
+                </button>
+
+            </div>
+
+
+            <!-- SERVICES GRID -->
+
+            <div class="services-grid" id="servicesGrid">
+
+
+                <!-- INCOME -->
+
+                <div class="government-service-card"
+                     data-category="certificate">
+
+                    <div class="service-card-icon">
+                        💰
+                    </div>
+
+                    <h3 data-key="income">
+                        Income Certificate
+                    </h3>
+
+                    <p data-key="incomeDesc">
+                        Apply online for your Income Certificate.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsIncome">
+                            📄 Required Documents: Aadhaar,
+                            Address Proof
+                        </div>
+
+                        <div data-key="processingIncome">
+                            ⏱ Processing Time: 7 Days
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Income Certificate')"
+                            data-key="apply">
+                        Apply Now →
+                    </button>
+
+                </div>
+
+
+                <!-- CASTE -->
+
+                <div class="government-service-card"
+                     data-category="certificate">
+
+                    <div class="service-card-icon">
+                        📜
+                    </div>
+
+                    <h3 data-key="caste">
+                        Caste Certificate
+                    </h3>
+
+                    <p data-key="casteDesc">
+                        Apply online for a Caste Certificate.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsCaste">
+                            📄 Required Documents: Aadhaar,
+                            Caste Proof
+                        </div>
+
+                        <div data-key="processingCaste">
+                            ⏱ Processing Time: 15 Days
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Caste Certificate')"
+                            data-key="apply">
+                        Apply Now →
+                    </button>
+
+                </div>
+
+
+                <!-- DOMICILE -->
+
+                <div class="government-service-card"
+                     data-category="certificate">
+
+                    <div class="service-card-icon">
+                        🏠
+                    </div>
+
+                    <h3 data-key="domicile">
+                        Domicile Certificate
+                    </h3>
+
+                    <p data-key="domicileDesc">
+                        Apply for your Domicile Certificate.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsDomicile">
+                            📄 Required Documents: Aadhaar,
+                            Residence Proof
+                        </div>
+
+                        <div data-key="processingDomicile">
+                            ⏱ Processing Time: 7 Days
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Domicile Certificate')"
+                            data-key="apply">
+                        Apply Now →
+                    </button>
+
+                </div>
+
+
+                <!-- BIRTH -->
+
+                <div class="government-service-card"
+                     data-category="certificate">
+
+                    <div class="service-card-icon">
+                        👶
+                    </div>
+
+                    <h3 data-key="birth">
+                        Birth Certificate
+                    </h3>
+
+                    <p data-key="birthDesc">
+                        Apply for a Birth Certificate.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsBirth">
+                            📄 Required Documents: Hospital
+                            Record, Aadhaar
+                        </div>
+
+                        <div data-key="processingBirth">
+                            ⏱ Processing Time: 7 Days
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Birth Certificate')"
+                            data-key="apply">
+                        Apply Now →
+                    </button>
+
+                </div>
+
+
+                <!-- 7/12 -->
+
+                <div class="government-service-card"
+                     data-category="land">
+
+                    <div class="service-card-icon">
+                        🌾
+                    </div>
+
+                    <h3 data-key="seven">
+                        7/12 Extract
+                    </h3>
+
+                    <p data-key="sevenDesc">
+                        Get your land record 7/12 Extract.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsSeven">
+                            📄 Required Documents:
+                            Land Details
+                        </div>
+
+                        <div data-key="processingSeven">
+                            ⏱ Processing Time: Instant
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('7/12 Extract')"
+                            data-key="apply">
+                        Apply Now →
+                    </button>
+
+                </div>
+
+
+                <!-- NON CREAMY LAYER -->
+
+                <div class="government-service-card"
+                     data-category="certificate">
+
+                    <div class="service-card-icon">
+                        📑
+                    </div>
+
+                    <h3 data-key="ncl">
+                        Non-Creamy Layer Certificate
+                    </h3>
+
+                    <p data-key="nclDesc">
+                        Apply for Non-Creamy Layer Certificate.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsNcl">
+                            📄 Required Documents:
+                            Income Proof, Aadhaar
+                        </div>
+
+                        <div data-key="processingNcl">
+                            ⏱ Processing Time: 15 Days
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Non-Creamy Layer Certificate')"
+                            data-key="apply">
+                        Apply Now →
+                    </button>
+
+                </div>
+
+
+                <!-- SCHOLARSHIP -->
+
+                <div class="government-service-card"
+                     data-category="education">
+
+                    <div class="service-card-icon">
+                        🎓
+                    </div>
+
+                    <h3 data-key="scholarship">
+                        Scholarship Services
+                    </h3>
+
+                    <p data-key="scholarshipDesc">
+                        Apply for eligible government scholarships.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsScholarship">
+                            📄 Required Documents:
+                            Marksheet, Income Certificate
+                        </div>
+
+                        <div data-key="processingScholarship">
+                            ⏱ Processing Time: 15 Days
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Scholarship Services')"
+                            data-key="apply">
+                        Apply Now →
+                    </button>
+
+                </div>
+
+
+                <!-- HEALTH -->
+
+                <div class="government-service-card"
+                     data-category="health">
+
+                    <div class="service-card-icon">
+                        🏥
+                    </div>
+
+                    <h3 data-key="healthService">
+                        Health Services
+                    </h3>
+
+                    <p data-key="healthServiceDesc">
+                        Access government health-related services.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsHealth">
+                            📄 Required Documents:
+                            Health ID / Aadhaar
+                        </div>
+
+                        <div data-key="processingHealth">
+                            ⏱ Processing Time: Varies
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Health Services')"
+                            data-key="viewService">
+                        View Service →
+                    </button>
+
+                </div>
+
+
+                <!-- SOCIAL WELFARE -->
+
+                <div class="government-service-card"
+                     data-category="welfare">
+
+                    <div class="service-card-icon">
+                        🤝
+                    </div>
+
+                    <h3 data-key="socialService">
+                        Social Welfare Schemes
+                    </h3>
+
+                    <p data-key="socialServiceDesc">
+                        Explore government welfare schemes.
+                    </p>
+
+                    <div class="service-info">
+
+                        <div data-key="documentsSocial">
+                            📄 Documents depend on scheme
+                        </div>
+
+                        <div data-key="processingSocial">
+                            ⏱ Processing Time: Varies
+                        </div>
+
+                    </div>
+
+                    <button class="apply-service-btn"
+                            onclick="applyService('Social Welfare Schemes')"
+                            data-key="viewService">
+                        View Service →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="noResults"
+                 data-key="noResults">
+                No services found.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <strong data-key="footerTitle">
+                e-Seva Portal
+            </strong>
+
+            <p data-key="footerTagline">
+                Serving Citizens, Simplifying Government
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#" data-key="privacy">
+                Privacy Policy
+            </a>
+
+            <a href="#" data-key="terms">
+                Terms & Conditions
+            </a>
+
+            <a href="#" data-key="help">
+                Help & Support
+            </a>
+
+        </div>
+
+        <p class="copyright"
+           data-key="copyright">
+            © 2026 e-Seva Portal. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* ================= TRANSLATIONS ================= */
+
+        const translations = {
+
+            en: {
+
+                bharat: "भारत सरकार",
+                govIndia: "Government of India",
+                helpline: "☎ Helpline No.: 1800-123-4567",
+                supportEmail: "✉ support@govservices.gov.in",
+                skip: "Skip to Main Content",
+
+                brandPrefix: "e-",
+                tagline: "One step towards Digital Government",
+
+                home: "🏠 Home",
+                services: "Services",
+                track: "Track Application",
+                complaints: "Complaints",
+                about: "About Us",
+                contact: "Contact Us",
+
+                login: "👤 Login",
+                register: "♙ Register",
+
+                governmentServices: "Government",
+                servicesText: " Services",
+
+                servicesDescription:
+                    "Access government services easily from one secure and trusted portal.",
+
+                searchServices:
+                    "Search for a service...",
+
+                search: "Search",
+
+                browseCategory:
+                    "Browse by Category",
+
+                all: "All Services",
+                certificates: "Certificates",
+                landRecords: "Land Records",
+                education: "Education",
+                health: "Health",
+                socialWelfare: "Social Welfare",
+
+                income: "Income Certificate",
+                incomeDesc: "Apply online for your Income Certificate.",
+                documentsIncome: "📄 Required Documents: Aadhaar, Address Proof",
+                processingIncome: "⏱ Processing Time: 7 Days",
+
+                caste: "Caste Certificate",
+                casteDesc: "Apply online for a Caste Certificate.",
+                documentsCaste: "📄 Required Documents: Aadhaar, Caste Proof",
+                processingCaste: "⏱ Processing Time: 15 Days",
+
+                domicile: "Domicile Certificate",
+                domicileDesc: "Apply for your Domicile Certificate.",
+                documentsDomicile: "📄 Required Documents: Aadhaar, Residence Proof",
+                processingDomicile: "⏱ Processing Time: 7 Days",
+
+                birth: "Birth Certificate",
+                birthDesc: "Apply for a Birth Certificate.",
+                documentsBirth: "📄 Required Documents: Hospital Record, Aadhaar",
+                processingBirth: "⏱ Processing Time: 7 Days",
+
+                seven: "7/12 Extract",
+                sevenDesc: "Get your land record 7/12 Extract.",
+                documentsSeven: "📄 Required Documents: Land Details",
+                processingSeven: "⏱ Processing Time: Instant",
+
+                ncl: "Non-Creamy Layer Certificate",
+                nclDesc: "Apply for Non-Creamy Layer Certificate.",
+                documentsNcl: "📄 Required Documents: Income Proof, Aadhaar",
+                processingNcl: "⏱ Processing Time: 15 Days",
+
+                scholarship: "Scholarship Services",
+                scholarshipDesc: "Apply for eligible government scholarships.",
+                documentsScholarship: "📄 Required Documents: Marksheet, Income Certificate",
+                processingScholarship: "⏱ Processing Time: 15 Days",
+
+                healthService: "Health Services",
+                healthServiceDesc: "Access government health-related services.",
+                documentsHealth: "📄 Required Documents: Health ID / Aadhaar",
+                processingHealth: "⏱ Processing Time: Varies",
+
+                socialService: "Social Welfare Schemes",
+                socialServiceDesc: "Explore government welfare schemes.",
+                documentsSocial: "📄 Documents depend on scheme",
+                processingSocial: "⏱ Processing Time: Varies",
+
+                apply: "Apply Now →",
+                viewService: "View Service →",
+
+                noResults: "No services found.",
+
+                footerTitle: "e-Seva Portal",
+                footerTagline: "Serving Citizens, Simplifying Government",
+                privacy: "Privacy Policy",
+                terms: "Terms & Conditions",
+                help: "Help & Support",
+                copyright: "© 2026 e-Seva Portal. All Rights Reserved."
+            },
+
+
+            mr: {
+
+                bharat: "भारत सरकार",
+                govIndia: "भारत सरकार",
+                helpline: "☎ हेल्पलाइन क्र.: 1800-123-4567",
+                supportEmail: "✉ support@govservices.gov.in",
+                skip: "मुख्य मजकुराकडे जा",
+
+                brandPrefix: "ई-",
+                tagline: "डिजिटल सरकारच्या दिशेने एक पाऊल",
+
+                home: "🏠 मुख्यपृष्ठ",
+                services: "शासकीय सेवा",
+                track: "अर्जाचा मागोवा",
+                complaints: "तक्रारी",
+                about: "आमच्याबद्दल",
+                contact: "संपर्क",
+
+                login: "👤 लॉगिन",
+                register: "♙ नोंदणी",
+
+                governmentServices: "शासकीय",
+                servicesText: " सेवा",
+
+                servicesDescription:
+                    "एका सुरक्षित आणि विश्वासार्ह पोर्टलवरून शासकीय सेवांचा सहज लाभ घ्या.",
+
+                searchServices:
+                    "सेवा शोधा...",
+
+                search: "शोधा",
+
+                browseCategory:
+                    "वर्गानुसार सेवा शोधा",
+
+                all: "सर्व सेवा",
+                certificates: "प्रमाणपत्रे",
+                landRecords: "जमीन अभिलेख",
+                education: "शिक्षण",
+                health: "आरोग्य",
+                socialWelfare: "सामाजिक कल्याण",
+
+                income: "उत्पन्न प्रमाणपत्र",
+                incomeDesc: "उत्पन्न प्रमाणपत्रासाठी ऑनलाइन अर्ज करा.",
+                documentsIncome: "📄 आवश्यक कागदपत्रे: आधार, पत्त्याचा पुरावा",
+                processingIncome: "⏱ प्रक्रिया कालावधी: ७ दिवस",
+
+                caste: "जात प्रमाणपत्र",
+                casteDesc: "जात प्रमाणपत्रासाठी ऑनलाइन अर्ज करा.",
+                documentsCaste: "📄 आवश्यक कागदपत्रे: आधार, जात पुरावा",
+                processingCaste: "⏱ प्रक्रिया कालावधी: १५ दिवस",
+
+                domicile: "रहिवासी प्रमाणपत्र",
+                domicileDesc: "रहिवासी प्रमाणपत्रासाठी अर्ज करा.",
+                documentsDomicile: "📄 आवश्यक कागदपत्रे: आधार, रहिवासी पुरावा",
+                processingDomicile: "⏱ प्रक्रिया कालावधी: ७ दिवस",
+
+                birth: "जन्म प्रमाणपत्र",
+                birthDesc: "जन्म प्रमाणपत्रासाठी अर्ज करा.",
+                documentsBirth: "📄 आवश्यक कागदपत्रे: रुग्णालयाचा दाखला, आधार",
+                processingBirth: "⏱ प्रक्रिया कालावधी: ७ दिवस",
+
+                seven: "७/१२ उतारा",
+                sevenDesc: "तुमचा जमीन अभिलेख ७/१२ उतारा मिळवा.",
+                documentsSeven: "📄 आवश्यक कागदपत्रे: जमीन तपशील",
+                processingSeven: "⏱ प्रक्रिया कालावधी: तत्काळ",
+
+                ncl: "नॉन-क्रीमी लेयर प्रमाणपत्र",
+                nclDesc: "नॉन-क्रीमी लेयर प्रमाणपत्रासाठी अर्ज करा.",
+                documentsNcl: "📄 आवश्यक कागदपत्रे: उत्पन्न पुरावा, आधार",
+                processingNcl: "⏱ प्रक्रिया कालावधी: १५ दिवस",
+
+                scholarship: "शिष्यवृत्ती सेवा",
+                scholarshipDesc: "पात्र शासकीय शिष्यवृत्तीसाठी अर्ज करा.",
+                documentsScholarship: "📄 आवश्यक कागदपत्रे: गुणपत्रिका, उत्पन्न प्रमाणपत्र",
+                processingScholarship: "⏱ प्रक्रिया कालावधी: १५ दिवस",
+
+                healthService: "आरोग्य सेवा",
+                healthServiceDesc: "शासकीय आरोग्य संबंधित सेवांचा लाभ घ्या.",
+                documentsHealth: "📄 आवश्यक कागदपत्रे: हेल्थ आयडी / आधार",
+                processingHealth: "⏱ प्रक्रिया कालावधी: बदलू शकतो",
+
+                socialService: "सामाजिक कल्याण योजना",
+                socialServiceDesc: "शासकीय कल्याणकारी योजना पहा.",
+                documentsSocial: "📄 कागदपत्रे योजनेनुसार",
+                processingSocial: "⏱ प्रक्रिया कालावधी: बदलू शकतो",
+
+                apply: "आता अर्ज करा →",
+                viewService: "सेवा पहा →",
+
+                noResults: "कोणतीही सेवा सापडली नाही.",
+
+                footerTitle: "ई-सेवा पोर्टल",
+                footerTagline: "नागरिकांची सेवा, शासकीय प्रक्रिया सुलभ",
+                privacy: "गोपनीयता धोरण",
+                terms: "अटी व शर्ती",
+                help: "मदत व समर्थन",
+                copyright: "© 2026 ई-सेवा पोर्टल. सर्व हक्क राखीव."
+            },
+
+
+            hi: {
+
+                bharat: "भारत सरकार",
+                govIndia: "भारत सरकार",
+                helpline: "☎ हेल्पलाइन नं.: 1800-123-4567",
+                supportEmail: "✉ support@govservices.gov.in",
+                skip: "मुख्य सामग्री पर जाएं",
+
+                brandPrefix: "ई-",
+                tagline: "डिजिटल सरकार की ओर एक कदम",
+
+                home: "🏠 होम",
+                services: "सरकारी सेवाएं",
+                track: "आवेदन ट्रैक करें",
+                complaints: "शिकायतें",
+                about: "हमारे बारे में",
+                contact: "संपर्क करें",
+
+                login: "👤 लॉगिन",
+                register: "♙ पंजीकरण",
+
+                governmentServices: "सरकारी",
+                servicesText: " सेवाएं",
+
+                servicesDescription:
+                    "एक सुरक्षित और विश्वसनीय पोर्टल से सरकारी सेवाओं का आसानी से लाभ उठाएं।",
+
+                searchServices:
+                    "सेवा खोजें...",
+
+                search: "खोजें",
+
+                browseCategory:
+                    "श्रेणी के अनुसार सेवाएं",
+
+                all: "सभी सेवाएं",
+                certificates: "प्रमाणपत्र",
+                landRecords: "भूमि रिकॉर्ड",
+                education: "शिक्षा",
+                health: "स्वास्थ्य",
+                socialWelfare: "सामाजिक कल्याण",
+
+                income: "आय प्रमाणपत्र",
+                incomeDesc: "आय प्रमाणपत्र के लिए ऑनलाइन आवेदन करें।",
+                documentsIncome: "📄 आवश्यक दस्तावेज: आधार, पते का प्रमाण",
+                processingIncome: "⏱ प्रक्रिया समय: 7 दिन",
+
+                caste: "जाति प्रमाणपत्र",
+                casteDesc: "जाति प्रमाणपत्र के लिए ऑनलाइन आवेदन करें।",
+                documentsCaste: "📄 आवश्यक दस्तावेज: आधार, जाति प्रमाण",
+                processingCaste: "⏱ प्रक्रिया समय: 15 दिन",
+
+                domicile: "निवास प्रमाणपत्र",
+                domicileDesc: "निवास प्रमाणपत्र के लिए आवेदन करें।",
+                documentsDomicile: "📄 आवश्यक दस्तावेज: आधार, निवास प्रमाण",
+                processingDomicile: "⏱ प्रक्रिया समय: 7 दिन",
+
+                birth: "जन्म प्रमाणपत्र",
+                birthDesc: "जन्म प्रमाणपत्र के लिए आवेदन करें।",
+                documentsBirth: "📄 आवश्यक दस्तावेज: अस्पताल रिकॉर्ड, आधार",
+                processingBirth: "⏱ प्रक्रिया समय: 7 दिन",
+
+                seven: "7/12 उतारा",
+                sevenDesc: "अपना भूमि रिकॉर्ड 7/12 उतारा प्राप्त करें।",
+                documentsSeven: "📄 आवश्यक दस्तावेज: भूमि विवरण",
+                processingSeven: "⏱ प्रक्रिया समय: तुरंत",
+
+                ncl: "नॉन-क्रीमी लेयर प्रमाणपत्र",
+                nclDesc: "नॉन-क्रीमी लेयर प्रमाणपत्र के लिए आवेदन करें।",
+                documentsNcl: "📄 आवश्यक दस्तावेज: आय प्रमाण, आधार",
+                processingNcl: "⏱ प्रक्रिया समय: 15 दिन",
+
+                scholarship: "छात्रवृत्ति सेवाएं",
+                scholarshipDesc: "पात्र सरकारी छात्रवृत्ति के लिए आवेदन करें।",
+                documentsScholarship: "📄 आवश्यक दस्तावेज: अंकपत्र, आय प्रमाणपत्र",
+                processingScholarship: "⏱ प्रक्रिया समय: 15 दिन",
+
+                healthService: "स्वास्थ्य सेवाएं",
+                healthServiceDesc: "सरकारी स्वास्थ्य संबंधी सेवाओं का लाभ उठाएं।",
+                documentsHealth: "📄 आवश्यक दस्तावेज: हेल्थ आईडी / आधार",
+                processingHealth: "⏱ प्रक्रिया समय: अलग-अलग",
+
+                socialService: "सामाजिक कल्याण योजनाएं",
+                socialServiceDesc: "सरकारी कल्याणकारी योजनाएं देखें।",
+                documentsSocial: "📄 दस्तावेज योजना के अनुसार",
+                processingSocial: "⏱ प्रक्रिया समय: अलग-अलग",
+
+                apply: "अभी आवेदन करें →",
+                viewService: "सेवा देखें →",
+
+                noResults: "कोई सेवा नहीं मिली।",
+
+                footerTitle: "ई-सेवा पोर्टल",
+                footerTagline: "नागरिकों की सेवा, सरकारी प्रक्रिया सरल",
+                privacy: "गोपनीयता नीति",
+                terms: "नियम एवं शर्तें",
+                help: "सहायता और समर्थन",
+                copyright: "© 2026 ई-सेवा पोर्टल. सर्वाधिकार सुरक्षित."
+            }
+
+        };
+
+
+        /* ================= LANGUAGE ================= */
+
+        function changeLanguage(lang) {
+
+            const t = translations[lang];
+
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll("[data-key]").forEach(element => {
+
+                const key = element.dataset.key;
+
+                if (t[key] !== undefined) {
+                    element.textContent = t[key];
+                }
+
+            });
+
+
+            document.querySelectorAll("[data-placeholder]").forEach(element => {
+
+                const key = element.dataset.placeholder;
+
+                if (t[key] !== undefined) {
+                    element.placeholder = t[key];
+                }
+
+            });
+
+            localStorage.setItem("selectedLanguage", lang);
+        }
+
+
+        const languageSelect =
+            document.getElementById("languageSelect");
+
+
+        languageSelect.addEventListener("change", function () {
+
+            changeLanguage(this.value);
+
+        });
+
+
+        const savedLanguage =
+            localStorage.getItem("selectedLanguage") || "en";
+
+
+        languageSelect.value = savedLanguage;
+
+        changeLanguage(savedLanguage);
+
+
+        /* ================= CATEGORY FILTER ================= */
+
+        function filterServices(category) {
+
+            const cards =
+                document.querySelectorAll(
+                    ".government-service-card"
+                );
+
+            const buttons =
+                document.querySelectorAll(
+                    ".category-btn"
+                );
+
+            buttons.forEach(button => {
+                button.classList.remove("active");
+            });
+
+            event.target.classList.add("active");
+
+
+            let visibleCards = 0;
+
+
+            cards.forEach(card => {
+
+                if (
+                    category === "all" ||
+                    card.dataset.category === category
+                ) {
+
+                    card.style.display = "block";
+                    visibleCards++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            document.getElementById("noResults").style.display =
+                visibleCards === 0 ? "block" : "none";
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        function searchServices() {
+
+            const searchText =
+                document
+                    .getElementById("serviceSearch")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const cards =
+                document.querySelectorAll(
+                    ".government-service-card"
+                );
+
+
+            let visibleCards = 0;
+
+
+            cards.forEach(card => {
+
+                const text =
+                    card.innerText.toLowerCase();
+
+
+                if (text.includes(searchText)) {
+
+                    card.style.display = "block";
+                    visibleCards++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            document.getElementById("noResults").style.display =
+                visibleCards === 0 ? "block" : "none";
+        }
+
+
+        /* Search while typing */
+
+        document
+            .getElementById("serviceSearch")
+            .addEventListener("input", searchServices);
+
+
+        /* ================= APPLY ================= */
+
+        function applyService(serviceName) {
+
+            alert(
+                "You selected: " +
+                serviceName +
+                "\n\nLogin/Register will be required to continue."
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>

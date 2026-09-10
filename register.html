@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | e-Seva Portal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f3f7fa;
+            color: #263746;
+            min-height: 100vh;
+        }
+
+        /* ================= TOP BAR ================= */
+
+        .top-bar {
+            height: 58px;
+            background: #123f73;
+            color: white;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .gov-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emblem {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .bharat {
+            font-weight: 700;
+        }
+
+        .gov-name {
+            font-size: 10px;
+            opacity: .85;
+        }
+
+        .top-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 78px;
+            background: white;
+            padding: 0 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo-text h1 {
+            font-size: 22px;
+            color: #123f73;
+        }
+
+        .logo-text h1 span {
+            color: #168047;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: #788692;
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: #123f73;
+            border: 1px solid #123f73;
+            padding: 9px 18px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            background: #123f73;
+            color: white;
+        }
+
+        /* ================= REGISTER AREA ================= */
+
+        .register-area {
+            padding: 45px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .register-card {
+            width: 650px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #dfe6eb;
+            box-shadow: 0 10px 35px rgba(0,0,0,.08);
+            overflow: hidden;
+        }
+
+        /* ================= HEADER ================= */
+
+        .register-header {
+            background: linear-gradient(135deg, #123f73, #176b50);
+            color: white;
+            text-align: center;
+            padding: 28px 20px;
+        }
+
+        .register-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.15);
+            border: 2px solid rgba(255,255,255,.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+        }
+
+        .register-header h2 {
+            font-size: 25px;
+            margin-bottom: 5px;
+        }
+
+        .register-header p {
+            font-size: 12px;
+            opacity: .85;
+        }
+
+        /* ================= FORM ================= */
+
+        .register-form {
+            padding: 30px;
+        }
+
+        .section-heading {
+            color: #123f73;
+            font-size: 16px;
+            border-bottom: 1px solid #e1e7ec;
+            padding-bottom: 9px;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #d62828;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #d5dde4;
+            border-radius: 6px;
+            outline: none;
+            font-family: inherit;
+            font-size: 13px;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #168047;
+            box-shadow: 0 0 0 2px rgba(22,128,71,.08);
+        }
+
+        /* ================= PASSWORD ================= */
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 45px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #687783;
+        }
+
+        .password-strength {
+            height: 4px;
+            margin-top: 7px;
+            border-radius: 5px;
+            background: #e5e9ec;
+            width: 0%;
+        }
+
+        .strength-text {
+            font-size: 10px;
+            margin-top: 4px;
+            color: #788692;
+        }
+
+        /* ================= TERMS ================= */
+
+        .terms {
+            background: #f5f8fa;
+            border: 1px solid #e0e6ea;
+            padding: 13px;
+            border-radius: 6px;
+            margin: 5px 0 20px;
+            font-size: 11px;
+            color: #697781;
+        }
+
+        .terms label {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .terms input {
+            margin-top: 2px;
+            accent-color: #168047;
+        }
+
+        .terms a {
+            color: #123f73;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .register-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            background: #168047;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background: #116b3b;
+        }
+
+        .register-button:disabled {
+            background: #8aa99a;
+            cursor: not-allowed;
+        }
+
+        /* ================= LOGIN ================= */
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #71808c;
+        }
+
+        .login-link a {
+            color: #168047;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* ================= SECURITY ================= */
+
+        .security-note {
+            margin-top: 18px;
+            padding: 12px;
+            text-align: center;
+            background: #f1f7f3;
+            border: 1px solid #d9eadf;
+            border-radius: 6px;
+            font-size: 11px;
+            color: #587063;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #102f50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 11px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+            opacity: .8;
+        }
+
+        footer p {
+            margin-top: 8px;
+            opacity: .55;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:650px) {
+
+            .top-right {
+                display: none;
+            }
+
+            .navbar {
+                padding: 0 4%;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .register-card {
+                width: 100%;
+            }
+
+            .register-form {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<!-- ================= TOP BAR ================= -->
+
+<div class="top-bar">
+
+    <div class="gov-brand">
+
+        <div class="emblem">
+            ☸
+        </div>
+
+        <div>
+
+            <div class="bharat">
+                भारत सरकार
+            </div>
+
+            <div class="gov-name">
+                Government of India
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="top-right">
+
+        <span>
+            ☎ Helpline: 1800-123-4567
+        </span>
+
+        <span>
+            ✉ support@govservices.gov.in
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <div class="logo-icon">
+
+            <img src="images/logo.png"
+                 alt="e-Seva Logo">
+
+        </div>
+
+        <div class="logo-text">
+
+            <h1>
+                <span>e-</span>Seva Portal
+            </h1>
+
+            <p>
+                One step towards Digital Government
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a href="index.html"
+       class="back-home">
+
+        ← Back to Home
+
+    </a>
+
+</header>
+
+
+<!-- ================= REGISTER ================= -->
+
+<main class="register-area">
+
+    <div class="register-card">
+
+        <div class="register-header">
+
+            <div class="register-icon">
+                👤
+            </div>
+
+            <h2>
+                Citizen Registration
+            </h2>
+
+            <p>
+                Create your e-Seva Portal account
+            </p>
+
+        </div>
+
+
+        <div class="register-form">
+
+            <form id="registerForm">
+
+
+                <!-- ================= PERSONAL INFORMATION ================= -->
+
+                <h3 class="section-heading">
+                    Personal Information
+                </h3>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            First Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            placeholder="Enter first name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Last Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            placeholder="Enter last name"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Date of Birth
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Gender
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="gender"
+                            required>
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="male">
+                                Male
+                            </option>
+
+                            <option value="female">
+                                Female
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= CONTACT INFORMATION ================= -->
+
+                <h3 class="section-heading">
+                    Contact Information
+                </h3>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Mobile Number
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            placeholder="10-digit mobile number"
+                            maxlength="10"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter email address">
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Address
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address"
+                        placeholder="Enter your full address"
+                        required>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            State
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="state"
+                            required>
+
+                            <option value="">
+                                Select State
+                            </option>
+
+                            <option value="Maharashtra">
+                                Maharashtra
+                            </option>
+
+                            <option value="Karnataka">
+                                Karnataka
+                            </option>
+
+                            <option value="Gujarat">
+                                Gujarat
+                            </option>
+
+                            <option value="Goa">
+                                Goa
+                            </option>
+
+                            <option value="Madhya Pradesh">
+                                Madhya Pradesh
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            City / District
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter city or district"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ACCOUNT SECURITY ================= -->
+
+                <h3 class="section-heading">
+                    Account Security
+                </h3>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Create Password
+                        <span class="required">*</span>
+                    </label>
+
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create a strong password"
+                            required>
+
+
+                        <span
+                            class="toggle-password"
+                            id="togglePassword">
+
+                            👁
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="password-strength"
+                        id="strengthBar">
+                    </div>
+
+
+                    <div
+                        class="strength-text"
+                        id="strengthText">
+
+                        Password strength
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Confirm Password
+                        <span class="required">*</span>
+                    </label>
+
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Re-enter your password"
+                            required>
+
+
+                        <span
+                            class="toggle-password"
+                            id="toggleConfirm">
+
+                            👁
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= TERMS ================= -->
+
+                <div class="terms">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required>
+
+                        <span>
+
+                            I agree to the
+
+                            <a href="#">
+                                Terms & Conditions
+                            </a>
+
+                            and
+
+                            <a href="#">
+                                Privacy Policy
+                            </a>
+
+                            of the e-Seva Portal.
+
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ================= REGISTER BUTTON ================= -->
+
+                <button
+                    type="submit"
+                    class="register-button"
+                    id="registerButton">
+
+                    Create Account →
+
+                </button>
+
+
+            </form>
+
+
+            <!-- ================= LOGIN ================= -->
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login Here
+                </a>
+
+            </div>
+
+
+            <!-- ================= SECURITY ================= -->
+
+            <div class="security-note">
+
+                🔒 Your personal information is securely protected.
+                Never share your password or OTP with anyone.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="services.html">
+            Services
+        </a>
+
+        <a href="about.html">
+            About Us
+        </a>
+
+        <a href="contact.html">
+            Contact Us
+        </a>
+
+    </div>
+
+
+    <p>
+        © 2026 e-Seva Portal. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+
+/* ================= FLASK API ================= */
+
+const API_URL = "http://127.0.0.1:5000";
+
+
+/* ================= PASSWORD SHOW / HIDE ================= */
+
+document
+    .getElementById("togglePassword")
+    .addEventListener("click", function () {
+
+        const password =
+            document.getElementById("password");
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            this.textContent = "🙈";
+
+        } else {
+
+            password.type = "password";
+
+            this.textContent = "👁";
+
+        }
+
+    });
+
+
+document
+    .getElementById("toggleConfirm")
+    .addEventListener("click", function () {
+
+        const password =
+            document.getElementById("confirmPassword");
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            this.textContent = "🙈";
+
+        } else {
+
+            password.type = "password";
+
+            this.textContent = "👁";
+
+        }
+
+    });
+
+
+/* ================= PASSWORD STRENGTH ================= */
+
+const passwordInput =
+    document.getElementById("password");
+
+const strengthBar =
+    document.getElementById("strengthBar");
+
+const strengthText =
+    document.getElementById("strengthText");
+
+
+passwordInput.addEventListener(
+    "input",
+    function () {
+
+        const password = this.value;
+
+        let strength = 0;
+
+
+        if (password.length >= 8) {
+            strength++;
+        }
+
+
+        if (/[A-Z]/.test(password)) {
+            strength++;
+        }
+
+
+        if (/[0-9]/.test(password)) {
+            strength++;
+        }
+
+
+        if (/[^A-Za-z0-9]/.test(password)) {
+            strength++;
+        }
+
+
+        if (password.length === 0) {
+
+            strengthBar.style.width = "0%";
+
+            strengthText.textContent =
+                "Password strength";
+
+        }
+
+        else if (strength <= 1) {
+
+            strengthBar.style.width = "25%";
+
+            strengthText.textContent =
+                "Weak password";
+
+        }
+
+        else if (strength <= 3) {
+
+            strengthBar.style.width = "65%";
+
+            strengthText.textContent =
+                "Medium password";
+
+        }
+
+        else {
+
+            strengthBar.style.width = "100%";
+
+            strengthText.textContent =
+                "Strong password";
+
+        }
+
+    }
+);
+
+
+/* ================= REGISTER FORM ================= */
+
+document
+    .getElementById("registerForm")
+    .addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const registerButton =
+                document.getElementById("registerButton");
+
+
+            /* ================= GET VALUES ================= */
+
+            const firstName =
+                document
+                    .getElementById("firstName")
+                    .value
+                    .trim();
+
+
+            const lastName =
+                document
+                    .getElementById("lastName")
+                    .value
+                    .trim();
+
+
+            const dob =
+                document
+                    .getElementById("dob")
+                    .value;
+
+
+            const gender =
+                document
+                    .getElementById("gender")
+                    .value;
+
+
+            const mobile =
+                document
+                    .getElementById("mobile")
+                    .value
+                    .trim();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const address =
+                document
+                    .getElementById("address")
+                    .value
+                    .trim();
+
+
+            const state =
+                document
+                    .getElementById("state")
+                    .value;
+
+
+            const city =
+                document
+                    .getElementById("city")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById("confirmPassword")
+                    .value;
+
+
+            /* ================= MOBILE VALIDATION ================= */
+
+            if (!/^[0-9]{10}$/.test(mobile)) {
+
+                alert(
+                    "Please enter a valid 10-digit mobile number."
+                );
+
+                return;
+
+            }
+
+
+            /* ================= PASSWORD VALIDATION ================= */
+
+            if (password.length < 8) {
+
+                alert(
+                    "Password must contain at least 8 characters."
+                );
+
+                return;
+
+            }
+
+
+            /* ================= CONFIRM PASSWORD ================= */
+
+            if (password !== confirmPassword) {
+
+                alert(
+                    "Passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+            /* ================= USER DATA ================= */
+
+            const userData = {
+
+                first_name: firstName,
+
+                last_name: lastName,
+
+                dob: dob,
+
+                gender: gender,
+
+                mobile: mobile,
+
+                email: email,
+
+                address: address,
+
+                state: state,
+
+                city: city,
+
+                password: password
+
+            };
+
+
+            console.log(
+                "================================"
+            );
+
+            console.log(
+                "Sending registration data..."
+            );
+
+            console.log(userData);
+
+            console.log(
+                "API URL:",
+                API_URL + "/register"
+            );
+
+            console.log(
+                "================================"
+            );
+
+
+            /* ================= DISABLE BUTTON ================= */
+
+            registerButton.disabled = true;
+
+            registerButton.textContent =
+                "Creating Account...";
+
+
+            /* ================= SEND TO FLASK ================= */
+
+            try {
+
+                console.log(
+                    "Connecting to Flask..."
+                );
+
+
+                const response =
+                    await fetch(
+                        API_URL + "/register",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(userData)
+                        }
+                    );
+
+
+                console.log(
+                    "Flask HTTP Status:",
+                    response.status
+                );
+
+
+                /* ================= READ RESPONSE ================= */
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "Flask Response:",
+                    result
+                );
+
+
+                /* ================= SUCCESS ================= */
+
+                if (
+                    response.ok &&
+                    result.success
+                ) {
+
+                    alert(
+                        "Registration successful!\n\n" +
+                        "Welcome to e-Seva Portal, " +
+                        firstName +
+                        " " +
+                        lastName +
+                        "!"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                /* ================= ERROR ================= */
+
+                alert(
+                    "Registration Failed!\n\n" +
+                    "Status: " +
+                    response.status +
+                    "\n\n" +
+                    result.message
+                );
+
+            }
+
+
+            /* ================= FLASK CONNECTION ERROR ================= */
+
+            catch (error) {
+
+                console.error(
+                    "FLASK CONNECTION ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to connect to Flask server.\n\n" +
+
+                    "Please make sure Flask is running on:\n" +
+
+                    API_URL +
+
+                    "\n\nError:\n" +
+
+                    error.message
+                );
+
+            }
+
+
+            /* ================= ENABLE BUTTON ================= */
+
+            finally {
+
+                registerButton.disabled =
+                    false;
+
+                registerButton.textContent =
+                    "Create Account →";
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

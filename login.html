@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | e-Seva Portal</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            background: #f3f7fa;
+            color: #263746;
+        }
+
+
+        /* ================= TOP BAR ================= */
+
+        .top-bar {
+            height: 58px;
+            background: #123f73;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            font-size: 13px;
+        }
+
+
+        .gov-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .emblem {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(255,255,255,.6);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+
+        .bharat {
+            font-weight: 700;
+        }
+
+
+        .gov-name {
+            font-size: 10px;
+            opacity: .85;
+        }
+
+
+        .top-right {
+            display: flex;
+            gap: 20px;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 78px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .logo-icon img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+
+        .logo-text h1 {
+            font-size: 22px;
+            color: #123f73;
+        }
+
+
+        .logo-text h1 span {
+            color: #168047;
+        }
+
+
+        .logo-text p {
+            font-size: 11px;
+            color: #788692;
+        }
+
+
+        .back-home {
+            text-decoration: none;
+            color: #123f73;
+            border: 1px solid #123f73;
+            padding: 9px 18px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        .back-home:hover {
+            background: #123f73;
+            color: white;
+        }
+
+
+        /* ================= LOGIN AREA ================= */
+
+        .login-area {
+            min-height: calc(100vh - 136px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 45px 20px;
+        }
+
+
+        /* ================= LOGIN CARD ================= */
+
+        .login-card {
+            width: 420px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #dfe6eb;
+            box-shadow: 0 10px 35px rgba(0,0,0,.08);
+            overflow: hidden;
+        }
+
+
+        .login-header {
+            background: linear-gradient(135deg, #123f73, #176b50);
+            color: white;
+            text-align: center;
+            padding: 28px 20px;
+        }
+
+
+        .user-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.15);
+            border: 2px solid rgba(255,255,255,.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+
+
+        .login-header h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+
+        .login-header p {
+            font-size: 12px;
+            opacity: .85;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .login-form {
+            padding: 30px;
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 7px;
+        }
+
+
+        .input-box {
+            position: relative;
+        }
+
+
+        .input-box span {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #788692;
+            font-size: 16px;
+        }
+
+
+        .input-box input {
+            width: 100%;
+            padding: 12px 40px;
+            border: 1px solid #d5dde4;
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+        }
+
+
+        .input-box input:focus {
+            border-color: #168047;
+            box-shadow: 0 0 0 2px rgba(22,128,71,.08);
+        }
+
+
+        .password-toggle {
+            position: absolute !important;
+            left: auto !important;
+            right: 13px;
+            cursor: pointer;
+        }
+
+
+        /* ================= OPTIONS ================= */
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            font-size: 12px;
+        }
+
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+
+        .remember input {
+            accent-color: #168047;
+        }
+
+
+        .forgot {
+            color: #123f73;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .login-button {
+            width: 100%;
+            border: none;
+            background: #168047;
+            color: white;
+            padding: 13px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+
+        .login-button:hover {
+            background: #116b3b;
+        }
+
+
+        .login-button:disabled {
+            background: #8aa99a;
+            cursor: not-allowed;
+        }
+
+
+        /* ================= DIVIDER ================= */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 22px 0;
+            color: #9aa5ad;
+            font-size: 11px;
+        }
+
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            background: #e0e5e9;
+            flex: 1;
+        }
+
+
+        /* ================= REGISTER ================= */
+
+        .register-text {
+            text-align: center;
+            font-size: 13px;
+            color: #71808c;
+        }
+
+
+        .register-text a {
+            color: #168047;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+
+        .register-text a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* ================= SECURITY ================= */
+
+        .security-note {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f1f7f3;
+            border: 1px solid #d9eadf;
+            border-radius: 6px;
+            color: #587063;
+            font-size: 11px;
+            text-align: center;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #102f50;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 11px;
+        }
+
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+            opacity: .8;
+        }
+
+
+        footer p {
+            margin-top: 8px;
+            opacity: .55;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:600px) {
+
+            .top-bar {
+                padding: 5px 4%;
+            }
+
+
+            .top-right {
+                display: none;
+            }
+
+
+            .navbar {
+                padding: 0 4%;
+            }
+
+
+            .login-card {
+                width: 100%;
+                max-width: 420px;
+            }
+
+
+            .login-form {
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= TOP BAR ================= -->
+
+<div class="top-bar">
+
+    <div class="gov-brand">
+
+        <div class="emblem">
+            ☸
+        </div>
+
+        <div>
+
+            <div class="bharat">
+                भारत सरकार
+            </div>
+
+            <div class="gov-name">
+                Government of India
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="top-right">
+
+        <span>
+            ☎ Helpline: 1800-123-4567
+        </span>
+
+        <span>
+            ✉ support@govservices.gov.in
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <div class="logo-icon">
+
+            <img
+                src="images/logo.png"
+                alt="e-Seva Logo">
+
+        </div>
+
+
+        <div class="logo-text">
+
+            <h1>
+                <span>e-</span>Seva Portal
+            </h1>
+
+            <p>
+                One step towards Digital Government
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back-home">
+
+        ← Back to Home
+
+    </a>
+
+</header>
+
+
+<!-- ================= LOGIN ================= -->
+
+<main class="login-area">
+
+    <div class="login-card">
+
+
+        <!-- HEADER -->
+
+        <div class="login-header">
+
+            <div class="user-icon">
+                👤
+            </div>
+
+            <h2>
+                Citizen Login
+            </h2>
+
+            <p>
+                Login to access your e-Seva account
+            </p>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <div class="login-form">
+
+            <form id="loginForm">
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label>
+                        Mobile Number / Email
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>
+                            ☎
+                        </span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter mobile number or email"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <span>
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required>
+
+                        <span
+                            class="password-toggle"
+                            id="togglePassword">
+
+                            👁
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="login-options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember">
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                        onclick="forgotPassword(event)">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton">
+
+                    Login →
+
+                </button>
+
+            </form>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+                OR
+            </div>
+
+
+            <!-- REGISTER -->
+
+            <div class="register-text">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Register Now
+                </a>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="security-note">
+
+                🔒 Your login information is protected.
+                Never share your password or OTP with anyone.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="about.html">
+            About Us
+        </a>
+
+        <a href="contact.html">
+            Contact Us
+        </a>
+
+        <a href="#">
+            Privacy Policy
+        </a>
+
+    </div>
+
+
+    <p>
+        © 2026 e-Seva Portal. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+/* ================= FLASK BACKEND ================= */
+
+const API_URL = "http://127.0.0.1:5000";
+
+
+/* ================= PASSWORD SHOW / HIDE ================= */
+
+const password =
+    document.getElementById("password");
+
+
+const togglePassword =
+    document.getElementById("togglePassword");
+
+
+togglePassword.addEventListener(
+    "click",
+    function () {
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            togglePassword.textContent = "🙈";
+
+        }
+
+        else {
+
+            password.type = "password";
+
+            togglePassword.textContent = "👁";
+
+        }
+
+    }
+);
+
+
+/* ================= LOGIN ================= */
+
+document
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            /* ---------- GET VALUES ---------- */
+
+            const username =
+                document
+                .getElementById("username")
+                .value
+                .trim();
+
+
+            const userPassword =
+                document
+                .getElementById("password")
+                .value;
+
+
+            const loginButton =
+                document.getElementById("loginButton");
+
+
+            /* ---------- VALIDATION ---------- */
+
+            if (
+                username === "" ||
+                userPassword === ""
+            ) {
+
+                alert(
+                    "Please enter your login details."
+                );
+
+                return;
+
+            }
+
+
+            /* ---------- DISABLE BUTTON ---------- */
+
+            loginButton.disabled = true;
+
+            loginButton.textContent =
+                "Logging in...";
+
+
+            /* ================= SEND TO FLASK ================= */
+
+            try {
+
+                console.log(
+                    "Connecting to Flask:",
+                    API_URL
+                );
+
+
+                const response =
+                    await fetch(
+                        API_URL + "/login",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                username:
+                                    username,
+
+                                password:
+                                    userPassword
+
+                            })
+
+                        }
+                    );
+
+
+                console.log(
+                    "Flask HTTP Status:",
+                    response.status
+                );
+
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "Flask Response:",
+                    result
+                );
+
+
+                /* ================= SUCCESS ================= */
+
+                if (
+                    response.ok &&
+                    result.success
+                ) {
+
+
+                    alert(
+                        "Login Successful!\n\n" +
+                        "Welcome, " +
+                        result.user.first_name +
+                        " " +
+                        result.user.last_name +
+                        "!"
+                    );
+
+
+                    /* ================= SAVE LOGIN ================= */
+
+                    localStorage.setItem(
+                        "isLoggedIn",
+                        "true"
+                    );
+
+
+                    /* ================= SAVE USER ================= */
+
+                    localStorage.setItem(
+                        "user",
+                        JSON.stringify(
+                            result.user
+                        )
+                    );
+
+
+                    /* ================= REMEMBER ME ================= */
+
+                    const remember =
+                        document.getElementById(
+                            "remember"
+                        ).checked;
+
+
+                    if (remember) {
+
+                        localStorage.setItem(
+                            "rememberUser",
+                            username
+                        );
+
+                    }
+
+                    else {
+
+                        localStorage.removeItem(
+                            "rememberUser"
+                        );
+
+                    }
+
+
+                    /* ================= DASHBOARD ================= */
+
+                    window.location.href =
+                        "dashboard.html";
+
+
+                    return;
+
+                }
+
+
+                /* ================= LOGIN FAILED ================= */
+
+                alert(
+                    "Login Failed!\n\n" +
+                    (
+                        result.message ||
+                        "Invalid mobile number/email or password."
+                    )
+                );
+
+            }
+
+
+            /* ================= CONNECTION ERROR ================= */
+
+            catch (error) {
+
+                console.error(
+                    "FLASK CONNECTION ERROR:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to connect to Flask server.\n\n" +
+                    "Please make sure Flask is running on:\n" +
+                    API_URL +
+                    "\n\nError:\n" +
+                    error.message
+                );
+
+            }
+
+
+            /* ================= ENABLE BUTTON ================= */
+
+            finally {
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Login →";
+
+            }
+
+        }
+    );
+
+
+/* ================= FORGOT PASSWORD ================= */
+
+function forgotPassword(event) {
+
+    event.preventDefault();
+
+    alert(
+        "Password recovery feature will be added later."
+    );
+
+}
+
+
+/* ================= LOAD REMEMBERED USER ================= */
+
+window.addEventListener(
+    "load",
+    function () {
+
+        const rememberedUser =
+            localStorage.getItem(
+                "rememberUser"
+            );
+
+
+        if (rememberedUser) {
+
+            document.getElementById(
+                "username"
+            ).value =
+                rememberedUser;
+
+
+            document.getElementById(
+                "remember"
+            ).checked = true;
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
