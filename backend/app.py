@@ -15,7 +15,7 @@ def get_db_connection():
         host="127.0.0.1",
         port=3306,
         user="root",
-        password="Bhumika@6322",
+        password="root",
         database="eseva_db",
         connection_timeout=5,
         use_pure=True

@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>e-Seva Portal | Apply for Service</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f8fb;
+            color: #263238;
+        }
+
+        /* ================= TOP BAR ================= */
+
+        .top-bar {
+            background: #123f73;
+            color: white;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .gov-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emblem {
+            font-size: 25px;
+        }
+
+        .bharat {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .gov-name {
+            font-size: 12px;
+        }
+
+        .top-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: white;
+            min-height: 80px;
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e0e5eb;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        .logo-text h1 {
+            color: #123f73;
+            font-size: 24px;
+        }
+
+        .logo-text h1 span {
+            color: #168047;
+        }
+
+        .logo-text p {
+            color: #687482;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #34516e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #168047;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .login-btn,
+        .register-btn {
+            padding: 9px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .login-btn {
+            background: white;
+            color: #123f73;
+            border: 1px solid #123f73;
+        }
+
+        .register-btn {
+            background: #168047;
+            color: white;
+            border: 1px solid #168047;
+        }
+
+        /* ================= PAGE ================= */
+
+        .application-page {
+            min-height: 100vh;
+            padding: 40px 20px 60px;
+        }
+
+        .application-container {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading h2 {
+            color: #123f73;
+            font-size: 32px;
+        }
+
+        .page-heading p {
+            color: #687482;
+            margin-top: 8px;
+        }
+
+        /* ================= SELECTED SERVICE ================= */
+
+        .selected-service {
+            background: #eef6f1;
+            border-left: 5px solid #168047;
+            padding: 18px 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+        }
+
+        .selected-service small {
+            color: #687482;
+            font-size: 12px;
+        }
+
+        .selected-service h3 {
+            color: #123f73;
+            margin-top: 5px;
+        }
+
+        /* ================= FORM CARD ================= */
+
+        .form-card {
+            background: white;
+            border: 1px solid #e0e5eb;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .form-card h3 {
+            color: #123f73;
+            border-bottom: 2px solid #168047;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #34516e;
+            margin-bottom: 7px;
+        }
+
+        label span {
+            color: #d62828;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #cbd5df;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #168047;
+            box-shadow: 0 0 0 2px rgba(22,128,71,0.08);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .help-text {
+            color: #7a858f;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* ================= DOCUMENT ================= */
+
+        .document-box {
+            border: 1px dashed #b8c3ce;
+            background: #fafbfd;
+            padding: 20px;
+            border-radius: 7px;
+        }
+
+        .document-box p {
+            color: #687482;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        input[type="file"] {
+            padding: 9px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .back-btn,
+        .submit-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-btn {
+            background: white;
+            border: 1px solid #d62828;
+            color: #d62828;
+        }
+
+        .back-btn:hover {
+            background: #d62828;
+            color: white;
+        }
+
+        .submit-btn {
+            background: #168047;
+            border: 1px solid #168047;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #116b3b;
+            transform: translateY(-2px);
+        }
+
+        /* ================= MESSAGE ================= */
+
+        #message {
+            display: none;
+            padding: 14px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .success {
+            background: #e8f7ee;
+            color: #116b3b;
+            border: 1px solid #a8dcb9;
+        }
+
+        .error {
+            background: #fff0f0;
+            color: #c62828;
+            border: 1px solid #f0b4b4;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #123f73;
+            color: white;
+            padding: 30px 5%;
+            text-align: center;
+        }
+
+        .footer-logo strong {
+            font-size: 18px;
+        }
+
+        .footer-logo p {
+            margin-top: 7px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+
+        .copyright {
+            margin-top: 18px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            nav {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .top-info {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .form-card {
+                padding: 20px;
+            }
+
+            .page-heading h2 {
+                font-size: 26px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .back-btn,
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= TOP GOVERNMENT BAR ================= -->
+
+    <div class="top-bar">
+
+        <div class="gov-brand">
+
+            <div class="emblem">
+                ☸
+            </div>
+
+            <div>
+                <div class="bharat">
+                    भारत सरकार
+                </div>
+
+                <div class="gov-name">
+                    Government of India
+                </div>
+            </div>
+
+        </div>
+
+        <div class="top-info">
+            <span>☎ Helpline No.: 1800-123-4567</span>
+            <span>✉ support@govservices.gov.in</span>
+        </div>
+
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo-section">
+
+            <div class="logo-icon">
+                <img src="./images/logo.png" alt="Government Logo">
+            </div>
+
+            <div class="logo-text">
+
+                <h1>
+                    <span>e-</span>Seva Portal
+                </h1>
+
+                <p>
+                    One step towards Digital Government
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">🏠 Home</a>
+
+            <a href="Service.html">Services</a>
+
+            <a href="track.html">Track Application</a>
+
+            <a href="complaint.html">Complaints</a>
+
+            <a href="about.html">About Us</a>
+
+        </nav>
+
+
+        <div class="auth-buttons">
+
+            <button class="login-btn"
+                    onclick="window.location.href='login.html'">
+                👤 Login
+            </button>
+
+            <button class="register-btn"
+                    onclick="window.location.href='register.html'">
+                Register
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= APPLICATION PAGE ================= -->
+
+    <main class="application-page">
+
+        <div class="application-container">
+
+            <div class="page-heading">
+
+                <h2>Apply for Government Service</h2>
+
+                <p>
+                    Fill in the required information to submit your application.
+                </p>
+
+            </div>
+
+
+            <!-- SELECTED SERVICE -->
+
+            <div class="selected-service">
+
+                <small>SELECTED SERVICE</small>
+
+                <h3 id="selectedService">
+                    Loading...
+                </h3>
+
+            </div>
+
+
+            <div id="message"></div>
+
+
+            <!-- ================= PERSONAL INFORMATION ================= -->
+
+            <form id="applicationForm">
+
+                <div class="form-card">
+
+                    <h3>👤 Personal Information</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                First Name <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="firstName"
+                                name="first_name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Last Name <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="last_name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Date of Birth <span>*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                id="dob"
+                                name="dob"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Gender <span>*</span>
+                            </label>
+
+                            <select
+                                id="gender"
+                                name="gender"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Gender
+                                </option>
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Mobile Number <span>*</span>
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="mobile"
+                                name="mobile"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ADDRESS ================= -->
+
+                <div class="form-card">
+
+                    <h3>📍 Address Information</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+
+                            <label>
+                                Address <span>*</span>
+                            </label>
+
+                            <textarea
+                                id="address"
+                                name="address"
+                                placeholder="Enter your complete address"
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                State <span>*</span>
+                            </label>
+
+                            <select
+                                id="state"
+                                name="state"
+                                required
+                            >
+
+                                <option value="">
+                                    Select State
+                                </option>
+
+                                <option value="Maharashtra">
+                                    Maharashtra
+                                </option>
+
+                                <option value="Karnataka">
+                                    Karnataka
+                                </option>
+
+                                <option value="Gujarat">
+                                    Gujarat
+                                </option>
+
+                                <option value="Goa">
+                                    Goa
+                                </option>
+
+                                <option value="Madhya Pradesh">
+                                    Madhya Pradesh
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                City / District <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="Enter city or district"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= APPLICATION DETAILS ================= -->
+
+                <div class="form-card">
+
+                    <h3>📄 Application Details</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+
+                            <label>
+                                Purpose of Application <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="purpose"
+                                name="purpose"
+                                placeholder="Enter purpose of applying"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Additional Details
+                            </label>
+
+                            <textarea
+                                id="details"
+                                name="details"
+                                placeholder="Enter any additional information"
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                Upload Supporting Document
+                            </label>
+
+                            <div class="document-box">
+
+                                <p>
+                                    Upload relevant document in PDF, JPG or PNG format.
+                                </p>
+
+                                <input
+                                    type="file"
+                                    id="document"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                >
+
+                                <div class="help-text">
+                                    Maximum recommended file size: 5 MB
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= ACTION BUTTONS ================= -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="back-btn"
+                        onclick="window.history.back()"
+                    >
+                        ← Back
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                        id="submitBtn"
+                    >
+                        Submit Application →
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <strong>
+                e-Seva Portal
+            </strong>
+
+            <p>
+                Serving Citizens, Simplifying Government
+            </p>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 e-Seva Portal. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* ================= LOAD USER ================= */
+
+        const firstName =
+            localStorage.getItem("first_name");
+
+        const lastName =
+            localStorage.getItem("last_name");
+
+        const mobile =
+            localStorage.getItem("mobile");
+
+        const email =
+            localStorage.getItem("email");
+
+
+        /* ================= LOGIN CHECK ================= */
+
+        if (!firstName) {
+
+            alert(
+                "Please Login/Register first to apply for a service."
+            );
+
+            window.location.href = "login.html";
+
+        }
+
+
+        /* ================= SELECTED SERVICE ================= */
+
+        const service =
+            localStorage.getItem("selectedService");
+
+
+        document.getElementById("selectedService").textContent =
+            service || "Government Service";
+
+
+        /* ================= AUTO FILL USER ================= */
+
+        if (firstName) {
+
+            document.getElementById("firstName").value =
+                firstName;
+        }
+
+
+        if (lastName) {
+
+            document.getElementById("lastName").value =
+                lastName;
+        }
+
+
+        if (mobile) {
+
+            document.getElementById("mobile").value =
+                mobile;
+        }
+
+
+        if (email) {
+
+            document.getElementById("email").value =
+                email;
+        }
+
+
+        /* ================= FORM SUBMIT ================= */
+
+        document
+            .getElementById("applicationForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const message =
+                    document.getElementById("message");
+
+                const submitBtn =
+                    document.getElementById("submitBtn");
+
+
+                /* Get values */
+
+                const data = {
+
+                    service: service,
+
+                    first_name:
+                        document.getElementById("firstName").value,
+
+                    last_name:
+                        document.getElementById("lastName").value,
+
+                    dob:
+                        document.getElementById("dob").value,
+
+                    gender:
+                        document.getElementById("gender").value,
+
+                    mobile:
+                        document.getElementById("mobile").value,
+
+                    email:
+                        document.getElementById("email").value,
+
+                    address:
+                        document.getElementById("address").value,
+
+                    state:
+                        document.getElementById("state").value,
+
+                    city:
+                        document.getElementById("city").value,
+
+                    purpose:
+                        document.getElementById("purpose").value,
+
+                    details:
+                        document.getElementById("details").value
+                };
+
+
+                submitBtn.disabled = true;
+
+                submitBtn.textContent =
+                    "Submitting...";
+
+
+                /* ================= SEND TO FLASK ================= */
+
+                fetch("http://127.0.0.1:5000/application", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(data)
+
+                })
+
+                .then(response => response.json())
+
+                .then(result => {
+
+                    if (result.success) {
+
+                        message.style.display = "block";
+
+                        message.className = "success";
+
+                        message.textContent =
+                            "Application submitted successfully!";
+
+                        document
+                            .getElementById("applicationForm")
+                            .reset();
+
+                        submitBtn.textContent =
+                            "Application Submitted ✓";
+
+                    }
+
+                    else {
+
+                        message.style.display = "block";
+
+                        message.className = "error";
+
+                        message.textContent =
+                            result.message ||
+                            "Unable to submit application.";
+
+                        submitBtn.disabled = false;
+
+                        submitBtn.textContent =
+                            "Submit Application →";
+                    }
+
+                })
+
+                .catch(error => {
+
+                    console.error(error);
+
+                    message.style.display = "block";
+
+                    message.className = "error";
+
+                    message.textContent =
+                        "Unable to connect to server.";
+
+                    submitBtn.disabled = false;
+
+                    submitBtn.textContent =
+                        "Submit Application →";
+
+                });
+
+            });
+
+    </script>
+
+</body>
+
+</html>
