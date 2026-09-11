@@ -527,7 +527,7 @@
                         </span>
 
                         <strong id="resultApplicationId">
-                            APP2026001234
+                            ID2026000002]]]]
                         </strong>
                     </p>
 
@@ -807,50 +807,150 @@
 
         /* ================= TRACK APPLICATION ================= */
 
-        function trackApplication() {
+       /* ================= TRACK APPLICATION ================= */
 
-            const input =
-                document.getElementById("applicationId");
+async function trackApplication() {
 
-            const id =
-                input.value.trim().toUpperCase();
+    const input =
+        document.getElementById("applicationId");
 
-            const result =
-                document.getElementById("trackResult");
+    const id =
+        input.value.trim().toUpperCase();
 
-            const error =
-                document.getElementById("trackError");
+    const result =
+        document.getElementById("trackResult");
+
+    const error =
+        document.getElementById("trackError");
 
 
-            if (applications[id]) {
+    // Empty ID check
+    if (!id) {
 
-                error.style.display = "none";
+        result.style.display = "none";
+        error.style.display = "block";
 
-                result.style.display = "block";
+        error.textContent =
+            "Please enter your Application ID.";
 
-                document.getElementById(
-                    "resultApplicationId"
-                ).textContent = id;
+        return;
+    }
 
-                document.getElementById(
-                    "resultService"
-                ).textContent =
-                    applications[id].service;
 
-                result.scrollIntoView({
-                    behavior: "smooth"
-                });
+    try {
 
-            } else {
+        // Call Flask backend
+        const response = await fetch(
+            `http://127.0.0.1:5000/track/${id}`
+        );
 
-                result.style.display = "none";
 
-                error.style.display = "block";
+        const data = await response.json();
 
-            }
+
+        // ================= SUCCESS =================
+
+        if (data.success) {
+
+            const application =
+                data.application;
+
+
+            // Hide error
+            error.style.display = "none";
+
+
+            // Show result
+            result.style.display = "block";
+
+
+            // Application ID
+            document.getElementById(
+                "resultApplicationId"
+            ).textContent =
+                application.application_id;
+
+
+            // Service
+            document.getElementById(
+                "resultService"
+            ).textContent =
+                application.service;
+
+
+            // Applicant Name
+            document.querySelector(
+                ".details-grid .detail-item:nth-child(2) strong"
+            ).textContent =
+                application.first_name +
+                " " +
+                application.last_name;
+
+
+            // Submission Date
+            const submissionDate =
+                new Date(application.created_at);
+
+
+            document.querySelector(
+                ".details-grid .detail-item:nth-child(3) strong"
+            ).textContent =
+                submissionDate.toLocaleDateString(
+                    "en-GB",
+                    {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            // Status
+            document.getElementById(
+                "statusBadge"
+            ).textContent =
+                application.status;
+
+
+            // Scroll to result
+            result.scrollIntoView({
+                behavior: "smooth"
+            });
 
         }
 
+
+        // ================= NOT FOUND =================
+
+        else {
+
+            result.style.display = "none";
+
+            error.style.display = "block";
+
+            error.textContent =
+                data.message ||
+                "Application not found. Please check your Application ID.";
+        }
+
+
+    } catch (err) {
+
+        console.error(
+            "Tracking Error:",
+            err
+        );
+
+        result.style.display = "none";
+
+        error.style.display = "block";
+
+        error.textContent =
+            "Unable to connect to server. Please make sure Flask server is running.";
+
+    }
+
+}
 
         /* ENTER KEY */
 
@@ -910,7 +1010,7 @@
                     "Enter Application ID",
 
                 exampleId:
-                    "Example: APP2026001234",
+                    "Example: ID2026000002",
 
                 trackButton:
                     "Track",
@@ -1032,7 +1132,7 @@
                     "अर्ज क्रमांक टाका",
 
                 exampleId:
-                    "उदाहरण: APP2026001234",
+                    "उदाहरण: ID2026000002",
 
                 trackButton:
                     "मागोवा घ्या",
@@ -1154,7 +1254,7 @@
                     "आवेदन आईडी दर्ज करें",
 
                 exampleId:
-                    "उदाहरण: APP2026001234",
+                    "उदाहरण: ID2026000002",
 
                 trackButton:
                     "ट्रैक करें",

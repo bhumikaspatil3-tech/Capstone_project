@@ -45,7 +45,6 @@ def register():
 
     try:
 
-        # Get JSON data
         data = request.get_json()
 
         print("Received data:")
@@ -60,6 +59,7 @@ def register():
 
 
         # Get values
+
         first_name = data.get("first_name")
         last_name = data.get("last_name")
         dob = data.get("dob")
@@ -73,6 +73,7 @@ def register():
 
 
         # Required fields
+
         if not first_name or not last_name or not mobile or not password:
 
             return jsonify({
@@ -111,8 +112,6 @@ def register():
 
         if existing_mobile:
 
-            print("Mobile number already registered!")
-
             return jsonify({
                 "success": False,
                 "message": "Mobile number already registered"
@@ -137,9 +136,8 @@ def register():
 
             existing_email = cursor.fetchone()
 
-            if existing_email:
 
-                print("Email already registered!")
+            if existing_email:
 
                 return jsonify({
                     "success": False,
@@ -170,6 +168,8 @@ def register():
         )
         """
 
+
+        # IMPORTANT: येथे फक्त users चे 10 values आहेत
 
         values = (
             first_name,
@@ -250,7 +250,6 @@ def login():
 
     try:
 
-        # Get JSON data
         data = request.get_json()
 
         print("Login request received")
@@ -263,7 +262,6 @@ def login():
             }), 400
 
 
-        # Get login values
         username = data.get("username")
         user_password = data.get("password")
 
@@ -280,11 +278,7 @@ def login():
 
         # ================= MYSQL =================
 
-        print("Connecting to MySQL...")
-
         db = get_db_connection()
-
-        print("MySQL connected successfully!")
 
         cursor = db.cursor(dictionary=True)
 
@@ -323,8 +317,6 @@ def login():
 
         if not user:
 
-            print("User not found!")
-
             return jsonify({
                 "success": False,
                 "message": "Invalid mobile number/email or password"
@@ -335,22 +327,18 @@ def login():
 
         if user["password"] != user_password:
 
-            print("Wrong password!")
-
             return jsonify({
                 "success": False,
                 "message": "Invalid mobile number/email or password"
             }), 401
 
 
-        # ================= REMOVE PASSWORD =================
+        # Remove password
 
         user.pop("password", None)
 
 
         # ================= LOGIN SUCCESS =================
-
-        print("Login successful!")
 
         return jsonify({
             "success": True,
@@ -380,6 +368,286 @@ def login():
             "message": "Server error: " + str(e)
         }), 500
 
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if db:
+            db.close()
+
+
+# ==================================================
+# ================= APPLICATION =====================
+# ==================================================
+
+@app.route("/application", methods=["POST"])
+def application():
+
+    print("\n========== APPLICATION REQUEST ==========")
+
+    db = None
+    cursor = None
+
+    try:
+
+        data = request.get_json()
+
+        print("Received application data:")
+        print(data)
+
+
+        if not data:
+
+            return jsonify({
+                "success": False,
+                "message": "No application data received"
+            }), 400
+
+
+        # ================= GET APPLICATION VALUES =================
+
+        service = data.get("service")
+        first_name = data.get("first_name")
+        last_name = data.get("last_name")
+        dob = data.get("dob")
+        gender = data.get("gender")
+        mobile = data.get("mobile")
+        email = data.get("email")
+        address = data.get("address")
+        state = data.get("state")
+        city = data.get("city")
+        purpose = data.get("purpose")
+        details = data.get("details")
+
+
+        # ================= VALIDATION =================
+
+        if (
+            not service or
+            not first_name or
+            not last_name or
+            not dob or
+            not gender or
+            not mobile or
+            not address or
+            not state or
+            not city or
+            not purpose
+        ):
+
+            return jsonify({
+                "success": False,
+                "message": "Please fill all required fields"
+            }), 400
+
+
+        # ================= DATABASE =================
+
+        print("Connecting to MySQL...")
+
+        db = get_db_connection()
+
+        print("MySQL connected successfully!")
+
+        cursor = db.cursor()
+
+
+        # ================= INSERT APPLICATION =================
+
+        query = """
+        INSERT INTO applications
+        (
+            service,
+            first_name,
+            last_name,
+            dob,
+            gender,
+            mobile,
+            email,
+            address,
+            state,
+            city,
+            purpose,
+            details
+        )
+        VALUES
+        (
+            %s, %s, %s, %s, %s, %s,
+            %s, %s, %s, %s, %s, %s
+        )
+        """
+
+
+        values = (
+            service,
+            first_name,
+            last_name,
+            dob,
+            gender,
+            mobile,
+            email,
+            address,
+            state,
+            city,
+            purpose,
+            details
+        )
+
+
+        # ================= EXECUTE QUERY =================
+
+        print("Submitting application...")
+
+        cursor.execute(query, values)
+
+        db.commit()
+
+
+        # Get automatically generated ID
+
+        application_id = cursor.lastrowid
+
+        application_id = f"ID2026{application_id:06d}"
+
+
+        print("Application submitted successfully!")
+        print("Application ID:", application_id)
+
+
+        # ================= SUCCESS RESPONSE =================
+
+        return jsonify({
+            "success": True,
+            "message": "Application submitted successfully!",
+            "application_id": application_id
+        }), 200
+
+
+    except mysql.connector.Error as e:
+
+        print("MYSQL ERROR:")
+        print(e)
+
+        if db:
+            db.rollback()
+
+        return jsonify({
+            "success": False,
+            "message": "Database error: " + str(e)
+        }), 500
+
+
+    except Exception as e:
+
+        print("GENERAL ERROR:")
+        print(e)
+
+        if db:
+            db.rollback()
+
+        return jsonify({
+            "success": False,
+            "message": "Server error: " + str(e)
+        }), 500
+
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if db:
+            db.close()
+
+# ================= TRACK APPLICATION =================
+
+@app.route("/track/<application_id>", methods=["GET"])
+def track_application(application_id):
+
+    db = None
+    cursor = None
+
+    try:
+
+        print("\n========== TRACK APPLICATION ==========")
+        print("Received ID:", application_id)
+
+        # ID2026000002 → 2
+        db_id = int(application_id[-6:])
+
+        # Connect to MySQL
+        db = get_db_connection()
+
+        print("MySQL connected successfully!")
+
+        cursor = db.cursor(dictionary=True)
+
+        # Find application
+        query = """
+        SELECT
+            id,
+            service,
+            first_name,
+            last_name,
+            status,
+            created_at
+        FROM applications
+        WHERE id = %s
+        """
+
+        cursor.execute(query, (db_id,))
+
+        application_data = cursor.fetchone()
+
+        # Application not found
+        if not application_data:
+
+            return jsonify({
+                "success": False,
+                "message": "Application not found."
+            }), 404
+
+        # Convert database ID to display ID
+        application_data["application_id"] = (
+            f"ID2026{application_data['id']:06d}"
+        )
+
+        print("Application found!")
+        print(application_data)
+
+        return jsonify({
+            "success": True,
+            "application": application_data
+        }), 200
+
+    except ValueError:
+
+        return jsonify({
+            "success": False,
+            "message": "Invalid Application ID."
+        }), 400
+
+    except mysql.connector.Error as e:
+
+        print("MYSQL ERROR:")
+        print(e)
+
+        return jsonify({
+            "success": False,
+            "message": "Database error: " + str(e)
+        }), 500
+
+    except Exception as e:
+
+        print("GENERAL ERROR:")
+        print(e)
+
+        return jsonify({
+            "success": False,
+            "message": "Server error: " + str(e)
+        }), 500
 
     finally:
 

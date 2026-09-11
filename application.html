@@ -1034,23 +1034,27 @@
 
                 .then(result => {
 
-                    if (result.success) {
+                if (result.success) {
 
-                        message.style.display = "block";
+    message.style.display = "block";
 
-                        message.className = "success";
+    message.className = "success";
 
-                        message.textContent =
-                            "Application submitted successfully!";
+    message.innerHTML =
+        "Application submitted successfully!<br><br>" +
+        "<strong>Your Application ID: " +
+        result.application_id +
+        "</strong><br>" +
+        "Please save this ID to track your application.";
 
-                        document
-                            .getElementById("applicationForm")
-                            .reset();
+    document
+        .getElementById("applicationForm")
+        .reset();
 
-                        submitBtn.textContent =
-                            "Application Submitted ✓";
+    submitBtn.textContent =
+        "Application Submitted ✓";
 
-                    }
+}   
 
                     else {
 
