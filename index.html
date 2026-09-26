@@ -1,454 +1,1465 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>e-Seva Portal | Government Services</title>
-<link href="style.css" rel="stylesheet"/>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>e-Seva Portal | Government Services</title>
+
+    <link href="style.css" rel="stylesheet">
 </head>
+
 <body>
+
 <!-- ================= TOP GOVERNMENT BAR ================= -->
+
 <div class="top-bar">
-<div class="gov-brand">
-<div class="emblem">
-                ☸
+
+    <div class="gov-brand">
+
+        <div class="emblem">
+            ☸
+        </div>
+
+        <div>
+            <div class="bharat" data-key="bharat">
+                भारत सरकार
             </div>
-<div>
-<div class="bharat" data-key="bharat">भारत सरकार</div>
-<div class="gov-name" data-key="govIndia">Government of India</div>
+
+            <div class="gov-name" data-key="govIndia">
+                Government of India
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="top-info">
+
+        <span data-key="helpline">
+            ☎ Helpline No.: 1800-123-4567
+        </span>
+
+        <span data-key="supportEmail">
+            ✉ support@govservices.gov.in
+        </span>
+
+        <span data-key="skip">
+            Skip to Main Content
+        </span>
+
+        <span data-key="fontSize">
+            A- A A+
+        </span>
+
+        <select id="languageSelect">
+
+            <option value="en">
+                English
+            </option>
+
+            <option value="mr">
+                मराठी
+            </option>
+
+            <option value="hi">
+                हिंदी
+            </option>
+
+        </select>
+
+    </div>
+
 </div>
-</div>
-<div class="top-info">
-<span data-key="helpline">☎ Helpline No.: 1800-123-4567</span>
-<span data-key="supportEmail">✉ support@govservices.gov.in</span>
-<span data-key="skip">Skip to Main Content</span>
-<span data-key="fontSize">A-   A   A+</span>
-<select id="languageSelect">
-<option value="en">English</option>
-<option value="mr">मराठी</option>
-<option value="hi">हिंदी</option>
-</select>
-</div>
-</div>
+
+
 <!-- ================= NAVIGATION ================= -->
+
 <header class="navbar">
-<div class="logo-section">
-<div class="logo-icon">
-    <img src="./images/logo.PNG" alt="Government Logo">
-</div>
-<div class="logo-text">
-<h1>
-<span data-key="brandPrefix">e-</span>Seva Portal
-                </h1>
-<p data-key="tagline">
-                    एक कदम डिजिटल सरकार की ओर
-                </p>
-</div>
-</div>
-<nav>
-<a class="active" data-key="home" href="#">
-                🏠 Home
-            </a>
-<a data-key="services" href="service.html">Services</a>
-<a data-key="track" href="track.html">Track Application</a>
-<a data-key="complaints" href="complaints.html">Complaints</a>
-<a data-key="about" href="about.html">About Us</a>
-<a data-key="contact" href="contact.html">Contact Us</a>
-</nav>
-<div class="auth-buttons">
 
-    <button class="login-btn"
-            onclick="window.location.href='login.html'">
-        👤 Login
-    </button>
+    <div class="logo-section">
 
-    <button class="register-btn"
-            onclick="window.location.href='register.html'">
-        Register
-    </button>
+        <div class="logo-icon">
 
-</div>
-</header>
-<!-- ================= HERO SECTION ================= -->
-<main>
-<section class="hero">
-<div class="hero-content">
-<h2>
-<span data-key="heroTitle">
-                  All Government Services
+            <img
+                src="./images/logo.PNG"
+                alt="Government Logo"
+            >
+
+        </div>
+
+
+        <div class="logo-text">
+
+            <h1>
+
+                <span data-key="brandPrefix">
+                    e-
                 </span>
-<br/>
-<span data-key="heroHighlight">
-                      Now on One Portal
-                </span>
-</h2>
-<p class="hero-description" data-key="heroDescription">
-                Apply for government services, track your applications
-                and raise complaints – easily, anywhere, anytime.
-                </p>
-<!-- SEARCH -->
-<div class="search-box">
-<span class="search-icon">⌕</span>
-<input data-placeholder="searchPlaceholder" id="serviceSearch" placeholder="Search Government Services..." type="text"/>
-<button data-key="search" onclick="searchService()">
-                        Search
-                    </button>
-</div>
-<!-- FEATURES -->
-<div class="features">
-<div class="feature">
-<div class="feature-icon green">
-                            ✓
-                        </div>
-<div>
-<strong data-key="secure">सुरक्षित</strong>
-<small data-key="secureText">आपकी जानकारी सुरक्षित</small>
-</div>
-</div>
-<div class="feature">
-<div class="feature-icon orange">
-                            ◷
-                        </div>
-<div>
-<strong data-key="fast">तेज और आसान</strong>
-<small data-key="fastText">त्वरित प्रक्रिया</small>
-</div>
-</div>
-<div class="feature">
-<div class="feature-icon blue">
-                            ♧
-                        </div>
-<div>
-<strong data-key="tracking">आवेदन ट्रैक करें</strong>
-<small data-key="trackingText">रियल-टाइम स्थिति</small>
-</div>
-</div>
-<div class="feature">
-<div class="feature-icon green">
-                            ☎
-                        </div>
-<div>
-<strong data-key="support">24/7 सहायता</strong>
-<small data-key="supportText">हमेशा आपके साथ</small>
-</div>
-</div>
-</div>
-</div>
-<!-- GOVERNMENT BUILDING -->
-<div class="hero-building">
-    <img 
-        src="./images/government-building.png"
-        alt="Government Building"
-        class="government-building-image"
+
+                Seva Portal
+
+            </h1>
+
+
+            <p data-key="tagline">
+                एक कदम डिजिटल सरकार की ओर
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a
+            class="active"
+            data-key="home"
+            href="#"
         >
+            🏠 Home
+        </a>
+
+
+        <a
+            data-key="services"
+            href="service.html"
+        >
+            Services
+        </a>
+
+
+        <a
+            data-key="track"
+            href="track.html"
+        >
+            Track Application
+        </a>
+
+
+        <a
+            data-key="complaints"
+            href="complaints.html"
+        >
+            Complaints
+        </a>
+
+
+        <a
+            data-key="about"
+            href="about.html"
+        >
+            About Us
+        </a>
+
+
+        <a
+            data-key="contact"
+            href="contact.html"
+        >
+            Contact Us
+        </a>
+
+    </nav>
+
+
+    <div class="auth-buttons">
+
+        <button
+            type="button"
+            class="login-btn"
+            onclick="window.location.href='login.html'"
+        >
+            👤 Login
+        </button>
+
+
+        <button
+            type="button"
+            class="register-btn"
+            onclick="window.location.href='register.html'"
+        >
+            Register
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO SECTION ================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h2>
+
+            <span data-key="heroTitle">
+                All Government Services
+            </span>
+
+            <br>
+
+            <span data-key="heroHighlight">
+                Now on One Portal
+            </span>
+
+        </h2>
+
+
+        <p
+            class="hero-description"
+            data-key="heroDescription"
+        >
+            Apply for government services, track your applications
+            and raise complaints – easily, anywhere, anytime.
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+
+            <input
+                data-placeholder="searchPlaceholder"
+                id="serviceSearch"
+                placeholder="Search Government Services..."
+                type="text"
+            >
+
+
+            <button
+                type="button"
+                data-key="search"
+                onclick="searchService()"
+            >
+                Search
+            </button>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong data-key="secure">
+                        सुरक्षित
+                    </strong>
+
+                    <small data-key="secureText">
+                        आपकी जानकारी सुरक्षित
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon orange">
+                    ◷
+                </div>
+
+                <div>
+
+                    <strong data-key="fast">
+                        तेज और आसान
+                    </strong>
+
+                    <small data-key="fastText">
+                        त्वरित प्रक्रिया
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon blue">
+                    ♧
+                </div>
+
+                <div>
+
+                    <strong data-key="tracking">
+                        आवेदन ट्रैक करें
+                    </strong>
+
+                    <small data-key="trackingText">
+                        रियल-टाइम स्थिति
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon green">
+                    ☎
+                </div>
+
+                <div>
+
+                    <strong data-key="support">
+                        24/7 सहायता
+                    </strong>
+
+                    <small data-key="supportText">
+                        हमेशा आपके साथ
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- GOVERNMENT BUILDING -->
+
+    <div class="hero-building">
+
+        <img
+            src="./images/government-building.png"
+            alt="Government Building"
+            class="government-building-image"
+        >
+
     </div>
 
 </section>
+
+
 <!-- ================= POPULAR SERVICES ================= -->
+
 <section class="services-section">
-<div class="section-title">
-<span></span>
-<h2 data-key="popularServices">
-                    Popular Services
-                </h2>
-<span></span>
-</div>
-<div class="service-grid">
-<!-- INCOME -->
-<div class="service-card">
-<div class="service-icon income">
-                        ▣
-                    </div>
-<h3 data-key="income">
-                    Income Certificate
-                    </h3>
-<p data-key="incomeDesc">
-                        आय प्रमाणपत्र के लिए आवेदन करें
-                    </p>
-<button data-key="apply" onclick="applyService('Income Certificate')">
-                        आवेदन करें →
-                    </button>
-</div>
-<!-- CASTE -->
-<div class="service-card">
-<div class="service-icon caste">
-                        👥
-                    </div>
-<h3 data-key="caste">
-                    Caste Certificate
-                    </h3>
-<p data-key="casteDesc">
-                        जाति प्रमाणपत्र के लिए आवेदन करें
-                    </p>
-<button data-key="apply" onclick="applyService('Caste Certificate')">
-                        आवेदन करें →
-                    </button>
-</div>
-<!-- DOMICILE -->
-<div class="service-card">
-<div class="service-icon domicile">
-                        🏠
-                    </div>
-<h3 data-key="domicile">
-                    Domicile Certificate
-                    </h3>
-<p data-key="domicileDesc">
-                        निवास प्रमाणपत्र के लिए आवेदन करें
-                    </p>
-<button data-key="apply" onclick="applyService('Domicile Certificate')">
-                        आवेदन करें →
-                    </button>
-</div>
-<!-- BIRTH -->
-<div class="service-card">
-<div class="service-icon birth">
-                        ♧
-                    </div>
-<h3 data-key="birth">
-                     Birth Certificate
-                    </h3>
-<p data-key="birthDesc">
-                        जन्म प्रमाणपत्र के लिए आवेदन करें
-                    </p>
-<button data-key="apply" onclick="applyService('Birth Certificate')">
-                        आवेदन करें →
-                    </button>
-</div>
-<!-- 7/12 -->
-<div class="service-card">
-<div class="service-icon seven">
-                        ▤
-                    </div>
-<h3 data-key="seven">
-                     7/12 Extract
-                    </h3>
-<p data-key="sevenDesc">
-                        7/12 उतारा प्राप्त करें
-                    </p>
-<button data-key="apply" onclick="applyService('7/12 Extract')">
-                        आवेदन करें →
-                    </button>
-</div>
-<!-- MORE -->
-<div class="service-card">
-<div class="service-icon more">
-                        ▦
-                    </div>
-<h3 data-key="other">
-                        अन्य सेवाएं
-                    </h3>
-<p data-key="otherDesc">
-                        सभी सेवाएं देखें
-                    </p>
-<button data-key="viewAll" onclick="viewAllServices()">
-                        सभी देखें →
-                    </button>
-</div>
-</div>
-</section>
-<!-- ================= STATISTICS ================= -->
-<section class="statistics">
-<div class="stat">
-<div class="stat-icon">
-                    ♙
-                </div>
-<div>
-<strong>12,58,000+</strong>
-<span data-key="registeredUsers">पंजीकृत उपयोगकर्ता</span>
-</div>
-</div>
-<div class="divider"></div>
-<div class="stat">
-<div class="stat-icon">
-                    ▤
-                </div>
-<div>
-<strong>85,400+</strong>
-<span data-key="totalApplications">कुल आवेदन</span>
-</div>
-</div>
-<div class="divider"></div>
-<div class="stat">
-<div class="stat-icon">
-                    ✓
-                </div>
-<div>
-<strong>62,300+</strong>
-<span data-key="completedApplications">पूर्ण आवेदन</span>
-</div>
-</div>
-<div class="divider"></div>
-<div class="stat">
-<div class="stat-icon">
-                    ⌛
-                </div>
-<div>
-<strong>11,200+</strong>
-<span data-key="pendingApplications">प्रगति पर आवेदन</span>
-</div>
-</div>
-<div class="divider"></div>
-<div class="stat">
-<div class="stat-icon">
-                    ☺
-                </div>
-<div>
-<strong>4.6/5</strong>
-<span data-key="satisfaction">संतुष्टि रेटिंग</span>
-</div>
-</div>
-</section>
-<!-- ================= HOW IT WORKS ================= -->
-<section class="how-section">
-<div class="section-title">
-<span></span>
-<h2 data-key="howItWorks">
-                    आवेदन कैसे करें?
-                </h2>
-<span></span>
-</div>
-<div class="steps">
-<div class="step">
-<div class="step-number">
-                        1
-                    </div>
-<div class="step-icon">
-                        👤
-                    </div>
-<h3 data-key="registerStep">
-                        Register
-                    </h3>
-<p data-key="registerDesc">
-                        पोर्टल पर पंजीकरण करें
-                    </p>
-</div>
-<div class="step-line"></div>
-<div class="step">
-<div class="step-number">
-                        2
-                    </div>
-<div class="step-icon">
-                        📄
-                    </div>
-<h3 data-key="selectService">
-                        Select Service
-                    </h3>
-<p data-key="selectServiceDesc">
-                        आवश्यक सरकारी सेवा चुनें
-                    </p>
-</div>
-<div class="step-line"></div>
-<div class="step">
-<div class="step-number">
-                        3
-                    </div>
-<div class="step-icon">
-                        ⬆
-                    </div>
-<h3 data-key="applyStep">
-                        Apply
-                    </h3>
-<p data-key="applyDesc">
-                        Form और documents upload करें
-                    </p>
-</div>
-<div class="step-line"></div>
-<div class="step">
-<div class="step-number">
-                        4
-                    </div>
-<div class="step-icon">
-                        ☷
-                    </div>
-<h3 data-key="trackStep">
-                        Track
-                    </h3>
-<p data-key="trackDesc">
-                        Application status track करें
-                    </p>
-</div>
-<div class="step-line"></div>
-<div class="step">
-<div class="step-number">
-                        5
-                    </div>
-<div class="step-icon">
-                        ✓
-                    </div>
-<h3 data-key="getService">
-                        Get Service
-                    </h3>
-<p data-key="getServiceDesc">
-                        Certificate / Service प्राप्त करें
-                    </p>
-</div>
-</div>
-</section>
-</main>
-<!-- ================= FOOTER ================= -->
-<footer>
-<div class="footer-logo">
-<strong data-key="footerTitle">e-Seva Portal</strong>
-<p data-key="footerTagline">
-                Serving Citizens, Simplifying Government
+
+    <div class="section-title">
+
+        <span></span>
+
+        <h2 data-key="popularServices">
+            Popular Services
+        </h2>
+
+        <span></span>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <!-- INCOME -->
+
+        <div class="service-card">
+
+            <div class="service-icon income">
+                ▣
+            </div>
+
+
+            <h3 data-key="income">
+                Income Certificate
+            </h3>
+
+
+            <p data-key="incomeDesc">
+                आय प्रमाणपत्र के लिए आवेदन करें
             </p>
-</div>
-<div class="footer-links">
-<a data-key="privacy" href="#">Privacy Policy</a>
-<a data-key="terms" href="#">Terms &amp; Conditions</a>
-<a data-key="help" href="#">Help &amp; Support</a>
-</div>
-<p class="copyright" data-key="copyright">© 2026 e-Seva Portal. All Rights Reserved.</p>
+
+
+            <button
+                type="button"
+                class="apply-service-btn"
+                data-service="Income Certificate"
+                data-key="apply"
+                onclick="handleHomeApply('Income Certificate')"
+            >
+                आवेदन करें →
+            </button>
+
+        </div>
+
+
+        <!-- CASTE -->
+
+        <div class="service-card">
+
+            <div class="service-icon caste">
+                👥
+            </div>
+
+
+            <h3 data-key="caste">
+                Caste Certificate
+            </h3>
+
+
+            <p data-key="casteDesc">
+                जाति प्रमाणपत्र के लिए आवेदन करें
+            </p>
+
+
+            <button
+                type="button"
+                class="apply-service-btn"
+                data-service="Caste Certificate"
+                data-key="apply"
+                onclick="handleHomeApply('Caste Certificate')"
+            >
+                आवेदन करें →
+            </button>
+
+        </div>
+
+
+        <!-- DOMICILE -->
+
+        <div class="service-card">
+
+            <div class="service-icon domicile">
+                🏠
+            </div>
+
+
+            <h3 data-key="domicile">
+                Domicile Certificate
+            </h3>
+
+
+            <p data-key="domicileDesc">
+                निवास प्रमाणपत्र के लिए आवेदन करें
+            </p>
+
+
+            <button
+                type="button"
+                class="apply-service-btn"
+                data-service="Domicile Certificate"
+                data-key="apply"
+                onclick="handleHomeApply('Domicile Certificate')"
+            >
+                आवेदन करें →
+            </button>
+
+        </div>
+
+
+        <!-- BIRTH -->
+
+        <div class="service-card">
+
+            <div class="service-icon birth">
+                ♧
+            </div>
+
+
+            <h3 data-key="birth">
+                Birth Certificate
+            </h3>
+
+
+            <p data-key="birthDesc">
+                जन्म प्रमाणपत्र के लिए आवेदन करें
+            </p>
+
+
+            <button
+                type="button"
+                class="apply-service-btn"
+                data-service="Birth Certificate"
+                data-key="apply"
+                onclick="handleHomeApply('Birth Certificate')"
+            >
+                आवेदन करें →
+            </button>
+
+        </div>
+
+
+        <!-- 7/12 -->
+
+        <div class="service-card">
+
+            <div class="service-icon seven">
+                ▤
+            </div>
+
+
+            <h3 data-key="seven">
+                7/12 Extract
+            </h3>
+
+
+            <p data-key="sevenDesc">
+                7/12 उतारा प्राप्त करें
+            </p>
+
+
+            <button
+                type="button"
+                class="apply-service-btn"
+                data-service="7/12 Extract"
+                data-key="apply"
+                onclick="handleHomeApply('7/12 Extract')"
+            >
+                आवेदन करें →
+            </button>
+
+        </div>
+
+
+        <!-- MORE -->
+
+        <div class="service-card">
+
+            <div class="service-icon more">
+                ▦
+            </div>
+
+
+            <h3 data-key="other">
+                अन्य सेवाएं
+            </h3>
+
+
+            <p data-key="otherDesc">
+                सभी सेवाएं देखें
+            </p>
+
+
+            <button
+                type="button"
+                data-key="viewAll"
+                onclick="viewAllServices()"
+            >
+                सभी देखें →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="statistics">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ♙
+        </div>
+
+        <div>
+
+            <strong>
+                12,58,000+
+            </strong>
+
+            <span data-key="registeredUsers">
+                पंजीकृत उपयोगकर्ता
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ▤
+        </div>
+
+        <div>
+
+            <strong>
+                85,400+
+            </strong>
+
+            <span data-key="totalApplications">
+                कुल आवेदन
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ✓
+        </div>
+
+        <div>
+
+            <strong>
+                62,300+
+            </strong>
+
+            <span data-key="completedApplications">
+                पूर्ण आवेदन
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ⌛
+        </div>
+
+        <div>
+
+            <strong>
+                11,200+
+            </strong>
+
+            <span data-key="pendingApplications">
+                प्रगति पर आवेदन
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ☺
+        </div>
+
+        <div>
+
+            <strong>
+                4.6/5
+            </strong>
+
+            <span data-key="satisfaction">
+                संतुष्टि रेटिंग
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="how-section">
+
+    <div class="section-title">
+
+        <span></span>
+
+        <h2 data-key="howItWorks">
+            आवेदन कैसे करें?
+        </h2>
+
+        <span></span>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <div class="step-icon">
+                👤
+            </div>
+
+            <h3 data-key="registerStep">
+                Register
+            </h3>
+
+            <p data-key="registerDesc">
+                पोर्टल पर पंजीकरण करें
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <div class="step-icon">
+                📄
+            </div>
+
+            <h3 data-key="selectService">
+                Select Service
+            </h3>
+
+            <p data-key="selectServiceDesc">
+                आवश्यक सरकारी सेवा चुनें
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <div class="step-icon">
+                ⬆
+            </div>
+
+            <h3 data-key="applyStep">
+                Apply
+            </h3>
+
+            <p data-key="applyDesc">
+                Form और documents upload करें
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <div class="step-icon">
+                ☷
+            </div>
+
+            <h3 data-key="trackStep">
+                Track
+            </h3>
+
+            <p data-key="trackDesc">
+                Application status track करें
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                5
+            </div>
+
+            <div class="step-icon">
+                ✓
+            </div>
+
+            <h3 data-key="getService">
+                Get Service
+            </h3>
+
+            <p data-key="getServiceDesc">
+                Certificate / Service प्राप्त करें
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+
+        <strong data-key="footerTitle">
+            e-Seva Portal
+        </strong>
+
+        <p data-key="footerTagline">
+            Serving Citizens, Simplifying Government
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a data-key="privacy" href="#">
+            Privacy Policy
+        </a>
+
+        <a data-key="terms" href="#">
+            Terms & Conditions
+        </a>
+
+        <a data-key="help" href="#">
+            Help & Support
+        </a>
+
+    </div>
+
+
+    <p
+        class="copyright"
+        data-key="copyright"
+    >
+        © 2026 e-Seva Portal. All Rights Reserved.
+    </p>
+
 </footer>
+
+
+<!-- =====================================================
+     PORTAL JAVASCRIPT
+     ===================================================== -->
+
 <script>
-        const portalTranslations = {
-            en: {
-                bharat:"Government of India", govIndia:"Government of India", helpline:"☎ Helpline No.: 1800-123-4567", supportEmail:"✉ support@govservices.gov.in", skip:"Skip to Main Content", fontSize:"A-  A  A+", tagline:"One step towards Digital Government",
-                home:"🏠 Home", services:"Services", track:"Track Application", complaints:"Complaints", about:"About Us", contact:"Contact Us", login:"👤 Login", register:"♙ Register",
-                heroTitle:"All Government Services", heroHighlight:"Now on One Portal", heroDescription:"Apply for government services, track your applications and raise complaints – easily, anywhere, anytime.", searchPlaceholder:"Search Government Services...", search:"Search",
-                secure:"Secure", secureText:"Your information is safe", fast:"Fast & Easy", fastText:"Quick process", tracking:"Application Tracking", trackingText:"Real-time status", support:"24/7 Support", supportText:"Always with you",
-                popularServices:"Popular Services", income:"Income Certificate", incomeDesc:"Apply for an Income Certificate", caste:"Caste Certificate", casteDesc:"Apply for a Caste Certificate", domicile:"Domicile Certificate", domicileDesc:"Apply for a Domicile Certificate", birth:"Birth Certificate", birthDesc:"Apply for a Birth Certificate", seven:"7/12 Extract", sevenDesc:"Get your 7/12 Extract", other:"Other Services", otherDesc:"View all services", apply:"Apply Now →", viewAll:"View All →",
-                registeredUsers:"Registered Users", totalApplications:"Total Applications", completedApplications:"Completed Applications", pendingApplications:"Applications in Progress", satisfaction:"Satisfaction Rating", howItWorks:"How to Apply?", registerStep:"Register", registerDesc:"Register on the portal", selectService:"Select Service", selectServiceDesc:"Choose the required government service", applyStep:"Apply", applyDesc:"Upload form and documents", trackStep:"Track", trackDesc:"Track your application status", getService:"Get Service", getServiceDesc:"Receive Certificate / Service", footerTitle:"e-Seva Portal", footerTagline:"Serving Citizens, Simplifying Government", privacy:"Privacy Policy", terms:"Terms & Conditions", help:"Help & Support", brandPrefix:"e-", brandName:"Seva Portal", copyright:"© 2026 e-Seva Portal. All Rights Reserved."
-            },
-            mr: {
-                bharat:"भारत सरकार", govIndia:"भारत सरकार", helpline:"☎ हेल्पलाइन क्र.: 1800-123-4567", supportEmail:"✉ support@govservices.gov.in", skip:"मुख्य मजकुराकडे जा", fontSize:"A-  A  A+", tagline:"डिजिटल सरकारच्या दिशेने एक पाऊल",
-                home:"🏠 मुख्यपृष्ठ", services:"शासकीय सेवा", track:"अर्जाचा मागोवा", complaints:"तक्रारी", about:"आमच्याबद्दल", contact:"संपर्क", login:"👤 लॉगिन", register:"♙ नोंदणी",
-                heroTitle:"सर्व शासकीय सेवा", heroHighlight:"आता एकाच पोर्टलवर", heroDescription:"शासकीय सेवांसाठी अर्ज करा, आपल्या अर्जाची स्थिती तपासा आणि तक्रार नोंदवा – सहज, कुठेही, कधीही.", searchPlaceholder:"शासकीय सेवा शोधा...", search:"शोधा",
-                secure:"सुरक्षित", secureText:"तुमची माहिती सुरक्षित आहे", fast:"जलद आणि सोपे", fastText:"जलद प्रक्रिया", tracking:"अर्जाचा मागोवा", trackingText:"रिअल-टाइम स्थिती", support:"२४/७ मदत", supportText:"नेहमी तुमच्या सोबत",
-                popularServices:"लोकप्रिय सेवा", income:"उत्पन्न प्रमाणपत्र", incomeDesc:"उत्पन्न प्रमाणपत्रासाठी अर्ज करा", caste:"जात प्रमाणपत्र", casteDesc:"जात प्रमाणपत्रासाठी अर्ज करा", domicile:"रहिवासी प्रमाणपत्र", domicileDesc:"रहिवासी प्रमाणपत्रासाठी अर्ज करा", birth:"जन्म प्रमाणपत्र", birthDesc:"जन्म प्रमाणपत्रासाठी अर्ज करा", seven:"७/१२ उतारा", sevenDesc:"७/१२ उतारा मिळवा", other:"इतर सेवा", otherDesc:"सर्व सेवा पहा", apply:"आता अर्ज करा →", viewAll:"सर्व पहा →",
-                registeredUsers:"नोंदणीकृत वापरकर्ते", totalApplications:"एकूण अर्ज", completedApplications:"पूर्ण झालेले अर्ज", pendingApplications:"प्रगतीपथावर असलेले अर्ज", satisfaction:"समाधान रेटिंग", howItWorks:"अर्ज कसा करावा?", registerStep:"नोंदणी करा", registerDesc:"पोर्टलवर नोंदणी करा", selectService:"सेवा निवडा", selectServiceDesc:"आवश्यक शासकीय सेवा निवडा", applyStep:"अर्ज करा", applyDesc:"फॉर्म आणि कागदपत्रे अपलोड करा", trackStep:"मागोवा घ्या", trackDesc:"अर्जाची स्थिती तपासा", getService:"सेवा मिळवा", getServiceDesc:"प्रमाणपत्र / सेवा मिळवा", footerTitle:"ई-सेवा पोर्टल", footerTagline:"नागरिकांची सेवा, शासकीय प्रक्रिया सुलभ", privacy:"गोपनीयता धोरण", terms:"अटी व शर्ती", help:"मदत व समर्थन", brandPrefix:"ई-", brandName:"सेवा पोर्टल", copyright:"© 2026 ई-सेवा पोर्टल. सर्व हक्क राखीव."
-            },
-            hi: {
-                bharat:"भारत सरकार", govIndia:"भारत सरकार", helpline:"☎ हेल्पलाइन नं.: 1800-123-4567", supportEmail:"✉ support@govservices.gov.in", skip:"मुख्य सामग्री पर जाएं", fontSize:"A-  A  A+", tagline:"डिजिटल सरकार की ओर एक कदम",
-                home:"🏠 होम", services:"सरकारी सेवाएं", track:"आवेदन ट्रैक करें", complaints:"शिकायतें", about:"हमारे बारे में", contact:"संपर्क करें", login:"👤 लॉगिन", register:"♙ पंजीकरण",
-                heroTitle:"सभी सरकारी सेवाएं", heroHighlight:"अब एक ही पोर्टल पर", heroDescription:"सरकारी सेवाओं के लिए आवेदन करें, अपनी आवेदन स्थिति ट्रैक करें और आसानी से शिकायत दर्ज करें।", searchPlaceholder:"सरकारी सेवाएं खोजें...", search:"खोजें",
-                secure:"सुरक्षित", secureText:"आपकी जानकारी सुरक्षित है", fast:"तेज और आसान", fastText:"त्वरित प्रक्रिया", tracking:"आवेदन ट्रैकिंग", trackingText:"रियल-टाइम स्थिति", support:"24/7 सहायता", supportText:"हमेशा आपके साथ",
-                popularServices:"लोकप्रिय सेवाएं", income:"आय प्रमाणपत्र", incomeDesc:"आय प्रमाणपत्र के लिए आवेदन करें", caste:"जाति प्रमाणपत्र", casteDesc:"जाति प्रमाणपत्र के लिए आवेदन करें", domicile:"निवास प्रमाणपत्र", domicileDesc:"निवास प्रमाणपत्र के लिए आवेदन करें", birth:"जन्म प्रमाणपत्र", birthDesc:"जन्म प्रमाणपत्र के लिए आवेदन करें", seven:"7/12 उतारा", sevenDesc:"7/12 उतारा प्राप्त करें", other:"अन्य सेवाएं", otherDesc:"सभी सेवाएं देखें", apply:"अभी आवेदन करें →", viewAll:"सभी देखें →",
-                registeredUsers:"पंजीकृत उपयोगकर्ता", totalApplications:"कुल आवेदन", completedApplications:"पूर्ण आवेदन", pendingApplications:"प्रगति पर आवेदन", satisfaction:"संतुष्टि रेटिंग", howItWorks:"आवेदन कैसे करें?", registerStep:"पंजीकरण करें", registerDesc:"पोर्टल पर पंजीकरण करें", selectService:"सेवा चुनें", selectServiceDesc:"आवश्यक सरकारी सेवा चुनें", applyStep:"आवेदन करें", applyDesc:"फॉर्म और दस्तावेज अपलोड करें", trackStep:"ट्रैक करें", trackDesc:"आवेदन की स्थिति ट्रैक करें", getService:"सेवा प्राप्त करें", getServiceDesc:"प्रमाणपत्र / सेवा प्राप्त करें", footerTitle:"ई-सेवा पोर्टल", footerTagline:"नागरिकों की सेवा, सरकारी प्रक्रिया सरल", privacy:"गोपनीयता नीति", terms:"नियम एवं शर्तें", help:"सहायता और समर्थन", brandPrefix:"ई-", brandName:"सेवा पोर्टल", copyright:"© 2026 ई-सेवा पोर्टल. सर्वाधिकार सुरक्षित."
+
+const portalTranslations = {
+
+    en: {
+
+        bharat:"Government of India",
+        govIndia:"Government of India",
+        helpline:"☎ Helpline No.: 1800-123-4567",
+        supportEmail:"✉ support@govservices.gov.in",
+        skip:"Skip to Main Content",
+        fontSize:"A- A A+",
+
+        tagline:"One step towards Digital Government",
+
+        home:"🏠 Home",
+        services:"Services",
+        track:"Track Application",
+        complaints:"Complaints",
+        about:"About Us",
+        contact:"Contact Us",
+
+        login:"👤 Login",
+        register:"♙ Register",
+
+        heroTitle:"All Government Services",
+        heroHighlight:"Now on One Portal",
+
+        heroDescription:
+        "Apply for government services, track your applications and raise complaints – easily, anywhere, anytime.",
+
+        searchPlaceholder:
+        "Search Government Services...",
+
+        search:"Search",
+
+        secure:"Secure",
+        secureText:"Your information is safe",
+
+        fast:"Fast & Easy",
+        fastText:"Quick process",
+
+        tracking:"Application Tracking",
+        trackingText:"Real-time status",
+
+        support:"24/7 Support",
+        supportText:"Always with you",
+
+        popularServices:"Popular Services",
+
+        income:"Income Certificate",
+        incomeDesc:"Apply for an Income Certificate",
+
+        caste:"Caste Certificate",
+        casteDesc:"Apply for a Caste Certificate",
+
+        domicile:"Domicile Certificate",
+        domicileDesc:"Apply for a Domicile Certificate",
+
+        birth:"Birth Certificate",
+        birthDesc:"Apply for a Birth Certificate",
+
+        seven:"7/12 Extract",
+        sevenDesc:"Get your 7/12 Extract",
+
+        other:"Other Services",
+        otherDesc:"View all services",
+
+        apply:"Apply Now →",
+        viewAll:"View All →",
+
+        registeredUsers:"Registered Users",
+        totalApplications:"Total Applications",
+        completedApplications:"Completed Applications",
+        pendingApplications:"Applications in Progress",
+        satisfaction:"Satisfaction Rating",
+
+        howItWorks:"How to Apply?",
+
+        registerStep:"Register",
+        registerDesc:"Register on the portal",
+
+        selectService:"Select Service",
+        selectServiceDesc:
+        "Choose the required government service",
+
+        applyStep:"Apply",
+        applyDesc:"Upload form and documents",
+
+        trackStep:"Track",
+        trackDesc:"Track your application status",
+
+        getService:"Get Service",
+        getServiceDesc:"Receive Certificate / Service",
+
+        footerTitle:"e-Seva Portal",
+        footerTagline:
+        "Serving Citizens, Simplifying Government",
+
+        privacy:"Privacy Policy",
+        terms:"Terms & Conditions",
+        help:"Help & Support",
+
+        brandPrefix:"e-",
+        brandName:"Seva Portal",
+
+        copyright:
+        "© 2026 e-Seva Portal. All Rights Reserved."
+
+    },
+
+
+    mr: {
+
+        bharat:"भारत सरकार",
+        govIndia:"भारत सरकार",
+        helpline:"☎ हेल्पलाइन क्र.: 1800-123-4567",
+        supportEmail:"✉ support@govservices.gov.in",
+        skip:"मुख्य मजकुराकडे जा",
+        fontSize:"A- A A+",
+
+        tagline:
+        "डिजिटल सरकारच्या दिशेने एक पाऊल",
+
+        home:"🏠 मुख्यपृष्ठ",
+        services:"शासकीय सेवा",
+        track:"अर्जाचा मागोवा",
+        complaints:"तक्रारी",
+        about:"आमच्याबद्दल",
+        contact:"संपर्क",
+
+        login:"👤 लॉगिन",
+        register:"♙ नोंदणी",
+
+        heroTitle:"सर्व शासकीय सेवा",
+        heroHighlight:"आता एकाच पोर्टलवर",
+
+        heroDescription:
+        "शासकीय सेवांसाठी अर्ज करा, आपल्या अर्जाची स्थिती तपासा आणि तक्रार नोंदवा – सहज, कुठेही, कधीही.",
+
+        searchPlaceholder:
+        "शासकीय सेवा शोधा...",
+
+        search:"शोधा",
+
+        secure:"सुरक्षित",
+        secureText:"तुमची माहिती सुरक्षित आहे",
+
+        fast:"जलद आणि सोपे",
+        fastText:"जलद प्रक्रिया",
+
+        tracking:"अर्जाचा मागोवा",
+        trackingText:"रिअल-टाइम स्थिती",
+
+        support:"२४/७ मदत",
+        supportText:"नेहमी तुमच्या सोबत",
+
+        popularServices:"लोकप्रिय सेवा",
+
+        income:"उत्पन्न प्रमाणपत्र",
+        incomeDesc:"उत्पन्न प्रमाणपत्रासाठी अर्ज करा",
+
+        caste:"जात प्रमाणपत्र",
+        casteDesc:"जात प्रमाणपत्रासाठी अर्ज करा",
+
+        domicile:"रहिवासी प्रमाणपत्र",
+        domicileDesc:"रहिवासी प्रमाणपत्रासाठी अर्ज करा",
+
+        birth:"जन्म प्रमाणपत्र",
+        birthDesc:"जन्म प्रमाणपत्रासाठी अर्ज करा",
+
+        seven:"७/१२ उतारा",
+        sevenDesc:"७/१२ उतारा मिळवा",
+
+        other:"इतर सेवा",
+        otherDesc:"सर्व सेवा पहा",
+
+        apply:"आता अर्ज करा →",
+        viewAll:"सर्व पहा →",
+
+        registeredUsers:"नोंदणीकृत वापरकर्ते",
+        totalApplications:"एकूण अर्ज",
+        completedApplications:"पूर्ण झालेले अर्ज",
+
+        pendingApplications:
+        "प्रगतीपथावर असलेले अर्ज",
+
+        satisfaction:"समाधान रेटिंग",
+
+        howItWorks:"अर्ज कसा करावा?",
+
+        registerStep:"नोंदणी करा",
+        registerDesc:"पोर्टलवर नोंदणी करा",
+
+        selectService:"सेवा निवडा",
+        selectServiceDesc:
+        "आवश्यक शासकीय सेवा निवडा",
+
+        applyStep:"अर्ज करा",
+        applyDesc:
+        "फॉर्म आणि कागदपत्रे अपलोड करा",
+
+        trackStep:"मागोवा घ्या",
+        trackDesc:"अर्जाची स्थिती तपासा",
+
+        getService:"सेवा मिळवा",
+        getServiceDesc:
+        "प्रमाणपत्र / सेवा मिळवा",
+
+        footerTitle:"ई-सेवा पोर्टल",
+
+        footerTagline:
+        "नागरिकांची सेवा, शासकीय प्रक्रिया सुलभ",
+
+        privacy:"गोपनीयता धोरण",
+        terms:"अटी व शर्ती",
+        help:"मदत व समर्थन",
+
+        brandPrefix:"ई-",
+        brandName:"सेवा पोर्टल",
+
+        copyright:
+        "© 2026 ई-सेवा पोर्टल. सर्व हक्क राखीव."
+
+    },
+
+
+    hi: {
+
+        bharat:"भारत सरकार",
+        govIndia:"भारत सरकार",
+
+        helpline:
+        "☎ हेल्पलाइन नं.: 1800-123-4567",
+
+        supportEmail:
+        "✉ support@govservices.gov.in",
+
+        skip:"मुख्य सामग्री पर जाएं",
+
+        fontSize:"A- A A+",
+
+        tagline:
+        "डिजिटल सरकार की ओर एक कदम",
+
+        home:"🏠 होम",
+        services:"सरकारी सेवाएं",
+        track:"आवेदन ट्रैक करें",
+        complaints:"शिकायतें",
+        about:"हमारे बारे में",
+        contact:"संपर्क करें",
+
+        login:"👤 लॉगिन",
+        register:"♙ पंजीकरण",
+
+        heroTitle:"सभी सरकारी सेवाएं",
+        heroHighlight:"अब एक ही पोर्टल पर",
+
+        heroDescription:
+        "सरकारी सेवाओं के लिए आवेदन करें, अपनी आवेदन स्थिति ट्रैक करें और आसानी से शिकायत दर्ज करें।",
+
+        searchPlaceholder:
+        "सरकारी सेवाएं खोजें...",
+
+        search:"खोजें",
+
+        secure:"सुरक्षित",
+        secureText:"आपकी जानकारी सुरक्षित है",
+
+        fast:"तेज और आसान",
+        fastText:"त्वरित प्रक्रिया",
+
+        tracking:"आवेदन ट्रैकिंग",
+        trackingText:"रियल-टाइम स्थिति",
+
+        support:"24/7 सहायता",
+        supportText:"हमेशा आपके साथ",
+
+        popularServices:"लोकप्रिय सेवाएं",
+
+        income:"आय प्रमाणपत्र",
+        incomeDesc:
+        "आय प्रमाणपत्र के लिए आवेदन करें",
+
+        caste:"जाति प्रमाणपत्र",
+        casteDesc:
+        "जाति प्रमाणपत्र के लिए आवेदन करें",
+
+        domicile:"निवास प्रमाणपत्र",
+        domicileDesc:
+        "निवास प्रमाणपत्र के लिए आवेदन करें",
+
+        birth:"जन्म प्रमाणपत्र",
+        birthDesc:
+        "जन्म प्रमाणपत्र के लिए आवेदन करें",
+
+        seven:"7/12 उतारा",
+        sevenDesc:"7/12 उतारा प्राप्त करें",
+
+        other:"अन्य सेवाएं",
+        otherDesc:"सभी सेवाएं देखें",
+
+        apply:"अभी आवेदन करें →",
+        viewAll:"सभी देखें →",
+
+        registeredUsers:"पंजीकृत उपयोगकर्ता",
+        totalApplications:"कुल आवेदन",
+        completedApplications:"पूर्ण आवेदन",
+
+        pendingApplications:
+        "प्रगति पर आवेदन",
+
+        satisfaction:"संतुष्टि रेटिंग",
+
+        howItWorks:"आवेदन कैसे करें?",
+
+        registerStep:"पंजीकरण करें",
+        registerDesc:
+        "पोर्टल पर पंजीकरण करें",
+
+        selectService:"सेवा चुनें",
+        selectServiceDesc:
+        "आवश्यक सरकारी सेवा चुनें",
+
+        applyStep:"आवेदन करें",
+        applyDesc:
+        "फॉर्म और दस्तावेज अपलोड करें",
+
+        trackStep:"ट्रैक करें",
+        trackDesc:
+        "आवेदन की स्थिति ट्रैक करें",
+
+        getService:"सेवा प्राप्त करें",
+        getServiceDesc:
+        "प्रमाणपत्र / सेवा प्राप्त करें",
+
+        footerTitle:"ई-सेवा पोर्टल",
+
+        footerTagline:
+        "नागरिकों की सेवा, सरकारी प्रक्रिया सरल",
+
+        privacy:"गोपनीयता नीति",
+        terms:"नियम एवं शर्तें",
+        help:"सहायता और समर्थन",
+
+        brandPrefix:"ई-",
+        brandName:"सेवा पोर्टल",
+
+        copyright:
+        "© 2026 ई-सेवा पोर्टल. सर्वाधिकार सुरक्षित."
+
+    }
+
+};
+
+
+/* ================= LANGUAGE FUNCTION ================= */
+
+function changeLanguage(lang) {
+
+    const t = portalTranslations[lang];
+
+    document.documentElement.lang = lang;
+
+    document
+        .querySelectorAll('[data-key]')
+        .forEach(el => {
+
+            const key = el.dataset.key;
+
+            if (t[key] !== undefined) {
+                el.textContent = t[key];
             }
-        };
 
-        function changeLanguage(lang) {
-            const t = portalTranslations[lang];
-            document.documentElement.lang = lang;
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.dataset.key;
-                if (t[key] !== undefined) el.textContent = t[key];
-            });
-            document.querySelectorAll('[data-placeholder]').forEach(el => {
-                const key = el.dataset.placeholder;
-                if (t[key] !== undefined) el.placeholder = t[key];
-            });
-            localStorage.setItem('selectedLanguage', lang);
+        });
+
+
+    document
+        .querySelectorAll('[data-placeholder]')
+        .forEach(el => {
+
+            const key = el.dataset.placeholder;
+
+            if (t[key] !== undefined) {
+                el.placeholder = t[key];
+            }
+
+        });
+
+
+    localStorage.setItem(
+        'selectedLanguage',
+        lang
+    );
+
+}
+
+
+/* ================= LANGUAGE SELECT ================= */
+
+const languageSelect =
+    document.getElementById(
+        'languageSelect'
+    );
+
+
+if (languageSelect) {
+
+    languageSelect.addEventListener(
+        'change',
+        function () {
+
+            changeLanguage(
+                languageSelect.value
+            );
+
         }
+    );
 
-        const languageSelect = document.getElementById('languageSelect');
-        languageSelect.addEventListener('change', () => changeLanguage(languageSelect.value));
-        const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        languageSelect.value = savedLanguage;
-        changeLanguage(savedLanguage);
-    </script>
+}
+
+
+const savedLanguage =
+    localStorage.getItem(
+        'selectedLanguage'
+    ) || 'en';
+
+
+if (languageSelect) {
+
+    languageSelect.value =
+        savedLanguage;
+
+}
+
+
+changeLanguage(savedLanguage);
+
+
+/* =====================================================
+   APPLY BUTTON
+   LOGIN REQUIRED
+   ===================================================== */
+
+function handleHomeApply(serviceName) {
+
+    console.log(
+        "Apply clicked:",
+        serviceName
+    );
+
+
+    /* =========================
+       GET LOGGED USER
+       ========================= */
+
+    const userData =
+        localStorage.getItem("user");
+
+
+    /* =========================
+       USER NOT LOGGED IN
+       ========================= */
+
+    if (!userData) {
+
+        alert(
+            "Please Login or Register first to apply for this service."
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /* =========================
+       CHECK USER DATA
+       ========================= */
+
+    let user;
+
+    try {
+
+        user =
+            JSON.parse(userData);
+
+    } catch (error) {
+
+        console.error(
+            "Invalid user data:",
+            error
+        );
+
+        localStorage.removeItem(
+            "user"
+        );
+
+        alert(
+            "Please Login or Register first to apply for this service."
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /* =========================
+       CHECK USER ID
+       ========================= */
+
+    if (
+        !user ||
+        !user.id
+    ) {
+
+        localStorage.removeItem(
+            "user"
+        );
+
+        alert(
+            "Please Login or Register first to apply for this service."
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    /* =========================
+       SAVE SELECTED SERVICE
+       ========================= */
+
+    localStorage.setItem(
+        "selectedService",
+        serviceName
+    );
+
+
+    /* =========================
+       OPEN APPLICATION PAGE
+       ========================= */
+
+    window.location.href =
+        "application.html?service=" +
+        encodeURIComponent(
+            serviceName
+        );
+
+}
+
+
+/* ================= VIEW ALL SERVICES ================= */
+
+function viewAllServices() {
+
+    window.location.href =
+        "service.html";
+
+}
+
+</script>
+
+
+<!-- ================= OTHER SCRIPT ================= -->
+
 <script src="script.js"></script>
+
+
 </body>
+
 </html>

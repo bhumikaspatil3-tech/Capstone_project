@@ -475,7 +475,6 @@
 
         </div>
 
-
         <nav>
 
             <a href="index.html">🏠 Home</a>
@@ -489,7 +488,6 @@
             <a href="about.html">About Us</a>
 
         </nav>
-
 
         <div class="auth-buttons">
 
@@ -532,18 +530,75 @@
                 <small>SELECTED SERVICE</small>
 
                 <h3 id="selectedService">
-                    Loading...
+                    Government Service
                 </h3>
 
             </div>
 
 
+            <!-- MESSAGE -->
+
             <div id="message"></div>
 
 
-            <!-- ================= PERSONAL INFORMATION ================= -->
+            <!-- ================= SUCCESS BOX ================= -->
+
+            <div id="applicationSuccess" style="
+                display:none;
+                background:#eef8f1;
+                border:2px solid #168047;
+                border-radius:10px;
+                padding:25px;
+                margin-bottom:25px;
+                text-align:center;
+            ">
+
+                <h3 style="color:#168047; margin-bottom:10px;">
+                    ✅ Application Submitted Successfully
+                </h3>
+
+                <p style="color:#555; margin-bottom:8px;">
+                    Your application has been submitted successfully.
+                </p>
+
+                <p style="font-size:15px; color:#123f73;">
+                    Your Application ID is:
+                </p>
+
+                <h2 id="applicationNumber" style="
+                    color:#168047;
+                    margin:10px 0;
+                    letter-spacing:1px;
+                ">
+                    -
+                </h2>
+
+                <p style="font-size:12px; color:#777;">
+                    Please save this Application ID for tracking your application.
+                </p>
+
+                <button type="button"
+                        onclick="window.location.href='track.html'"
+                        style="
+                            margin-top:12px;
+                            padding:10px 20px;
+                            background:#123f73;
+                            color:white;
+                            border:none;
+                            border-radius:5px;
+                            cursor:pointer;
+                        ">
+                    Track Application
+                </button>
+
+            </div>
+
+
+            <!-- ================= APPLICATION FORM ================= -->
 
             <form id="applicationForm">
+
+                <!-- PERSONAL INFORMATION -->
 
                 <div class="form-card">
 
@@ -668,7 +723,7 @@
                 </div>
 
 
-                <!-- ================= ADDRESS ================= -->
+                <!-- ADDRESS -->
 
                 <div class="form-card">
 
@@ -758,7 +813,7 @@
                 </div>
 
 
-                <!-- ================= APPLICATION DETAILS ================= -->
+                <!-- APPLICATION DETAILS -->
 
                 <div class="form-card">
 
@@ -829,7 +884,7 @@
                 </div>
 
 
-                <!-- ================= ACTION BUTTONS ================= -->
+                <!-- ACTION BUTTONS -->
 
                 <div class="form-actions">
 
@@ -840,7 +895,6 @@
                     >
                         ← Back
                     </button>
-
 
                     <button
                         type="submit"
@@ -886,24 +940,19 @@
 
     <script>
 
-        /* ================= LOAD USER ================= */
+        /* =====================================================
+           LOAD LOGGED-IN USER
+        ===================================================== */
 
-        const firstName =
-            localStorage.getItem("first_name");
-
-        const lastName =
-            localStorage.getItem("last_name");
-
-        const mobile =
-            localStorage.getItem("mobile");
-
-        const email =
-            localStorage.getItem("email");
+        const user =
+            JSON.parse(localStorage.getItem("user") || "null");
 
 
-        /* ================= LOGIN CHECK ================= */
+        /* =====================================================
+           LOGIN CHECK
+        ===================================================== */
 
-        if (!firstName) {
+        if (!user || !user.id) {
 
             alert(
                 "Please Login/Register first to apply for a service."
@@ -914,181 +963,405 @@
         }
 
 
-        /* ================= SELECTED SERVICE ================= */
+        /* =====================================================
+           GET SERVICE
+           URL PARAMETER → LOCAL STORAGE FALLBACK
+        ===================================================== */
 
-        const service =
-            localStorage.getItem("selectedService");
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        let selectedService =
+            urlParams.get("service");
 
 
-        document.getElementById("selectedService").textContent =
-            service || "Government Service";
+        if (!selectedService) {
+
+            selectedService =
+                localStorage.getItem("selectedService");
+
+        }
 
 
-        /* ================= AUTO FILL USER ================= */
+        console.log(
+            "SERVICE FROM URL:",
+            urlParams.get("service")
+        );
 
-        if (firstName) {
+        console.log(
+            "FINAL SELECTED SERVICE:",
+            selectedService
+        );
+
+
+        /* =====================================================
+           DISPLAY SELECTED SERVICE
+        ===================================================== */
+
+        const serviceElement =
+            document.getElementById("selectedService");
+
+
+        if (selectedService) {
+
+            serviceElement.textContent =
+                selectedService;
+
+            // Keep localStorage updated
+            localStorage.setItem(
+                "selectedService",
+                selectedService
+            );
+
+        } else {
+
+            serviceElement.textContent =
+                "Government Service";
+
+        }
+
+
+        /* =====================================================
+           AUTO FILL USER DETAILS
+        ===================================================== */
+
+        if (user) {
+
+            console.log(
+                "LOGGED-IN USER ID:",
+                user.id
+            );
+
 
             document.getElementById("firstName").value =
-                firstName;
-        }
+                user.first_name ||
+                localStorage.getItem("first_name") ||
+                "";
 
-
-        if (lastName) {
 
             document.getElementById("lastName").value =
-                lastName;
-        }
+                user.last_name ||
+                localStorage.getItem("last_name") ||
+                "";
 
-
-        if (mobile) {
 
             document.getElementById("mobile").value =
-                mobile;
-        }
+                user.mobile ||
+                localStorage.getItem("mobile") ||
+                "";
 
-
-        if (email) {
 
             document.getElementById("email").value =
-                email;
+                user.email ||
+                localStorage.getItem("email") ||
+                "";
+
         }
 
 
-        /* ================= FORM SUBMIT ================= */
+        /* =====================================================
+           FORM SUBMIT
+        ===================================================== */
 
         document
             .getElementById("applicationForm")
-            .addEventListener("submit", function(event) {
+            .addEventListener(
+                "submit",
+                function(event) {
 
-                event.preventDefault();
-
-                const message =
-                    document.getElementById("message");
-
-                const submitBtn =
-                    document.getElementById("submitBtn");
+                    event.preventDefault();
 
 
-                /* Get values */
-
-                const data = {
-
-                    service: service,
-
-                    first_name:
-                        document.getElementById("firstName").value,
-
-                    last_name:
-                        document.getElementById("lastName").value,
-
-                    dob:
-                        document.getElementById("dob").value,
-
-                    gender:
-                        document.getElementById("gender").value,
-
-                    mobile:
-                        document.getElementById("mobile").value,
-
-                    email:
-                        document.getElementById("email").value,
-
-                    address:
-                        document.getElementById("address").value,
-
-                    state:
-                        document.getElementById("state").value,
-
-                    city:
-                        document.getElementById("city").value,
-
-                    purpose:
-                        document.getElementById("purpose").value,
-
-                    details:
-                        document.getElementById("details").value
-                };
+                    const message =
+                        document.getElementById("message");
 
 
-                submitBtn.disabled = true;
-
-                submitBtn.textContent =
-                    "Submitting...";
+                    const submitBtn =
+                        document.getElementById("submitBtn");
 
 
-                /* ================= SEND TO FLASK ================= */
+                    /* ===============================
+                       CHECK USER
+                    =============================== */
 
-                fetch("http://127.0.0.1:5000/application", {
+                    const loggedUser =
+                        JSON.parse(
+                            localStorage.getItem("user") || "null"
+                        );
 
-                    method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    if (
+                        !loggedUser ||
+                        !loggedUser.id
+                    ) {
 
-                    body: JSON.stringify(data)
+                        alert("Please login first.");
 
-                })
-
-                .then(response => response.json())
-
-                .then(result => {
-
-                    if (result.success) {
-
-                        message.style.display = "block";
-
-                        message.className = "success";
-
-                        message.textContent =
-                            "Application submitted successfully!";
-
-                        document
-                            .getElementById("applicationForm")
-                            .reset();
-
-                        submitBtn.textContent =
-                            "Application Submitted ✓";
+                        return;
 
                     }
 
-                    else {
 
-                        message.style.display = "block";
+                    /* ===============================
+                       CHECK SERVICE
+                    =============================== */
 
-                        message.className = "error";
+                    if (!selectedService) {
 
-                        message.textContent =
-                            result.message ||
-                            "Unable to submit application.";
+                        alert(
+                            "Please select a government service first."
+                        );
 
-                        submitBtn.disabled = false;
+                        window.location.href =
+                            "Service.html";
 
-                        submitBtn.textContent =
-                            "Submit Application →";
+                        return;
+
                     }
 
-                })
 
-                .catch(error => {
+                    /* ===============================
+                       APPLICATION DATA
+                    =============================== */
 
-                    console.error(error);
+                    const data = {
 
-                    message.style.display = "block";
+                        service_type:
+                            selectedService,
 
-                    message.className = "error";
 
-                    message.textContent =
-                        "Unable to connect to server.";
+                        applicant_name:
+                            document
+                                .getElementById("firstName")
+                                .value
+                                .trim()
+                            + " " +
+                            document
+                                .getElementById("lastName")
+                                .value
+                                .trim(),
 
-                    submitBtn.disabled = false;
+
+                        mobile:
+                            document
+                                .getElementById("mobile")
+                                .value
+                                .trim(),
+
+
+                        email:
+                            document
+                                .getElementById("email")
+                                .value
+                                .trim(),
+
+
+                        user_id:
+                            loggedUser.id
+
+                    };
+
+
+                    console.log(
+                        "APPLICATION DATA:",
+                        data
+                    );
+
+
+                    /* ===============================
+                       BUTTON LOADING
+                    =============================== */
+
+                    submitBtn.disabled =
+                        true;
 
                     submitBtn.textContent =
-                        "Submit Application →";
+                        "Submitting...";
 
-                });
 
-            });
+                    /* ===============================
+                       SEND TO FLASK
+                    =============================== */
+
+                    fetch(
+                        "http://127.0.0.1:5000/applications",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(data)
+
+                        }
+                    )
+
+
+                    .then(
+                        response => {
+
+                            if (!response.ok) {
+
+                                throw new Error(
+                                    "Server returned " +
+                                    response.status
+                                );
+
+                            }
+
+                            return response.json();
+
+                        }
+                    )
+
+
+                    .then(
+                        result => {
+
+                            console.log(
+                                "SERVER RESPONSE:",
+                                result
+                            );
+
+
+                            /* ===============================
+                               SUCCESS
+                            =============================== */
+
+                            if (result.success) {
+
+                                message.style.display =
+                                    "none";
+
+
+                                const successBox =
+                                    document
+                                        .getElementById(
+                                            "applicationSuccess"
+                                        );
+
+
+                                const applicationNumber =
+                                    document
+                                        .getElementById(
+                                            "applicationNumber"
+                                        );
+
+
+                                successBox.style.display =
+                                    "block";
+
+
+                                applicationNumber.textContent =
+                                    result.application_number ||
+                                    result.application_id ||
+                                    "Generated";
+
+
+                                localStorage.setItem(
+                                    "lastApplicationNumber",
+                                    result.application_number ||
+                                    result.application_id ||
+                                    ""
+                                );
+
+
+                                document
+                                    .getElementById(
+                                        "applicationForm"
+                                    )
+                                    .reset();
+
+
+                                submitBtn.disabled =
+                                    true;
+
+
+                                submitBtn.textContent =
+                                    "Application Submitted ✓";
+
+
+                                /* Scroll to success box */
+
+                                successBox.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "center"
+                                });
+
+                            }
+
+
+                            /* ===============================
+                               ERROR FROM BACKEND
+                            =============================== */
+
+                            else {
+
+                                message.style.display =
+                                    "block";
+
+
+                                message.className =
+                                    "error";
+
+
+                                message.textContent =
+                                    result.message ||
+                                    "Unable to submit application.";
+
+
+                                submitBtn.disabled =
+                                    false;
+
+
+                                submitBtn.textContent =
+                                    "Submit Application →";
+
+                            }
+
+                        }
+                    )
+
+
+                    .catch(
+                        error => {
+
+                            console.error(
+                                "APPLICATION ERROR:",
+                                error
+                            );
+
+
+                            message.style.display =
+                                "block";
+
+
+                            message.className =
+                                "error";
+
+
+                            message.textContent =
+                                "Unable to connect to server. Please make sure Flask backend is running.";
+
+
+                            submitBtn.disabled =
+                                false;
+
+
+                            submitBtn.textContent =
+                                "Submit Application →";
+
+                        }
+                    );
+
+                }
+            );
 
     </script>
 

@@ -1322,10 +1322,7 @@
 
 
         /* ================= APPLY ================= */
-
-       function applyService(serviceName) {
-
-    localStorage.setItem("selectedService", serviceName);
+    function applyService(serviceName) {
 
     const firstName = localStorage.getItem("first_name");
 
@@ -1335,7 +1332,13 @@
         return;
     }
 
-    window.location.href = "application.html";
+    // Save service
+    localStorage.setItem("selectedService", serviceName);
+
+    // Send service through URL
+    window.location.href =
+        "application.html?service=" +
+        encodeURIComponent(serviceName);
 }
 
     </script>

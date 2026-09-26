@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Applications | e-Seva Portal</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f7fa;
+            color: #163f6b;
+        }
+
+        /* ================= TOP BAR ================= */
+
+        .top-bar {
+            background: #164b80;
+            color: white;
+            padding: 14px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .government {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .contact {
+            font-size: 14px;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            background: white;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #164b80;
+        }
+
+        .logo span {
+            color: #16834b;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #163f6b;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #16834b;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 45px auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-title h1 {
+            font-size: 42px;
+            color: #164b80;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            font-size: 18px;
+            color: #63788c;
+        }
+
+        /* ================= LOADING ================= */
+
+        #loading {
+            text-align: center;
+            font-size: 20px;
+            color: #164b80;
+            padding: 40px;
+        }
+
+        /* ================= NO APPLICATION ================= */
+
+        #noApplications {
+            display: none;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        #noApplications h2 {
+            color: #164b80;
+            margin-bottom: 15px;
+        }
+
+        #noApplications p {
+            color: #6b7c8d;
+            margin-bottom: 25px;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            background: #16834b;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ================= APPLICATION CARD ================= */
+
+        #applicationsContainer {
+            display: grid;
+            gap: 25px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            border-left: 6px solid #16834b;
+        }
+
+        .application-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 18px;
+        }
+
+        .application-id {
+            font-size: 25px;
+            font-weight: bold;
+            color: #164b80;
+        }
+
+        /* ================= STATUS ================= */
+
+        .status {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .status.Pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.Approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.Rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* ================= DETAILS ================= */
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .detail-box {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            color: #718096;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .detail-value {
+            color: #173f68;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* ================= TRACK BUTTON ================= */
+
+        .card-actions {
+            margin-top: 22px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .track-btn {
+            background: #164b80;
+            color: white;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .track-btn:hover {
+            background: #123c67;
+        }
+
+        /* ================= ERROR ================= */
+
+        #errorMessage {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 80px;
+            background: #12395f;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 700px) {
+
+            .top-bar {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+
+            .application-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .page-title h1 {
+                font-size: 32px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- ================= TOP BAR ================= -->
+
+    <div class="top-bar">
+
+        <div class="government">
+            ⚙ भारत सरकार | Government of India
+        </div>
+
+        <div class="contact">
+            ☎ Helpline: 1800-123-4567
+            &nbsp;&nbsp;
+            ✉ support@govservices.gov.in
+        </div>
+
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            e-<span>Seva</span> Portal
+        </div>
+
+        <div class="nav-links">
+
+            <a href="dashboard.html">Home</a>
+
+            <a href="service.html">Services</a>
+
+            <a href="track.html">Track Application</a>
+
+            <a href="complaint.html">Complaints</a>
+
+            <a href="my-applications.html">
+                My Applications
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+        <div class="page-title">
+
+            <h1>My Applications</h1>
+
+            <p>
+                View all your submitted government service applications
+                and their current status.
+            </p>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div id="errorMessage"></div>
+
+
+        <!-- LOADING -->
+
+        <div id="loading">
+            Loading your applications...
+        </div>
+
+
+        <!-- NO APPLICATION -->
+
+        <div id="noApplications">
+
+            <h2>No Applications Found</h2>
+
+            <p>
+                You have not submitted any government service application yet.
+            </p>
+
+            <a href="service.html" class="apply-btn">
+                Apply for Service
+            </a>
+
+        </div>
+
+
+        <!-- APPLICATIONS -->
+
+        <div id="applicationsContainer"></div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 e-Seva Portal. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+
+<script>
+
+const API_URL = "http://127.0.0.1:5000";
+
+
+// =================================================
+// LOAD APPLICATIONS
+// =================================================
+
+async function loadApplications() {
+
+    const loading =
+        document.getElementById("loading");
+
+    const container =
+        document.getElementById("applicationsContainer");
+
+    const noApplications =
+        document.getElementById("noApplications");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+
+    try {
+
+        // -----------------------------------------
+        // GET LOGGED-IN USER
+        // -----------------------------------------
+
+        const storedUser =
+            localStorage.getItem("user");
+
+
+        if (!storedUser) {
+
+            loading.style.display = "none";
+
+            errorMessage.style.display = "block";
+
+            errorMessage.innerHTML =
+                "Please login first.";
+
+            setTimeout(function () {
+
+                window.location.href = "login.html";
+
+            }, 1500);
+
+            return;
+        }
+
+
+        const user =
+            JSON.parse(storedUser);
+
+
+        console.log("Logged-in user:", user);
+
+
+        // -----------------------------------------
+        // USER ID
+        // -----------------------------------------
+
+        const userId = user.id;
+
+
+        if (!userId) {
+
+            loading.style.display = "none";
+
+            errorMessage.style.display = "block";
+
+            errorMessage.innerHTML =
+                "User ID not found. Please login again.";
+
+            return;
+        }
+
+
+        // -----------------------------------------
+        // CALL FLASK API
+        // -----------------------------------------
+
+        const response = await fetch(
+            API_URL + "/my-applications/" + userId
+        );
+
+
+        console.log(
+            "My Applications status:",
+            response.status
+        );
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "My Applications response:",
+            result
+        );
+
+
+        loading.style.display = "none";
+
+
+        // -----------------------------------------
+        // SUCCESS
+        // -----------------------------------------
+
+        if (
+            response.ok &&
+            result.success
+        ) {
+
+
+            if (
+                !result.applications ||
+                result.applications.length === 0
+            ) {
+
+                noApplications.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            // -------------------------------------
+            // DISPLAY APPLICATIONS
+            // -------------------------------------
+
+            container.innerHTML = "";
+
+
+            result.applications.forEach(
+                function(app) {
+
+
+                    const card =
+                        document.createElement("div");
+
+                    card.className =
+                        "application-card";
+
+
+                    const status =
+                        app.status || "Pending";
+
+
+                    card.innerHTML = `
+
+                        <div class="application-header">
+
+                            <div class="application-id">
+
+                                ${app.application_number}
+
+                            </div>
+
+                            <div class="status ${status}">
+
+                                ${status}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="details">
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Service
+                                </div>
+
+                                <div class="detail-value">
+                                    ${app.service_type || "-"}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Applicant Name
+                                </div>
+
+                                <div class="detail-value">
+                                    ${app.applicant_name || "-"}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Application Date
+                                </div>
+
+                                <div class="detail-value">
+                                    ${formatDate(app.application_date)}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Current Stage
+                                </div>
+
+                                <div class="detail-value">
+                                    ${app.current_stage || "-"}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Current Officer
+                                </div>
+
+                                <div class="detail-value">
+                                    ${app.officer_name || "Not Assigned"}
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Next Stage
+                                </div>
+
+                                <div class="detail-value">
+                                    ${app.next_stage || "-"}
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="card-actions">
+
+                            <button
+                                class="track-btn"
+                                onclick="trackApplication('${app.application_number}')">
+
+                                Track Application
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(card);
+
+                }
+            );
+
+        }
+
+
+        // -----------------------------------------
+        // API ERROR
+        // -----------------------------------------
+
+        else {
+
+            errorMessage.style.display = "block";
+
+            errorMessage.innerHTML =
+                result.message ||
+                "Unable to load applications.";
+
+        }
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "My Applications Error:",
+            error
+        );
+
+
+        loading.style.display = "none";
+
+        errorMessage.style.display =
+            "block";
+
+        errorMessage.innerHTML =
+            "Unable to connect to server. Please make sure Flask is running.";
+
+    }
+
+}
+
+
+// =================================================
+// FORMAT DATE
+// =================================================
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+
+        return "-";
+
+    }
+
+    const date =
+        new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+
+        return dateString;
+
+    }
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+// =================================================
+// TRACK APPLICATION
+// =================================================
+
+function trackApplication(applicationNumber) {
+
+    localStorage.setItem(
+        "lastApplicationNumber",
+        applicationNumber
+    );
+
+    window.location.href =
+        "track.html";
+
+}
+
+
+// =================================================
+// PAGE LOAD
+// =================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadApplications();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

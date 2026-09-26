@@ -372,6 +372,20 @@
             font-size: 11px;
             text-align: center;
         }
+        .admin-login-link {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.admin-login-link a {
+    color: #1a5dab;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.admin-login-link a:hover {
+    text-decoration: underline;
+}
 
 
         /* ================= FOOTER ================= */
@@ -667,6 +681,9 @@
                 <a href="register.html">
                     Register Now
                 </a>
+    <div class="admin-login-link">
+    <a href="admin-login.html">Admin Login</a>
+    </div>
 
             </div>
 
@@ -827,38 +844,19 @@ document
                 );
 
 
-                const response =
-                    await fetch(
-                        API_URL + "/login",
-                        {
+            const response = await fetch(API_URL + "/login", {
 
-                            method: "POST",
+    method: "POST",
 
-                            headers: {
+    headers: {
+        "Content-Type": "application/json"
+    },
 
-                                "Content-Type":
-                                    "application/json"
-
-                            },
-
-                            body: JSON.stringify({
-
-                                username:
-                                    username,
-
-                                password:
-                                    userPassword
-
-                            })
-
-                        }
-                    );
-
-
-                console.log(
-                    "Flask HTTP Status:",
-                    response.status
-                );
+    body: JSON.stringify({
+        username: username,
+        password: userPassword
+    })
+});
 
 
                 const result =
@@ -873,79 +871,24 @@ document
 
                 /* ================= SUCCESS ================= */
 
-                if (
-                    response.ok &&
-                    result.success
-                ) {
+         /* ================= SUCCESS ================= */
+
+if (response.ok && result.success) {
+
+    // मी दिलेला नवीन code इथे
+
+}
 
 
-                    alert(
-                        "Login Successful!\n\n" +
-                        "Welcome, " +
-                        result.user.first_name +
-                        " " +
-                        result.user.last_name +
-                        "!"
-                    );
+/* ================= LOGIN FAILED ================= */
 
-
-                    /* ================= SAVE LOGIN ================= */
-
-                    localStorage.setItem(
-                        "isLoggedIn",
-                        "true"
-                    );
-
-
-                    /* ================= SAVE USER ================= */
-
-                    localStorage.setItem(
-                        "user",
-                        JSON.stringify(
-                            result.user
-                        )
-                    );
-                    localStorage.setItem("first_name", result.user.first_name);
-                    localStorage.setItem("last_name", result.user.last_name);
-                    localStorage.setItem("mobile", result.user.mobile);
-                    localStorage.setItem("email", result.user.email || "");
-
-
-                    /* ================= REMEMBER ME ================= */
-
-                    const remember =
-                        document.getElementById(
-                            "remember"
-                        ).checked;
-
-
-                    if (remember) {
-
-                        localStorage.setItem(
-                            "rememberUser",
-                            username
-                        );
-
-                    }
-
-                    else {
-
-                        localStorage.removeItem(
-                            "rememberUser"
-                        );
-
-                    }
-
-
-                    /* ================= DASHBOARD ================= */
-
-                    window.location.href =
-                        "dashboard.html";
-
-
-                    return;
-
-                }
+alert(
+    "Login Failed!\n\n" +
+    (
+        result.message ||
+        "Invalid mobile number/email or password."
+    )
+);
 
 
                 /* ================= LOGIN FAILED ================= */
