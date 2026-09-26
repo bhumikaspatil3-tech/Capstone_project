@@ -871,12 +871,41 @@ document
 
                 /* ================= SUCCESS ================= */
 
-         /* ================= SUCCESS ================= */
+if (result.success === true) {
 
-if (response.ok && result.success) {
+    alert(
+        "Login Successful!\n\n" +
+        "Welcome, " +
+        result.user.first_name +
+        " " +
+        result.user.last_name +
+        "!"
+    );
 
-    // मी दिलेला नवीन code इथे
+    localStorage.setItem("isLoggedIn", "true");
 
+    localStorage.setItem(
+        "user",
+        JSON.stringify(result.user)
+    );
+
+    localStorage.setItem("first_name", result.user.first_name);
+    localStorage.setItem("last_name", result.user.last_name);
+    localStorage.setItem("mobile", result.user.mobile);
+    localStorage.setItem("email", result.user.email || "");
+
+    const remember =
+        document.getElementById("remember").checked;
+
+    if (remember) {
+        localStorage.setItem("rememberUser", username);
+    } else {
+        localStorage.removeItem("rememberUser");
+    }
+
+    window.location.href = "dashboard.html";
+
+    return;
 }
 
 
@@ -889,6 +918,9 @@ alert(
         "Invalid mobile number/email or password."
     )
 );
+
+
+         
 
 
                 /* ================= LOGIN FAILED ================= */
