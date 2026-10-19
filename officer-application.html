@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Application Details - Officer Panel</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #123c69;
+            color: white;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .header-title {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        /* ================= TOP BUTTONS ================= */
+
+        .top-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: #123c69;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: #0b2d4f;
+        }
+
+        /* ================= TITLE ================= */
+
+        .page-title {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .page-title h1 {
+            color: #123c69;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #666;
+        }
+
+        /* ================= APPLICATION ID ================= */
+
+        .application-id-box {
+            background: #eaf3ff;
+            border-left: 5px solid #123c69;
+            padding: 18px;
+            border-radius: 7px;
+            margin-bottom: 20px;
+        }
+
+        .application-id-box h3 {
+            color: #123c69;
+            margin-bottom: 6px;
+        }
+
+        #applicationId {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* ================= DETAILS CARD ================= */
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            color: #123c69;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .detail-item {
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .detail-item strong {
+            display: block;
+            color: #555;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .detail-item span {
+            font-size: 15px;
+        }
+
+        .full-width {
+            grid-column: 1 / 3;
+        }
+
+        /* ================= CURRENT STAGE ================= */
+
+        .stage {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* ================= ACTIONS ================= */
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+        }
+
+        .approve-btn {
+            background: #198754;
+        }
+
+        .approve-btn:hover {
+            background: #146c43;
+        }
+
+        .pending-btn {
+            background: #f0ad4e;
+        }
+
+        .pending-btn:hover {
+            background: #d99332;
+        }
+
+        .reject-btn {
+            background: #dc3545;
+        }
+
+        .reject-btn:hover {
+            background: #bb2d3b;
+        }
+
+        /* ================= REASON BOX ================= */
+
+        .reason-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .reason-box h3 {
+            margin-bottom: 10px;
+            color: #123c69;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            resize: vertical;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .submit-reason-btn {
+            margin-top: 10px;
+            background: #123c69;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .submit-reason-btn:hover {
+            background: #0b2d4f;
+        }
+
+        /* ================= SUCCESS MESSAGE ================= */
+
+        .success-message {
+            display: none;
+            background: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+
+            padding: 15px;
+            border-radius: 7px;
+
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            margin-top: 30px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: 1;
+            }
+
+            .top-buttons {
+                flex-direction: column;
+            }
+
+            .back-btn {
+                width: 100%;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+            e-Seva Portal
+        </div>
+
+        <div class="header-title">
+            Officer Administration Portal
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="container">
+
+
+        <!-- TOP BUTTONS -->
+
+        <div class="top-buttons">
+
+            <button class="back-btn" onclick="goBack()">
+                ← Back to Dashboard
+            </button>
+
+            <button class="back-btn" onclick="goHistory()">
+                Officer History
+            </button>
+
+        </div>
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="page-title">
+
+            <h1>
+                Application Details
+            </h1>
+
+            <p>
+                Review applicant information and take appropriate action.
+            </p>
+
+        </div>
+
+
+        <!-- SUCCESS MESSAGE -->
+
+        <div id="successMessage" class="success-message">
+        </div>
+
+
+        <!-- APPLICATION ID -->
+
+        <div class="application-id-box">
+
+            <h3>
+                Application ID
+            </h3>
+
+            <div id="applicationId">
+                ID2026000002
+            </div>
+
+        </div>
+
+
+        <!-- ================= APPLICATION INFORMATION ================= -->
+
+        <!-- ================= APPLICATION INFORMATION ================= -->
+
+<div class="card">
+
+    <h2>
+        Application Information
+    </h2>
+
+
+    <div class="details-grid">
+
+
+        <div class="detail-item">
+
+            <strong>
+                Applicant Name
+            </strong>
+
+            <span id="applicantName">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Mobile Number
+            </strong>
+
+            <span id="mobile">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Email
+            </strong>
+
+            <span id="email">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Service
+            </strong>
+
+            <span id="service">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Application Date
+            </strong>
+
+            <span id="applicationDate">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Department / Officer
+            </strong>
+
+            <span id="department">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="detail-item full-width">
+
+            <strong>
+                Current Stage
+            </strong>
+
+            <span
+                id="currentStage"
+                class="stage">
+
+                -
+
+            </span>
+
+        </div>
+
+
+        <div class="detail-item full-width">
+
+            <strong>
+                Address
+            </strong>
+
+            <span id="address">
+                Not available
+            </span>
+
+        </div>
+
+
+        <div class="detail-item full-width">
+
+            <strong>
+                Purpose
+            </strong>
+
+            <span id="purpose">
+                Not available
+            </span>
+
+        </div>
+
+
+        <div class="detail-item full-width">
+
+            <strong>
+                Application Details / Officer Remarks
+            </strong>
+
+            <span id="applicationDetails">
+                No remarks available.
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+        <!-- ================= OFFICER ACTIONS ================= -->
+
+        <div class="card">
+
+            <h2>
+                Officer Actions
+            </h2>
+
+
+            <div class="actions">
+
+                <button
+                    class="action-btn approve-btn"
+                    onclick="approveApplication()">
+
+                    ✓ Approve & Forward
+
+                </button>
+
+
+                <button
+                    class="action-btn pending-btn"
+                    onclick="showPendingReason()">
+
+                    ⏳ Keep Pending
+
+                </button>
+
+
+                <button
+                    class="action-btn reject-btn"
+                    onclick="showRejectReason()">
+
+                    ✕ Reject
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= PENDING REASON ================= -->
+
+            <div
+                id="pendingReasonBox"
+                class="reason-box">
+
+                <h3>
+                    Pending Reason
+                </h3>
+
+                <textarea
+                    id="pendingReason"
+                    placeholder="Enter reason for keeping this application pending...">
+                </textarea>
+
+
+                <button
+                    class="submit-reason-btn"
+                    onclick="submitPending()">
+
+                    Submit Pending Reason
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= REJECT REASON ================= -->
+
+            <div
+                id="rejectReasonBox"
+                class="reason-box">
+
+                <h3>
+                    Rejection Reason
+                </h3>
+
+                <textarea
+                    id="rejectReason"
+                    placeholder="Enter reason for rejecting this application...">
+                </textarea>
+
+
+                <button
+                    class="submit-reason-btn"
+                    onclick="submitReject()">
+
+                    Submit Rejection
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        e-Seva Portal © 2026 |
+        Officer Administration Module
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+<script>
+
+const API_URL = "http://127.0.0.1:5000";
+
+
+// =========================================================
+// BACK TO DASHBOARD
+// =========================================================
+
+function goBack() {
+
+    window.location.href = "officer-dashboard.html";
+
+}
+
+
+// =========================================================
+// OFFICER HISTORY
+// =========================================================
+
+function goHistory() {
+
+    window.location.href = "officer-history.html";
+
+}
+
+
+// =========================================================
+// LOAD APPLICATION DETAILS
+// =========================================================
+
+async function loadApplicationDetails() {
+
+    const applicationId =
+        localStorage.getItem("selectedApplicationId");
+
+    if (!applicationId) {
+
+        alert("No application selected.");
+
+        window.location.href =
+            "officer-dashboard.html";
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            API_URL +
+            "/officer/application/" +
+            applicationId
+        );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok || !result.success) {
+
+            alert(
+                result.message ||
+                "Unable to load application."
+            );
+
+            return;
+        }
+
+
+        const app =
+            result.application;
+
+
+        // =================================================
+        // APPLICATION ID
+        // =================================================
+
+        const applicationIdElement =
+            document.getElementById("applicationId");
+
+        if (applicationIdElement) {
+
+            applicationIdElement.textContent =
+                app.application_number || "-";
+
+        }
+
+
+        // =================================================
+        // APPLICANT NAME
+        // =================================================
+
+        const applicantName =
+            document.getElementById("applicantName");
+
+        if (applicantName) {
+
+            applicantName.textContent =
+                app.applicant_name || "-";
+
+        }
+
+
+        // =================================================
+        // MOBILE
+        // =================================================
+
+        const mobile =
+            document.getElementById("mobile");
+
+        if (mobile) {
+
+            mobile.textContent =
+                app.mobile || "-";
+
+        }
+
+
+        // =================================================
+        // EMAIL
+        // =================================================
+
+        const email =
+            document.getElementById("email");
+
+        if (email) {
+
+            email.textContent =
+                app.email || "-";
+
+        }
+
+
+        // =================================================
+        // SERVICE
+        // =================================================
+
+        const service =
+            document.getElementById("service");
+
+        if (service) {
+
+            service.textContent =
+                app.service_type || "-";
+
+        }
+
+
+        // =================================================
+        // APPLICATION DATE
+        // =================================================
+
+        const applicationDate =
+            document.getElementById("applicationDate");
+
+        if (applicationDate) {
+
+            applicationDate.textContent =
+                formatDate(app.application_date);
+
+        }
+
+
+        // =================================================
+        // DEPARTMENT / OFFICER
+        // =================================================
+
+        const department =
+            document.getElementById("department");
+
+        if (department) {
+
+            department.textContent =
+                app.officer_name || "Not Assigned";
+
+        }
+
+
+        // =================================================
+        // CURRENT STAGE
+        // =================================================
+
+        const currentStage =
+            document.getElementById("currentStage");
+
+        if (currentStage) {
+
+            currentStage.textContent =
+                app.current_stage || "-";
+
+        }
+
+
+        // =================================================
+        // ADDRESS
+        // =================================================
+
+        const address =
+            document.getElementById("address");
+
+        if (address) {
+
+            address.textContent =
+                "Not available";
+
+        }
+
+
+        // =================================================
+        // PURPOSE
+        // =================================================
+
+        const purpose =
+            document.getElementById("purpose");
+
+        if (purpose) {
+
+            purpose.textContent =
+                "Not available";
+
+        }
+
+
+        // =================================================
+        // APPLICATION DETAILS / REMARKS
+        // =================================================
+
+        const applicationDetails =
+            document.getElementById("applicationDetails");
+
+        if (applicationDetails) {
+
+            applicationDetails.textContent =
+                app.remarks || "No remarks available.";
+
+        }
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Application Details Error:",
+            error
+        );
+
+        alert(
+            "Unable to connect to server."
+        );
+
+    }
+
+}
+
+
+// =========================================================
+// FORMAT DATE
+// =========================================================
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+
+        return "-";
+
+    }
+
+    const date =
+        new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+
+        return dateString;
+
+    }
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+// =========================================================
+// APPROVE APPLICATION
+// =========================================================
+
+async function approveApplication() {
+
+    const applicationId =
+        localStorage.getItem("selectedApplicationId");
+
+
+    const officerData =
+        JSON.parse(
+            localStorage.getItem("officer")
+        );
+
+
+    if (!applicationId || !officerData) {
+
+        alert(
+            "Application or officer information missing."
+        );
+
+        return;
+    }
+
+
+    if (
+        !confirm(
+            "Are you sure you want to approve and forward this application?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/officer/application/" +
+                applicationId +
+                "/approve",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        officer_id:
+                            officerData.id
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok || !result.success) {
+
+            alert(
+                result.message ||
+                "Unable to approve application."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            result.message ||
+            "Application approved and forwarded successfully."
+        );
+
+
+        window.location.href =
+            "officer-dashboard.html";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Approve Error:",
+            error
+        );
+
+        alert(
+            "Unable to connect to server."
+        );
+
+    }
+
+}
+
+
+// =========================================================
+// SHOW PENDING REASON
+// =========================================================
+
+function showPendingReason() {
+
+    const box =
+        document.getElementById("pendingReasonBox");
+
+    if (box) {
+
+        box.style.display = "block";
+
+    }
+
+}
+
+
+// =========================================================
+// SHOW REJECT REASON
+// =========================================================
+
+function showRejectReason() {
+
+    const box =
+        document.getElementById("rejectReasonBox");
+
+    if (box) {
+
+        box.style.display = "block";
+
+    }
+
+}
+
+
+// =========================================================
+// SUBMIT PENDING
+// =========================================================
+
+async function submitPending() {
+
+    const applicationId =
+        localStorage.getItem("selectedApplicationId");
+
+
+    const officerData =
+        JSON.parse(
+            localStorage.getItem("officer")
+        );
+
+
+    const reasonElement =
+        document.getElementById("pendingReason");
+
+
+    if (!reasonElement) {
+
+        alert(
+            "Pending reason field not found."
+        );
+
+        return;
+
+    }
+
+
+    const reason =
+        reasonElement.value.trim();
+
+
+    if (!reason) {
+
+        alert(
+            "Please enter a reason."
+        );
+
+        reasonElement.focus();
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/officer/application/" +
+                applicationId +
+                "/pending",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        officer_id:
+                            officerData.id,
+
+                        reason:
+                            reason
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok || !result.success) {
+
+            alert(
+                result.message ||
+                "Unable to keep application pending."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Application kept pending.\n\nReason:\n" +
+            reason
+        );
+
+
+        window.location.href =
+            "officer-dashboard.html";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Pending Error:",
+            error
+        );
+
+        alert(
+            "Unable to connect to server."
+        );
+
+    }
+
+}
+
+
+// =========================================================
+// SUBMIT REJECT
+// =========================================================
+
+async function submitReject() {
+
+    const applicationId =
+        localStorage.getItem("selectedApplicationId");
+
+
+    const officerData =
+        JSON.parse(
+            localStorage.getItem("officer")
+        );
+
+
+    const reasonElement =
+        document.getElementById("rejectReason");
+
+
+    if (!reasonElement) {
+
+        alert(
+            "Reject reason field not found."
+        );
+
+        return;
+
+    }
+
+
+    const reason =
+        reasonElement.value.trim();
+
+
+    if (!reason) {
+
+        alert(
+            "Please enter a rejection reason."
+        );
+
+        reasonElement.focus();
+
+        return;
+
+    }
+
+
+    if (
+        !confirm(
+            "Are you sure you want to reject this application?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "/officer/application/" +
+                applicationId +
+                "/reject",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        officer_id:
+                            officerData.id,
+
+                        reason:
+                            reason
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok || !result.success) {
+
+            alert(
+                result.message ||
+                "Unable to reject application."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Application rejected.\n\nReason:\n" +
+            reason
+        );
+
+
+        window.location.href =
+            "officer-dashboard.html";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Reject Error:",
+            error
+        );
+
+        alert(
+            "Unable to connect to server."
+        );
+
+    }
+
+}
+
+
+// =========================================================
+// PAGE LOAD
+// =========================================================
+
+window.onload = function () {
+
+    loadApplicationDetails();
+
+};
+
+</script>
+    
+
+</body>
+
+</html>

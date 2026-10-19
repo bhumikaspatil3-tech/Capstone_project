@@ -426,7 +426,241 @@
 
         <!-- RESULT -->
 
+<<<<<<< HEAD
         <div id="result"></div>
+=======
+        <section class="track-result"
+                 id="trackResult">
+
+
+            <!-- STATUS -->
+
+            <div class="status-card">
+
+                <div class="status-left">
+
+                    <h3 data-key="applicationStatus">
+                        Application Status
+                    </h3>
+
+                    <p>
+                        <span data-key="applicationNumber">
+                            Application ID:
+                        </span>
+
+                        <strong id="resultApplicationId">
+                            ID2026000002]]]]
+                        </strong>
+                    </p>
+
+                </div>
+
+                <div class="status-badge"
+                     id="statusBadge"
+                     data-key="underVerification">
+                    Under Verification
+                </div>
+
+            </div>
+
+
+            <!-- DETAILS -->
+
+            <div class="details-card">
+
+                <h3 class="card-heading"
+                    data-key="applicationDetails">
+                    Application Details
+                </h3>
+
+                <div class="details-grid">
+
+                    <div class="detail-item">
+
+                        <span data-key="serviceName">
+                            Service
+                        </span>
+
+                        <strong id="resultService">
+                            Income Certificate
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span data-key="applicantName">
+                            Applicant Name
+                        </span>
+
+                        <strong>
+                            Bhumika Patil
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span data-key="submissionDate">
+                            Submission Date
+                        </span>
+
+                        <strong>
+                            02 September 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span data-key="expectedDate">
+                            Expected Completion
+                        </span>
+
+                        <strong>
+                            09 September 2026
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TIMELINE -->
+
+            <div class="timeline-card">
+
+                <h3 class="card-heading"
+                    data-key="applicationProgress">
+                    Application Progress
+                </h3>
+
+
+                <div class="timeline">
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="timeline-step">
+
+                        <div class="timeline-icon">
+                            ✓
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h4 data-key="submitted">
+                                Application Submitted
+                            </h4>
+
+                            <p data-key="submittedDesc">
+                                Your application has been successfully submitted.
+                            </p>
+
+                            <small>
+                                02 Sep 2026
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="timeline-step">
+
+                        <div class="timeline-icon">
+                            ✓
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h4 data-key="verification">
+                                Document Verification
+                            </h4>
+
+                            <p data-key="verificationDesc">
+                                Documents are being verified by the department.
+                            </p>
+
+                            <small>
+                                03 Sep 2026
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="timeline-step pending">
+
+                        <div class="timeline-icon">
+                            3
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h4 data-key="officerReview">
+                                Officer Review
+                            </h4>
+
+                            <p data-key="officerReviewDesc">
+                                Application will be reviewed by the concerned officer.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 4 -->
+
+                    <div class="timeline-step pending">
+
+                        <div class="timeline-icon">
+                            4
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h4 data-key="approved">
+                                Approved
+                            </h4>
+
+                            <p data-key="approvedDesc">
+                                Certificate / service will be issued after approval.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HELP -->
+
+            <div class="track-help"
+                 data-key="trackHelp">
+
+                Need help? If your application remains pending
+                beyond the expected time, you can raise a complaint
+                through the Complaints section.
+
+            </div>
+
+        </section>
+>>>>>>> 099bd4990b496fe960a1e8b3dd25406c6f9eab81
 
     </main>
 
@@ -455,7 +689,158 @@
 const API_URL = "http://127.0.0.1:5000";
 
 
+<<<<<<< HEAD
 async function trackApplication() {
+=======
+        /* ================= TRACK APPLICATION ================= */
+
+       /* ================= TRACK APPLICATION ================= */
+
+async function trackApplication() {
+
+    const input =
+        document.getElementById("applicationId");
+
+    const id =
+        input.value.trim().toUpperCase();
+
+    const result =
+        document.getElementById("trackResult");
+
+    const error =
+        document.getElementById("trackError");
+
+
+    // Empty ID check
+    if (!id) {
+
+        result.style.display = "none";
+        error.style.display = "block";
+
+        error.textContent =
+            "Please enter your Application ID.";
+
+        return;
+    }
+
+
+    try {
+
+        // Call Flask backend
+        const response = await fetch(
+            `http://127.0.0.1:5000/track/${id}`
+        );
+
+
+        const data = await response.json();
+
+
+        // ================= SUCCESS =================
+
+        if (data.success) {
+
+            const application =
+                data.application;
+
+
+            // Hide error
+            error.style.display = "none";
+
+
+            // Show result
+            result.style.display = "block";
+
+
+            // Application ID
+            document.getElementById(
+                "resultApplicationId"
+            ).textContent =
+                application.application_id;
+
+
+            // Service
+            document.getElementById(
+                "resultService"
+            ).textContent =
+                application.service;
+
+
+            // Applicant Name
+            document.querySelector(
+                ".details-grid .detail-item:nth-child(2) strong"
+            ).textContent =
+                application.first_name +
+                " " +
+                application.last_name;
+
+
+            // Submission Date
+            const submissionDate =
+                new Date(application.created_at);
+
+
+            document.querySelector(
+                ".details-grid .detail-item:nth-child(3) strong"
+            ).textContent =
+                submissionDate.toLocaleDateString(
+                    "en-GB",
+                    {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            // Status
+            document.getElementById(
+                "statusBadge"
+            ).textContent =
+                application.status;
+
+
+            // Scroll to result
+            result.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // ================= NOT FOUND =================
+
+        else {
+
+            result.style.display = "none";
+
+            error.style.display = "block";
+
+            error.textContent =
+                data.message ||
+                "Application not found. Please check your Application ID.";
+        }
+
+
+    } catch (err) {
+
+        console.error(
+            "Tracking Error:",
+            err
+        );
+
+        result.style.display = "none";
+
+        error.style.display = "block";
+
+        error.textContent =
+            "Unable to connect to server. Please make sure Flask server is running.";
+
+    }
+
+}
+
+        /* ENTER KEY */
+>>>>>>> 099bd4990b496fe960a1e8b3dd25406c6f9eab81
 
     const applicationId =
         document
@@ -492,11 +877,423 @@ async function trackApplication() {
         ==============================
         */
 
+<<<<<<< HEAD
         const response =
             await fetch(
                 API_URL +
                 "/track/" +
                 encodeURIComponent(applicationId)
+=======
+                tagline:
+                    "One step towards Digital Government",
+
+                home: "🏠 Home",
+                services: "Services",
+                track: "Track Application",
+                complaints: "Complaints",
+                about: "About Us",
+                contact: "Contact Us",
+
+                login: "👤 Login",
+                register: "♙ Register",
+
+                trackTitle: "Track",
+                applicationTitle: " Application",
+
+                trackDescription:
+                    "Enter your application ID to check the current status and progress of your government service.",
+
+                applicationIdLabel:
+                    "Application ID",
+
+                applicationPlaceholder:
+                    "Enter Application ID",
+
+                exampleId:
+                    "Example: ID2026000002",
+
+                trackButton:
+                    "Track",
+
+                invalidId:
+                    "Application not found. Please check your Application ID.",
+
+                applicationStatus:
+                    "Application Status",
+
+                applicationNumber:
+                    "Application ID:",
+
+                underVerification:
+                    "Under Verification",
+
+                applicationDetails:
+                    "Application Details",
+
+                serviceName:
+                    "Service",
+
+                applicantName:
+                    "Applicant Name",
+
+                submissionDate:
+                    "Submission Date",
+
+                expectedDate:
+                    "Expected Completion",
+
+                applicationProgress:
+                    "Application Progress",
+
+                submitted:
+                    "Application Submitted",
+
+                submittedDesc:
+                    "Your application has been successfully submitted.",
+
+                verification:
+                    "Document Verification",
+
+                verificationDesc:
+                    "Documents are being verified by the department.",
+
+                officerReview:
+                    "Officer Review",
+
+                officerReviewDesc:
+                    "Application will be reviewed by the concerned officer.",
+
+                approved:
+                    "Approved",
+
+                approvedDesc:
+                    "Certificate / service will be issued after approval.",
+
+                trackHelp:
+                    "Need help? If your application remains pending beyond the expected time, you can raise a complaint through the Complaints section.",
+
+                footerTitle:
+                    "e-Seva Portal",
+
+                footerTagline:
+                    "Serving Citizens, Simplifying Government",
+
+                privacy:
+                    "Privacy Policy",
+
+                terms:
+                    "Terms & Conditions",
+
+                help:
+                    "Help & Support",
+
+                copyright:
+                    "© 2026 e-Seva Portal. All Rights Reserved."
+
+            },
+
+
+            mr: {
+
+                bharat: "भारत सरकार",
+                govIndia: "भारत सरकार",
+
+                helpline:
+                    "☎ हेल्पलाइन क्र.: 1800-123-4567",
+
+                supportEmail:
+                    "✉ support@govservices.gov.in",
+
+                brandPrefix: "ई-",
+
+                tagline:
+                    "डिजिटल सरकारच्या दिशेने एक पाऊल",
+
+                home: "🏠 मुख्यपृष्ठ",
+                services: "शासकीय सेवा",
+                track: "अर्जाचा मागोवा",
+                complaints: "तक्रारी",
+                about: "आमच्याबद्दल",
+                contact: "संपर्क",
+
+                login: "👤 लॉगिन",
+                register: "♙ नोंदणी",
+
+                trackTitle: "अर्जाचा",
+                applicationTitle: " मागोवा",
+
+                trackDescription:
+                    "तुमच्या शासकीय सेवेची सध्याची स्थिती आणि प्रगती पाहण्यासाठी अर्ज क्रमांक टाका.",
+
+                applicationIdLabel:
+                    "अर्ज क्रमांक",
+
+                applicationPlaceholder:
+                    "अर्ज क्रमांक टाका",
+
+                exampleId:
+                    "उदाहरण: ID2026000002",
+
+                trackButton:
+                    "मागोवा घ्या",
+
+                invalidId:
+                    "अर्ज सापडला नाही. कृपया अर्ज क्रमांक तपासा.",
+
+                applicationStatus:
+                    "अर्जाची स्थिती",
+
+                applicationNumber:
+                    "अर्ज क्रमांक:",
+
+                underVerification:
+                    "तपासणी सुरू आहे",
+
+                applicationDetails:
+                    "अर्जाचा तपशील",
+
+                serviceName:
+                    "सेवा",
+
+                applicantName:
+                    "अर्जदाराचे नाव",
+
+                submissionDate:
+                    "अर्ज सादर केल्याची तारीख",
+
+                expectedDate:
+                    "अपेक्षित पूर्णता",
+
+                applicationProgress:
+                    "अर्जाची प्रगती",
+
+                submitted:
+                    "अर्ज सादर केला",
+
+                submittedDesc:
+                    "तुमचा अर्ज यशस्वीरित्या सादर झाला आहे.",
+
+                verification:
+                    "कागदपत्रांची तपासणी",
+
+                verificationDesc:
+                    "विभागाकडून कागदपत्रांची तपासणी केली जात आहे.",
+
+                officerReview:
+                    "अधिकारी तपासणी",
+
+                officerReviewDesc:
+                    "संबंधित अधिकारी अर्जाची तपासणी करतील.",
+
+                approved:
+                    "मंजूर",
+
+                approvedDesc:
+                    "मंजुरीनंतर प्रमाणपत्र / सेवा दिली जाईल.",
+
+                trackHelp:
+                    "मदत हवी आहे? अपेक्षित वेळेपेक्षा जास्त अर्ज प्रलंबित असल्यास तक्रारीच्या विभागातून तक्रार नोंदवा.",
+
+                footerTitle:
+                    "ई-सेवा पोर्टल",
+
+                footerTagline:
+                    "नागरिकांची सेवा, शासकीय प्रक्रिया सुलभ",
+
+                privacy:
+                    "गोपनीयता धोरण",
+
+                terms:
+                    "अटी व शर्ती",
+
+                help:
+                    "मदत व समर्थन",
+
+                copyright:
+                    "© 2026 ई-सेवा पोर्टल. सर्व हक्क राखीव."
+
+            },
+
+
+            hi: {
+
+                bharat: "भारत सरकार",
+                govIndia: "भारत सरकार",
+
+                helpline:
+                    "☎ हेल्पलाइन नं.: 1800-123-4567",
+
+                supportEmail:
+                    "✉ support@govservices.gov.in",
+
+                brandPrefix: "ई-",
+
+                tagline:
+                    "डिजिटल सरकार की ओर एक कदम",
+
+                home: "🏠 होम",
+                services: "सरकारी सेवाएं",
+                track: "आवेदन ट्रैक करें",
+                complaints: "शिकायतें",
+                about: "हमारे बारे में",
+                contact: "संपर्क करें",
+
+                login: "👤 लॉगिन",
+                register: "♙ पंजीकरण",
+
+                trackTitle: "आवेदन",
+                applicationTitle: " ट्रैक करें",
+
+                trackDescription:
+                    "अपनी सरकारी सेवा की वर्तमान स्थिति और प्रगति देखने के लिए आवेदन आईडी दर्ज करें।",
+
+                applicationIdLabel:
+                    "आवेदन आईडी",
+
+                applicationPlaceholder:
+                    "आवेदन आईडी दर्ज करें",
+
+                exampleId:
+                    "उदाहरण: ID2026000002",
+
+                trackButton:
+                    "ट्रैक करें",
+
+                invalidId:
+                    "आवेदन नहीं मिला। कृपया आवेदन आईडी जांचें।",
+
+                applicationStatus:
+                    "आवेदन की स्थिति",
+
+                applicationNumber:
+                    "आवेदन आईडी:",
+
+                underVerification:
+                    "सत्यापन जारी है",
+
+                applicationDetails:
+                    "आवेदन विवरण",
+
+                serviceName:
+                    "सेवा",
+
+                applicantName:
+                    "आवेदक का नाम",
+
+                submissionDate:
+                    "जमा करने की तारीख",
+
+                expectedDate:
+                    "अपेक्षित पूर्णता",
+
+                applicationProgress:
+                    "आवेदन की प्रगति",
+
+                submitted:
+                    "आवेदन जमा किया गया",
+
+                submittedDesc:
+                    "आपका आवेदन सफलतापूर्वक जमा हो गया है।",
+
+                verification:
+                    "दस्तावेज सत्यापन",
+
+                verificationDesc:
+                    "विभाग द्वारा दस्तावेजों का सत्यापन किया जा रहा है।",
+
+                officerReview:
+                    "अधिकारी समीक्षा",
+
+                officerReviewDesc:
+                    "संबंधित अधिकारी आवेदन की समीक्षा करेंगे।",
+
+                approved:
+                    "स्वीकृत",
+
+                approvedDesc:
+                    "स्वीकृति के बाद प्रमाणपत्र / सेवा जारी की जाएगी।",
+
+                trackHelp:
+                    "मदद चाहिए? यदि आपका आवेदन अपेक्षित समय से अधिक लंबित है, तो शिकायत अनुभाग के माध्यम से शिकायत दर्ज करें।",
+
+                footerTitle:
+                    "ई-सेवा पोर्टल",
+
+                footerTagline:
+                    "नागरिकों की सेवा, सरकारी प्रक्रिया सरल",
+
+                privacy:
+                    "गोपनीयता नीति",
+
+                terms:
+                    "नियम एवं शर्तें",
+
+                help:
+                    "सहायता और समर्थन",
+
+                copyright:
+                    "© 2026 ई-सेवा पोर्टल. सर्वाधिकार सुरक्षित."
+
+            }
+
+        };
+
+
+        /* ================= CHANGE LANGUAGE ================= */
+
+        function changeLanguage(lang) {
+
+            const t = translations[lang];
+
+            document.documentElement.lang = lang;
+
+
+            document
+                .querySelectorAll("[data-key]")
+                .forEach(element => {
+
+                    const key =
+                        element.dataset.key;
+
+                    if (t[key] !== undefined) {
+
+                        element.textContent =
+                            t[key];
+
+                    }
+
+                });
+
+
+            document
+                .querySelectorAll("[data-placeholder]")
+                .forEach(element => {
+
+                    const key =
+                        element.dataset.placeholder;
+
+                    if (t[key] !== undefined) {
+
+                        element.placeholder =
+                            t[key];
+
+                    }
+
+                });
+
+
+            localStorage.setItem(
+                "selectedLanguage",
+                lang
+            );
+
+        }
+
+
+        const languageSelect =
+            document.getElementById(
+                "languageSelect"
+>>>>>>> 099bd4990b496fe960a1e8b3dd25406c6f9eab81
             );
 
 
