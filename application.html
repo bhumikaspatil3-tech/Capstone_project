@@ -1097,37 +1097,9 @@
 
                         alert("Please login first.");
 
-<<<<<<< HEAD
                         return;
-=======
-                })
 
-                .then(response => response.json())
-
-                .then(result => {
-
-                if (result.success) {
-
-    message.style.display = "block";
-
-    message.className = "success";
-
-    message.innerHTML =
-        "Application submitted successfully!<br><br>" +
-        "<strong>Your Application ID: " +
-        result.application_id +
-        "</strong><br>" +
-        "Please save this ID to track your application.";
-
-    document
-        .getElementById("applicationForm")
-        .reset();
-
-    submitBtn.textContent =
-        "Application Submitted ✓";
->>>>>>> 099bd4990b496fe960a1e8b3dd25406c6f9eab81
-
-}   
+                    }
 
 
                     /* ===============================
